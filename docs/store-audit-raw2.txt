@@ -1,0 +1,240 @@
+
+
+===== /settings/general =====
+Skip to content
+Home
+Orders
+Products
+Customers
+Growth
+Discounts
+Content
+Markets
+Analytics
+Sales channels
+Apps
+Settings
+1
+Settings
+General
+My Store 2
+vt2ha9-q6.myshopify.com
+Plan
+Billing
+Users
+Payments
+Checkout
+Customer accounts
+Shipping and delivery
+Taxes and duties
+Locations
+Markets
+Apps
+Sales channels
+Domains
+Customer events
+Notifications
+Metafields and metaobjects
+Languages
+Customer privacy
+Policies
+Desk kart
+yaseenwaqar7890@gmail.com
+Establishing seller health
+Establishing seller health
+2 steps to unlock good seller health
+View benefits
+Add business details
+Fulfill your first order
+My Store 2 - entity
+Pakistan
+My Store 2
+yaseenwaqar7890@gmail.com · No phone number
+Store address
+G Block, Lahore 54000, Pakistan
+Submit
+Currency display
+To manage the currencies customers see, go to Markets
+Pakistani Rupee (PKR Rs)
+To change your user level time zone and language visit your account settings
+Your order ID will appear as #1001, #1002, #1003, ...
+After an order has been paid
+After an order has been fulfilled and paid, or when all items have been refunded
+Automatically archive the order
+The order will be removed from your list of open orders.
+Metafields
+Available in themes and configurable for Storefront API
+Brand
+Integrate brand assets across sales channels, themes and apps
+Change log
+Shopify Help Center
+Hire a Shopify Partner
+Keyboard shortcuts
+Store activity log
+Move this store into an organization or transfer to an external owner. Learn moreManage
+
+
+===== /settings/policies =====
+Skip to content
+Home
+Orders
+Products
+Customers
+Growth
+Discounts
+Content
+Markets
+Analytics
+Sales channels
+Apps
+Settings
+1
+Settings
+General
+My Store 2
+vt2ha9-q6.myshopify.com
+Plan
+Billing
+Users
+Payments
+Checkout
+Customer accounts
+Shipping and delivery
+Taxes and duties
+Locations
+Markets
+Apps
+Sales channels
+Domains
+Customer events
+Notifications
+Metafields and metaobjects
+Languages
+Customer privacy
+Policies
+Desk kart
+yaseenwaqar7890@gmail.com
+There's no page at this addressCheck the URL and try again, or use the search bar to find what you need.
+
+Work with Sidekick
+
+
+===== /settings/shipping =====
+Skip to content
+Home
+Orders
+Products
+Customers
+Growth
+Discounts
+Content
+Markets
+Analytics
+Sales channels
+Apps
+Settings
+1
+Settings
+General
+My Store 2
+vt2ha9-q6.myshopify.com
+Plan
+Billing
+Users
+Payments
+Checkout
+Customer accounts
+Shipping and delivery
+Taxes and duties
+Locations
+Markets
+Apps
+Sales channels
+Domains
+Customer events
+Notifications
+Metafields and metaobjects
+Languages
+Customer privacy
+Policies
+Desk kart
+yaseenwaqar7890@gmail.com
+Shipping options
+Manage where you ship and what it costs
+1 market
+Shipping has moved to MarketsYour shipping rates haven’t changed—just where you manage them. Learn more
+Switch back
+Market
+Options
+Pakistan
+معیاری
+Market
+Delivery estimates
+Show customers when they can expect their orders to arrive
+Off
+Packages
+Set package sizes to get accurate shipping rates
+1 box
+Carrier accounts
+Connect your existing carrier account to use your own rates
+None
+Local delivery
+Off
+Pickup in store
+Off
+Name
+Date modified
+Pick list
+Not modified
+Packing Slip
+Not modified
+Invoice
+Not modified
+
+
+===== /settings/payments =====
+Skip to content
+Home
+Orders
+Products
+Customers
+Growth
+Discounts
+Content
+Markets
+Analytics
+Sales channels
+Apps
+Settings
+1
+Settings
+General
+My Store 2
+vt2ha9-q6.myshopify.com
+Plan
+Billing
+Users
+Payments
+Checkout
+Customer accounts
+Shipping and delivery
+Taxes and duties
+Locations
+Markets
+Apps
+Sales channels
+Domains
+Customer events
+Notifications
+Metafields and metaobjects
+Languages
+Customer privacy
+Policies
+Desk kart
+yaseenwaqar7890@gmail.com
+Providers that enable you to accept payment methods at a rate set by the third-party. An additional fee will apply to new orders once you select a plan.
+Choose a provider
+Payment capture method
+Payment method customizations
+Gift card expiration
+Apple Wallet passes

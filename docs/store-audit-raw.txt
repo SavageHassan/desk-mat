@@ -1,0 +1,267 @@
+
+
+===== /settings/general =====
+
+
+
+===== /content/pages =====
+Skip to content
+Search
+⌘K
+Home
+Orders
+Products
+Customers
+Growth
+Discounts
+Content
+Markets
+Analytics
+Sales channels
+Online Store
+Agentic
+Apps
+Settings
+
+My Store 2
+
+
+===== /collections =====
+Skip to content
+Search
+⌘K
+Home
+Orders
+Products
+Collections
+Inventory
+Purchase orders
+Transfers
+Gift cards
+Customers
+Growth
+Discounts
+Content
+Markets
+Analytics
+Sales channels
+Online Store
+Agentic
+Apps
+Settings
+
+My Store 2
+
+1
+Add collection
+All
+Save
+Select all 1 on page
+Image
+Title
+Products
+Conditions
+Sales channels
+Select Home page
+Home page
+0
+2
+
+
+===== /content/menus =====
+Skip to content
+Search
+⌘K
+Home
+Orders
+Products
+Customers
+Growth
+Discounts
+Content
+Metaobjects
+Files
+Menus
+Blog posts
+Markets
+Analytics
+Sales channels
+Online Store
+Agentic
+Apps
+Add
+Settings
+
+My Store 2
+
+1
+Trial ends soon
+Subscribe for $1
+Create menu
+Menu
+Menu items
+Main menu
+
+Home, Catalog, Contact
+
+Footer menu
+
+Search
+
+Customer account main menu
+
+Orders, Profile
+
+Work with Sidekick
+
+
+===== /settings/policies =====
+Skip to content
+Home
+Orders
+Products
+Customers
+Growth
+Discounts
+Content
+Markets
+Analytics
+Sales channels
+Apps
+Settings
+1
+Settings
+General
+My Store 2
+vt2ha9-q6.myshopify.com
+Plan
+Billing
+Users
+Payments
+Checkout
+Customer accounts
+Shipping and delivery
+Taxes and duties
+Locations
+Markets
+Apps
+Sales channels
+Domains
+Customer events
+Notifications
+Metafields and metaobjects
+Languages
+Customer privacy
+Policies
+Desk kart
+yaseenwaqar7890@gmail.com
+There's no page at this addressCheck the URL and try again, or use the search bar to find what you need.
+
+
+===== /settings/shipping =====
+
+
+
+===== /settings/payments =====
+
+
+
+===== /settings/markets =====
+
+
+
+===== /settings/domains =====
+Skip to content
+Home
+Orders
+Products
+Customers
+Growth
+Discounts
+Content
+Markets
+Analytics
+Sales channels
+Apps
+Settings
+1
+Settings
+General
+My Store 2
+vt2ha9-q6.myshopify.com
+Plan
+Billing
+Users
+Payments
+Checkout
+Customer accounts
+Shipping and delivery
+Taxes and duties
+Locations
+Markets
+Apps
+Sales channels
+Domains
+Customer events
+Notifications
+Metafields and metaobjects
+Languages
+Customer privacy
+Policies
+Desk kart
+yaseenwaqar7890@gmail.com
+Buy new domainBuy or connect a custom domain and earn $20 USD in subscription credits toward future bills. Terms apply
+Change to a new myshopify.com domain
+Update your current Shopify subdomain for free to better match your brand. You can also buy or connect a custom domain.
+Change myshopify.com domain
+.com
+Domain
+Status
+Actions
+vt2ha9-q6.myshopify.com
+Primary
+Connected
+
+
+===== /themes =====
+Skip to content
+Search
+⌘K
+Home
+Orders
+Products
+Customers
+Growth
+Discounts
+Content
+Markets
+Analytics
+Sales channels
+Online Store
+Pages
+Preferences
+Agentic
+Apps
+Settings
+
+My Store 2
+
+1
+Trial ends soon
+Subscribe for $1
+
+
+===== /apps =====
+Skip to content
+Home
+Orders
+Products
+Customers
+Growth
+Discounts
+Content
+Markets
+Analytics
+Sales channels
+Apps
+Settings
