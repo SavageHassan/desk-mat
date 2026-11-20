@@ -131,3 +131,45 @@
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* --- Brand overrides for Horizon header & footer --- */
+#header-group { border-bottom: 1px solid var(--dk-stone); }
+
+footer .shopify-section-group-footer-group {
+  --color-background: #16140f;
+  --color-background-rgb: 22, 20, 15;
+  --color-foreground: #fbf9f6;
+  --color-foreground-rgb: 251, 249, 246;
+  --color-foreground-muted: rgba(251, 249, 246, 0.72);
+  --color-foreground-subdued: rgba(251, 249, 246, 0.58);
+  --color-border: rgba(251, 249, 246, 0.2);
+  --color-border-rgb: 251, 249, 246;
+  --color-input-background: rgba(0, 0, 0, 0);
+  --color-input-text: #fbf9f6;
+  --color-input-text-rgb: 251, 249, 246;
+  --color-input-border: rgba(251, 249, 246, 0.3);
+  --color-primary-button-background: #fbf9f6;
+  --color-primary-button-text: #16140f;
+  --color-primary-button-border: #fbf9f6;
+  --color-primary-button-hover-background: #a9693c;
+  --color-primary-button-hover-text: #ffffff;
+  --color-primary-button-hover-border: #a9693c;
+  background: #16140f;
+  color: #fbf9f6;
+}
+
+footer .shopify-section-group-footer-group .section,
+footer .shopify-section-group-footer-group .section-background { background: #16140f; }
+
+footer .shopify-section-group-footer-group :is(h1, h2, h3, h4, h5, h6) { color: #fbf9f6; }
+footer .shopify-section-group-footer-group :is(p, li, small, label) { color: rgba(251, 249, 246, 0.74); }
+footer .shopify-section-group-footer-group a { color: rgba(251, 249, 246, 0.74); }
+footer .shopify-section-group-footer-group a:hover { color: #ffffff; }
+footer .shopify-section-group-footer-group input::placeholder { color: rgba(251, 249, 246, 0.5); }
+
+footer .shopify-section-group-footer-group .section-background { background: #16140f !important; }
+footer .shopify-section-group-footer-group .email-signup__input-group {
+  background: rgba(0, 0, 0, 0) !important;
+  border: 1px solid rgba(251, 249, 246, 0.3) !important;
+}
+footer .shopify-section-group-footer-group .email-signup__input-group input { color: #fbf9f6 !important; }
