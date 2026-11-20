@@ -25,8 +25,7 @@
       {%- if img != blank -%}
         {{ img | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'dk-hero__img', alt: img.alt | default: section.settings.heading }}
       {%- else -%}
-        <span class="dk-placeholder-tag">Placeholder artwork</span>
-        <img class="dk-hero__img" src="{{ 'dk-ph-hero.svg' | asset_url }}" alt="Placeholder workspace illustration" width="1600" height="1100" fetchpriority="high">
+        <img class="dk-hero__img" src="{{ 'dk-hero.jpg' | asset_url }}" alt="Desk mat on a walnut desk with keyboard and mouse" width="1800" height="1200" fetchpriority="high">
       {%- endif -%}
     </div>
   </div>

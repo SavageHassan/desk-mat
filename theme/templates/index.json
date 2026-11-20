@@ -5,8 +5,8 @@
       "settings": {
         "eyebrow": "Desk mats, made for long hours",
         "heading": "Your desk, finally finished.",
-        "body": "A single surface that quiets the clatter, glides under the mouse and pulls the whole desk together.",
-        "cta_label": "Shop the desk mat",
+        "body": "One surface that quiets the keys, glides under the mouse and gives the whole desk a single, deliberate edge.",
+        "cta_label": "Shop the Desk Mat",
         "cta2_label": "See the details",
         "strip_1": "Delivery across Pakistan",
         "strip_2": "Cash on delivery",
@@ -19,65 +19,307 @@
       "settings": {
         "eyebrow": "The product",
         "heading": "The Desk Mat",
-        "body": "One surface for keyboard, mouse and everything else the day puts on your desk.",
+        "body": "A desk mat is the one upgrade you feel every hour. It gives the keyboard a softer floor, the mouse an even surface, and the desk a defined working area instead of scattered gear.",
         "point_1": "Full-desk coverage for keyboard and mouse",
-        "point_2": "Smooth, consistent tracking surface",
+        "point_2": "Even, consistent tracking from edge to edge",
         "point_3": "Wipes clean in seconds",
-        "point_4": "Lies flat, stays put"
+        "point_4": "Lies flat and stays where you put it",
+        "product": "desk-mat"
       }
     },
     "features": {
       "type": "dk-features",
       "blocks": {
-        "f1": { "type": "feature", "settings": { "title": "A calmer desk", "body": "The mat softens key chatter and mouse clicks, so long sessions feel quieter." } },
-        "f2": { "type": "feature", "settings": { "title": "Consistent tracking", "body": "An even surface edge to edge means the cursor behaves the same everywhere." } },
-        "f3": { "type": "feature", "settings": { "title": "One clean surface", "body": "Keyboard, mouse, phone, notebook — everything sits on the same defined area." } }
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "title": "A quieter desk",
+            "body": "The mat takes the hard edge off key chatter and mouse clicks \u2014 the difference shows up on long calls and late sessions."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "title": "Edge-to-edge tracking",
+            "body": "An even surface means the cursor behaves the same at the far corner as it does in the middle. No dead patches, no hunting."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "title": "One defined surface",
+            "body": "Keyboard, mouse, phone, notebook. Everything lands inside one boundary instead of drifting across the desk."
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "title": "Kinder to the desk",
+            "body": "A layer between hardware and the desktop keeps scuffs, scratches and coffee rings off the surface underneath."
+          }
+        },
+        "f5": {
+          "type": "feature",
+          "settings": {
+            "title": "Wipes clean",
+            "body": "Dust, crumbs and the occasional spill come off with a damp cloth. No special treatment required."
+          }
+        },
+        "f6": {
+          "type": "feature",
+          "settings": {
+            "title": "Looks considered",
+            "body": "The fastest way to make a desk look finished rather than assembled \u2014 one rectangle pulling the setup together."
+          }
+        }
       },
-      "block_order": ["f1", "f2", "f3"],
-      "settings": { "eyebrow": "Why it matters", "heading": "Small change, obvious difference." }
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6"
+      ],
+      "settings": {
+        "eyebrow": "Why it matters",
+        "heading": "Small change, obvious difference."
+      }
     },
     "split": {
       "type": "dk-split",
       "settings": {
         "media_position": "left",
         "eyebrow": "In use",
-        "heading": "Built for the desk you actually use.",
-        "body": "Placeholder copy. Final wording will follow the confirmed product specification — size, material and finish.",
-        "cta_label": "See the specs"
+        "heading": "Built for the hours you actually spend here.",
+        "body": "Work days run long. The mat is there for the whole of it \u2014 under the keyboard at nine, under the notebook at two, wiped down at six and ready again tomorrow.",
+        "cta_label": "See the specification"
       }
     },
     "specs": {
       "type": "dk-specs",
       "blocks": {
-        "s1": { "type": "spec", "settings": { "label": "Size", "value": "—" } },
-        "s2": { "type": "spec", "settings": { "label": "Material", "value": "—" } },
-        "s3": { "type": "spec", "settings": { "label": "Finish", "value": "—" } },
-        "s4": { "type": "spec", "settings": { "label": "Base", "value": "—" } },
-        "s5": { "type": "spec", "settings": { "label": "Care", "value": "—" } },
-        "s6": { "type": "spec", "settings": { "label": "Ships from", "value": "Lahore, Pakistan" } }
+        "s1": {
+          "type": "spec",
+          "settings": {
+            "label": "Size",
+            "value": "\u2014"
+          }
+        },
+        "s2": {
+          "type": "spec",
+          "settings": {
+            "label": "Material",
+            "value": "\u2014"
+          }
+        },
+        "s3": {
+          "type": "spec",
+          "settings": {
+            "label": "Finish",
+            "value": "\u2014"
+          }
+        },
+        "s4": {
+          "type": "spec",
+          "settings": {
+            "label": "Base",
+            "value": "\u2014"
+          }
+        },
+        "s5": {
+          "type": "spec",
+          "settings": {
+            "label": "Care",
+            "value": "\u2014"
+          }
+        },
+        "s6": {
+          "type": "spec",
+          "settings": {
+            "label": "Ships from",
+            "value": "Lahore, Pakistan"
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"],
-      "settings": { "eyebrow": "Specification", "heading": "The details." }
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "settings": {
+        "eyebrow": "Specification",
+        "heading": "The details."
+      }
     },
     "faq": {
       "type": "dk-faq",
       "blocks": {
-        "q1": { "type": "qa", "settings": { "question": "How long does delivery take?", "answer": "Placeholder — delivery times will be filled in from the store's confirmed shipping policy." } },
-        "q2": { "type": "qa", "settings": { "question": "Do you offer cash on delivery?", "answer": "Placeholder — payment methods will be listed once payments are activated on the store." } },
-        "q3": { "type": "qa", "settings": { "question": "Can I return it?", "answer": "Placeholder — the return window and conditions will follow the store's refund policy." } },
-        "q4": { "type": "qa", "settings": { "question": "How do I clean it?", "answer": "Placeholder — care instructions will follow the confirmed product material." } }
+        "q1": {
+          "type": "qa",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "Orders are dispatched from Lahore. Exact delivery times are set in the store's shipping policy and shown at checkout."
+          }
+        },
+        "q2": {
+          "type": "qa",
+          "settings": {
+            "question": "Can I pay cash on delivery?",
+            "answer": "Payment methods available to you are shown at checkout once payment providers are activated on the store."
+          }
+        },
+        "q3": {
+          "type": "qa",
+          "settings": {
+            "question": "What if it is not right for my desk?",
+            "answer": "Returns follow the store's refund policy. Contact us with your order number and we will take it from there."
+          }
+        },
+        "q4": {
+          "type": "qa",
+          "settings": {
+            "question": "How do I clean it?",
+            "answer": "A damp cloth handles everyday dust and marks. Let it dry flat before putting hardware back on it."
+          }
+        },
+        "q5": {
+          "type": "qa",
+          "settings": {
+            "question": "Will it stay flat?",
+            "answer": "Store it flat rather than rolled. If it has been rolled in transit, leave it on the desk overnight and it settles."
+          }
+        }
       },
-      "block_order": ["q1", "q2", "q3", "q4"],
-      "settings": { "eyebrow": "Questions", "heading": "Before you order." }
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ],
+      "settings": {
+        "eyebrow": "Questions",
+        "heading": "Before you order."
+      }
     },
     "cta": {
       "type": "dk-cta",
       "settings": {
         "heading": "Finish the desk.",
         "body": "One mat, one surface, one less thing to think about.",
-        "cta_label": "Shop the desk mat"
+        "cta_label": "Shop the Desk Mat"
+      }
+    },
+    "bar": {
+      "type": "dk-bar",
+      "blocks": {
+        "b1": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Nationwide delivery",
+            "subtitle": "Dispatched from Lahore"
+          }
+        },
+        "b2": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "title": "Easy returns",
+            "subtitle": "Terms set by store policy"
+          }
+        },
+        "b3": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "Checked before dispatch",
+            "subtitle": "Every order inspected"
+          }
+        },
+        "b4": {
+          "type": "item",
+          "settings": {
+            "icon": "plus",
+            "title": "Cash on delivery",
+            "subtitle": "Pay when it arrives"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
+      "settings": {}
+    },
+    "gallery": {
+      "type": "dk-gallery",
+      "blocks": {
+        "g1": {
+          "type": "shot",
+          "settings": {
+            "fallback": "dk-life-2.jpg",
+            "caption": "Warm wood, green felt"
+          }
+        },
+        "g2": {
+          "type": "shot",
+          "settings": {
+            "fallback": "dk-life-3.jpg",
+            "caption": "Minimal desk"
+          }
+        },
+        "g3": {
+          "type": "shot",
+          "settings": {
+            "fallback": "dk-detail.jpg",
+            "caption": "Surface detail"
+          }
+        },
+        "g4": {
+          "type": "shot",
+          "settings": {
+            "fallback": "dk-life-4.jpg",
+            "caption": "Laptop setup"
+          }
+        },
+        "g5": {
+          "type": "shot",
+          "settings": {
+            "fallback": "dk-life-1.jpg",
+            "caption": "Home office"
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5"
+      ],
+      "settings": {
+        "eyebrow": "On real desks",
+        "heading": "Looks right in any setup.",
+        "body": "Warm wood, white minimal or dark battlestation \u2014 the mat is the piece that ties the surface together."
       }
     }
   },
-  "order": ["hero", "showcase", "features", "split", "specs", "faq", "cta"]
+  "order": [
+    "hero",
+    "bar",
+    "showcase",
+    "features",
+    "gallery",
+    "split",
+    "specs",
+    "faq",
+    "cta"
+  ]
 }

@@ -7,8 +7,7 @@
       {%- if p != blank and p.featured_media != blank -%}
         {{ p.featured_media | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'dk-showcase__img', alt: p.title }}
       {%- else -%}
-        <span class="dk-placeholder-tag">Placeholder artwork</span>
-        <img class="dk-showcase__img" src="{{ 'dk-ph-detail.svg' | asset_url }}" alt="Placeholder desk mat detail illustration" width="1200" height="1200" loading="lazy">
+        <img class="dk-showcase__img" src="{{ 'dk-product.jpg' | asset_url }}" alt="Desk mat with keyboard and mouse, seen from above" width="1800" height="1200" loading="lazy">
       {%- endif -%}
     </div>
 

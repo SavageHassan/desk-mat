@@ -4,8 +4,7 @@
       {%- if section.settings.image != blank -%}
         {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'dk-split__img', alt: section.settings.heading }}
       {%- else -%}
-        <span class="dk-placeholder-tag">Placeholder artwork</span>
-        <img class="dk-split__img" src="{{ 'dk-ph-lifestyle.svg' | asset_url }}" alt="Placeholder workspace illustration" width="1400" height="1000" loading="lazy">
+        <img class="dk-split__img" src="{{ 'dk-life-1.jpg' | asset_url }}" alt="Felt desk mat on a light wooden desk" width="1800" height="1200" loading="lazy">
       {%- endif -%}
     </div>
     <div class="dk-split__copy">
