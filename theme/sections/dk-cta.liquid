@@ -1,0 +1,31 @@
+<section class="dk dk-cta">
+  <div class="dk-wrap dk-cta__inner">
+    <h2 class="dk-h2 dk-cta__title">{{ section.settings.heading }}</h2>
+    {%- if section.settings.body != blank -%}<p class="dk-cta__body">{{ section.settings.body }}</p>{%- endif -%}
+    {%- if section.settings.cta_label != blank -%}
+      <a class="dk-btn dk-cta__btn" href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}">{{ section.settings.cta_label }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .dk-cta { background: var(--dk-ink); color: var(--dk-paper); padding-block: clamp(64px, 10vw, 128px); }
+  .dk-cta__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; }
+  .dk-cta__title { color: var(--dk-paper); max-width: 18ch; }
+  .dk-cta__body { color: rgba(251, 249, 246, 0.7); margin: 0; max-width: 52ch; line-height: 1.65; }
+  .dk-cta__btn { background: var(--dk-paper); border-color: var(--dk-paper); color: var(--dk-ink); margin-top: 8px; }
+  .dk-cta__btn:hover { background: var(--dk-clay); border-color: var(--dk-clay); color: #fff; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Closing CTA",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Finish the desk." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "One mat, one surface, one less thing to think about." },
+    { "type": "text", "id": "cta_label", "label": "Button", "default": "Shop the desk mat" },
+    { "type": "url", "id": "cta_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "DK Closing CTA" }]
+}
+{% endschema %}

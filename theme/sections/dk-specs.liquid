@@ -1,0 +1,60 @@
+<section class="dk dk-specs">
+  <div class="dk-wrap">
+    <div class="dk-specs__head">
+      <p class="dk-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="dk-h2">{{ section.settings.heading }}</h2>
+    </div>
+    <dl class="dk-specs__list">
+      {%- for block in section.blocks -%}
+        <div class="dk-specs__row" {{ block.shopify_attributes }}>
+          <dt>{{ block.settings.label }}</dt>
+          <dd{% if block.settings.value == '—' %} class="dk-specs__pending"{% endif %}>{{ block.settings.value }}</dd>
+        </div>
+      {%- endfor -%}
+    </dl>
+  </div>
+</section>
+
+{% stylesheet %}
+  .dk-specs { background: var(--dk-paper); padding-block: clamp(48px, 7vw, 96px); }
+  .dk-specs__head { display: flex; flex-direction: column; gap: 12px; margin-bottom: clamp(24px, 4vw, 40px); }
+  .dk-specs__list { margin: 0; border-top: 1px solid var(--dk-stone); }
+  .dk-specs__row { display: grid; grid-template-columns: 1fr; gap: 4px; padding: 18px 0; border-bottom: 1px solid var(--dk-stone); }
+  .dk-specs__row dt { font-size: 0.8125rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--dk-muted); margin: 0; }
+  .dk-specs__row dd { margin: 0; font-size: 1rem; color: var(--dk-ink); }
+  .dk-specs__pending { color: var(--dk-muted); font-style: italic; }
+  @media (min-width: 750px) { .dk-specs__row { grid-template-columns: 240px 1fr; gap: 24px; align-items: baseline; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Specifications",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Specification" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The details." }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Spec row",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Label" },
+        { "type": "text", "id": "value", "label": "Value", "default": "—" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DK Specifications",
+      "blocks": [
+        { "type": "spec", "settings": { "label": "Size", "value": "—" } },
+        { "type": "spec", "settings": { "label": "Material", "value": "—" } },
+        { "type": "spec", "settings": { "label": "Finish", "value": "—" } },
+        { "type": "spec", "settings": { "label": "Base", "value": "—" } },
+        { "type": "spec", "settings": { "label": "Care", "value": "—" } },
+        { "type": "spec", "settings": { "label": "Ships from", "value": "Lahore, Pakistan" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

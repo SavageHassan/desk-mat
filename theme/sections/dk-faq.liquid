@@ -1,0 +1,67 @@
+<section class="dk dk-faq">
+  <div class="dk-wrap dk-faq__grid">
+    <div class="dk-faq__head">
+      <p class="dk-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="dk-h2">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="dk-faq__list">
+      {%- for block in section.blocks -%}
+        <details class="dk-faq__item" {{ block.shopify_attributes }}>
+          <summary>
+            <span>{{ block.settings.question }}</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </summary>
+          <div class="dk-faq__answer"><p class="dk-body">{{ block.settings.answer }}</p></div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .dk-faq { background: var(--dk-sand); padding-block: clamp(56px, 9vw, 112px); }
+  .dk-faq__grid { display: grid; gap: clamp(24px, 4vw, 56px); }
+  .dk-faq__head { display: flex; flex-direction: column; gap: 12px; }
+  .dk-faq__list { border-top: 1px solid var(--dk-stone); }
+  .dk-faq__item { border-bottom: 1px solid var(--dk-stone); }
+  .dk-faq__item summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    gap: 24px; padding: 20px 0; font-weight: 600; font-size: 1rem; color: var(--dk-ink);
+  }
+  .dk-faq__item summary::-webkit-details-marker { display: none; }
+  .dk-faq__item summary svg { width: 16px; height: 16px; flex: none; transition: transform 0.25s var(--dk-ease); color: var(--dk-muted); }
+  .dk-faq__item[open] summary svg { transform: rotate(45deg); }
+  .dk-faq__answer { padding-bottom: 22px; }
+  @media (min-width: 750px) { .dk-faq__grid { grid-template-columns: 0.8fr 1.2fr; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK FAQ",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Questions" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Before you order." }
+  ],
+  "blocks": [
+    {
+      "type": "qa",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "textarea", "id": "answer", "label": "Answer", "default": "Placeholder answer — to be replaced with the store's confirmed policy." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DK FAQ",
+      "blocks": [
+        { "type": "qa", "settings": { "question": "How long does delivery take?", "answer": "Placeholder — delivery times will be filled in from the store's confirmed shipping policy." } },
+        { "type": "qa", "settings": { "question": "Do you offer cash on delivery?", "answer": "Placeholder — payment methods will be listed once payments are activated on the store." } },
+        { "type": "qa", "settings": { "question": "Can I return it?", "answer": "Placeholder — the return window and conditions will follow the store's refund policy." } },
+        { "type": "qa", "settings": { "question": "How do I clean it?", "answer": "Placeholder — care instructions will follow the confirmed product material." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

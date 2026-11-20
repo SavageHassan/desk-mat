@@ -1,0 +1,60 @@
+<section class="dk dk-features">
+  <div class="dk-wrap">
+    <div class="dk-features__head">
+      <p class="dk-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="dk-h2">{{ section.settings.heading }}</h2>
+    </div>
+    <ul class="dk-features__grid">
+      {%- for block in section.blocks -%}
+        <li class="dk-features__item" {{ block.shopify_attributes }}>
+          <span class="dk-features__num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <h3 class="dk-h3">{{ block.settings.title }}</h3>
+          <p class="dk-body">{{ block.settings.body }}</p>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% stylesheet %}
+  .dk-features { background: var(--dk-sand); padding-block: clamp(56px, 9vw, 112px); }
+  .dk-features__head { display: flex; flex-direction: column; gap: 12px; max-width: 46ch; margin-bottom: clamp(32px, 5vw, 56px); }
+  .dk-features__grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--dk-stone); border-block: 1px solid var(--dk-stone); }
+  .dk-features__item { background: var(--dk-sand); padding: clamp(24px, 3vw, 36px) 0; display: flex; flex-direction: column; gap: 10px; }
+  .dk-features__num { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; color: var(--dk-clay-dark); }
+  .dk-features__item .dk-body { font-size: 0.9375rem; }
+  @media (min-width: 750px) {
+    .dk-features__grid { grid-template-columns: repeat(3, 1fr); }
+    .dk-features__item { padding: clamp(28px, 3vw, 40px); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Features",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Why it matters" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Small change, obvious difference." }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "A calmer desk" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Placeholder copy. Replace with the real benefit once product details are confirmed." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DK Features",
+      "blocks": [
+        { "type": "feature", "settings": { "title": "A calmer desk", "body": "The mat softens key chatter and mouse clicks, so long sessions feel quieter." } },
+        { "type": "feature", "settings": { "title": "Consistent tracking", "body": "An even surface edge to edge means the cursor behaves the same everywhere." } },
+        { "type": "feature", "settings": { "title": "One clean surface", "body": "Keyboard, mouse, phone, notebook — everything sits on the same defined area." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

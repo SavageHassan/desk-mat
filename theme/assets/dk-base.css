@@ -1,0 +1,133 @@
+/* Desk Mat storefront — design system tokens and primitives */
+:root {
+  --dk-paper: #fbf9f6;
+  --dk-sand: #f1ece4;
+  --dk-stone: #e4ddd2;
+  --dk-ink: #16140f;
+  --dk-ink-soft: #3a352d;
+  --dk-muted: #5c564c;
+  --dk-clay: #a9693c;
+  --dk-clay-dark: #8a5430;
+
+  --dk-max: 1280px;
+  --dk-gutter: 24px;
+
+  --dk-s1: 8px;
+  --dk-s2: 16px;
+  --dk-s3: 24px;
+  --dk-s4: 40px;
+  --dk-s5: 64px;
+  --dk-s6: 96px;
+  --dk-s7: 128px;
+
+  --dk-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@media (min-width: 750px) {
+  :root { --dk-gutter: 40px; }
+}
+
+.dk { color: var(--dk-ink); }
+
+.dk-wrap {
+  max-width: var(--dk-max);
+  margin-inline: auto;
+  padding-inline: var(--dk-gutter);
+}
+
+.dk-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--dk-clay-dark);
+  margin: 0;
+}
+
+.dk-display {
+  font-family: var(--font-heading--family, inherit);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  margin: 0;
+  color: var(--dk-ink);
+  font-size: clamp(2.5rem, 6.2vw, 4.75rem);
+  text-wrap: balance;
+}
+
+.dk-h2 {
+  font-family: var(--font-heading--family, inherit);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.04;
+  margin: 0;
+  font-size: clamp(1.9rem, 3.6vw, 2.85rem);
+  text-wrap: balance;
+}
+
+.dk-h3 {
+  font-family: var(--font-heading--family, inherit);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.dk-body {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--dk-muted);
+  margin: 0;
+  max-width: 56ch;
+}
+
+.dk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 4px;
+  border: 1px solid var(--dk-ink);
+  background: var(--dk-ink);
+  color: var(--dk-paper);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s var(--dk-ease), color 0.25s var(--dk-ease), transform 0.25s var(--dk-ease);
+}
+
+.dk-btn:hover { background: var(--dk-clay-dark); border-color: var(--dk-clay-dark); color: #fff; }
+
+.dk-btn--ghost {
+  background: transparent;
+  color: var(--dk-ink);
+  border-color: var(--dk-stone);
+}
+
+.dk-btn--ghost:hover { background: var(--dk-ink); border-color: var(--dk-ink); color: var(--dk-paper); }
+
+.dk-rule { height: 1px; background: var(--dk-stone); border: 0; margin: 0; }
+
+.dk-placeholder-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  border-radius: 3px;
+  background: rgba(22, 20, 15, 0.82);
+  color: #fbf9f6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

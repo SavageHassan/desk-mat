@@ -1,12 +1,4 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
     "main": {
       "type": "product-information",
@@ -465,10 +457,135 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "dk_specs": {
+      "type": "dk-specs",
+      "blocks": {
+        "s1": {
+          "type": "spec",
+          "settings": {
+            "label": "Size",
+            "value": "\u2014"
+          }
+        },
+        "s2": {
+          "type": "spec",
+          "settings": {
+            "label": "Material",
+            "value": "\u2014"
+          }
+        },
+        "s3": {
+          "type": "spec",
+          "settings": {
+            "label": "Finish",
+            "value": "\u2014"
+          }
+        },
+        "s4": {
+          "type": "spec",
+          "settings": {
+            "label": "Base",
+            "value": "\u2014"
+          }
+        },
+        "s5": {
+          "type": "spec",
+          "settings": {
+            "label": "Care",
+            "value": "\u2014"
+          }
+        },
+        "s6": {
+          "type": "spec",
+          "settings": {
+            "label": "Ships from",
+            "value": "Lahore, Pakistan"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "settings": {
+        "eyebrow": "Specification",
+        "heading": "The details."
+      }
+    },
+    "dk_split": {
+      "type": "dk-split",
+      "settings": {
+        "media_position": "right",
+        "eyebrow": "In use",
+        "heading": "Made for the hours you actually spend here.",
+        "body": "Placeholder copy. Final wording will follow the confirmed product specification.",
+        "cta_label": ""
+      }
+    },
+    "dk_faq": {
+      "type": "dk-faq",
+      "blocks": {
+        "q1": {
+          "type": "qa",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "Placeholder \u2014 to be filled from the store's confirmed shipping policy."
+          }
+        },
+        "q2": {
+          "type": "qa",
+          "settings": {
+            "question": "Do you offer cash on delivery?",
+            "answer": "Placeholder \u2014 payment methods will be listed once payments are activated."
+          }
+        },
+        "q3": {
+          "type": "qa",
+          "settings": {
+            "question": "Can I return it?",
+            "answer": "Placeholder \u2014 return window follows the store's refund policy."
+          }
+        },
+        "q4": {
+          "type": "qa",
+          "settings": {
+            "question": "How do I clean it?",
+            "answer": "Placeholder \u2014 care instructions follow the confirmed material."
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ],
+      "settings": {
+        "eyebrow": "Questions",
+        "heading": "Before you order."
+      }
+    },
+    "dk_cta": {
+      "type": "dk-cta",
+      "settings": {
+        "heading": "Finish the desk.",
+        "body": "One mat, one surface, one less thing to think about.",
+        "cta_label": "Add to cart",
+        "cta_link": ""
+      }
     }
   },
   "order": [
     "main",
-    "product_recommendations_qggXJq"
+    "product_recommendations_qggXJq",
+    "dk_specs",
+    "dk_split",
+    "dk_faq",
+    "dk_cta"
   ]
 }

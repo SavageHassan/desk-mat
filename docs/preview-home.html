@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desk Mat storefront preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_preview.css">
+<style>
+  body { margin:0; background: var(--dk-paper); font-family: Inter, system-ui, sans-serif; color: var(--dk-ink); -webkit-font-smoothing: antialiased; }
+  :root { --font-heading--family: Archivo, system-ui, sans-serif; }
+  .dk-nav { position: sticky; top:0; z-index:10; background: rgba(251,249,246,.88); backdrop-filter: blur(10px); border-bottom:1px solid var(--dk-stone); }
+  .dk-nav__inner { display:flex; align-items:center; justify-content:space-between; height:66px; }
+  .dk-nav__brand { font-family: Archivo, sans-serif; font-weight:700; letter-spacing:-0.02em; font-size:1.0625rem; }
+  .dk-nav__links { display:none; gap:28px; font-size:.9375rem; }
+  .dk-nav__links a { color: var(--dk-ink-soft); text-decoration:none; }
+  .dk-nav__links a:hover { color: var(--dk-clay-dark); }
+  .dk-nav__right { display:flex; align-items:center; gap:18px; font-size:.9375rem; }
+  .dk-ann { background: var(--dk-ink); color: var(--dk-paper); font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; text-align:center; padding:9px 16px; font-weight:600; }
+  .dk-foot { background: var(--dk-ink); color: rgba(251,249,246,.72); padding: 64px 0 36px; }
+  .dk-foot__grid { display:grid; gap:36px; }
+  .dk-foot h4 { color: var(--dk-paper); font-family:Archivo,sans-serif; font-size:.8125rem; letter-spacing:.12em; text-transform:uppercase; margin:0 0 14px; }
+  .dk-foot ul { list-style:none; margin:0; padding:0; display:grid; gap:9px; font-size:.9375rem; }
+  .dk-foot a { color: rgba(251,249,246,.72); text-decoration:none; }
+  .dk-foot a:hover { color:#fff; }
+  .dk-foot__bar { margin-top:40px; padding-top:20px; border-top:1px solid rgba(251,249,246,.16); font-size:.8125rem; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  @media (min-width:750px){ .dk-nav__links{display:flex} .dk-foot__grid{grid-template-columns: 1.4fr 1fr 1fr 1fr} }
+</style></head>
+<body>
+<div class="dk-ann">Static design preview — placeholder content</div>
+<header class="dk-nav"><div class="dk-wrap dk-nav__inner">
+  <span class="dk-nav__brand">DESK&thinsp;MAT</span>
+  <nav class="dk-nav__links"><a href="#">Shop</a><a href="#dk-details">The mat</a><a href="#">About</a><a href="#">Contact</a></nav>
+  <div class="dk-nav__right"><span>Search</span><span>Cart (0)</span></div>
+</div></header>
+
+<section class="dk dk-hero">
+  <div class="dk-wrap dk-hero__grid">
+    <div class="dk-hero__copy">
+      <p class="dk-eyebrow">Desk mats, made for long hours</p>
+      <h1 class="dk-display">Your desk, finally finished.</h1>
+      <p class="dk-body dk-hero__body">A single surface that quiets the clatter, glides under the mouse and pulls the whole desk together.</p>
+      <div class="dk-hero__actions"><a class="dk-btn" href="#">Shop the desk mat</a><a class="dk-btn dk-btn--ghost" href="#dk-details">See the details</a></div>
+    </div>
+    <div class="dk-hero__media"><span class="dk-placeholder-tag">Placeholder artwork</span>
+      <img class="dk-hero__img" src="../theme/assets/dk-ph-hero.svg" alt="Placeholder workspace illustration"></div>
+  </div>
+  <div class="dk-wrap"><ul class="dk-hero__strip"><li>Delivery across Pakistan</li><li>Cash on delivery</li><li>Easy returns</li><li>Ships from Lahore</li></ul></div>
+</section>
+
+<section class="dk dk-showcase" id="dk-details"><div class="dk-wrap dk-showcase__grid">
+  <div class="dk-showcase__media"><span class="dk-placeholder-tag">Placeholder artwork</span><img class="dk-showcase__img" src="../theme/assets/dk-ph-detail.svg" alt="Placeholder desk mat detail"></div>
+  <div class="dk-showcase__copy">
+    <p class="dk-eyebrow">The product</p><h2 class="dk-h2">The Desk Mat</h2>
+    <p class="dk-showcase__price dk-showcase__price--empty">Price to be set</p>
+    <p class="dk-body">One surface for keyboard, mouse and everything else the day puts on your desk.</p>
+    <ul class="dk-showcase__points">
+      <li><svg viewBox="0 0 16 16"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Full-desk coverage for keyboard and mouse</span></li>
+      <li><svg viewBox="0 0 16 16"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Smooth, consistent tracking surface</span></li>
+      <li><svg viewBox="0 0 16 16"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Wipes clean in seconds</span></li>
+      <li><svg viewBox="0 0 16 16"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Lies flat, stays put</span></li>
+    </ul>
+    <div class="dk-showcase__form"><a class="dk-btn" href="#">Add to cart</a><a class="dk-btn dk-btn--ghost" href="#">Full details</a></div>
+    <p class="dk-showcase__note">On the live theme this block is wired to the Shopify product — title, price, description and Add to cart come from real product data.</p>
+  </div>
+</div></section>
+
+<section class="dk dk-features"><div class="dk-wrap">
+  <div class="dk-features__head"><p class="dk-eyebrow">Why it matters</p><h2 class="dk-h2">Small change, obvious difference.</h2></div>
+  <ul class="dk-features__grid">
+    <li class="dk-features__item"><span class="dk-features__num">01</span><h3 class="dk-h3">A calmer desk</h3><p class="dk-body">The mat softens key chatter and mouse clicks, so long sessions feel quieter.</p></li>
+    <li class="dk-features__item"><span class="dk-features__num">02</span><h3 class="dk-h3">Consistent tracking</h3><p class="dk-body">An even surface edge to edge means the cursor behaves the same everywhere.</p></li>
+    <li class="dk-features__item"><span class="dk-features__num">03</span><h3 class="dk-h3">One clean surface</h3><p class="dk-body">Keyboard, mouse, phone, notebook — everything sits on the same defined area.</p></li>
+  </ul>
+</div></section>
+
+<section class="dk dk-split dk-split--left"><div class="dk-wrap dk-split__grid">
+  <div class="dk-split__media"><span class="dk-placeholder-tag">Placeholder artwork</span><img class="dk-split__img" src="../theme/assets/dk-ph-lifestyle.svg" alt="Placeholder workspace"></div>
+  <div class="dk-split__copy"><p class="dk-eyebrow">In use</p><h2 class="dk-h2">Built for the desk you actually use.</h2>
+  <p class="dk-body">Placeholder copy. Final wording will follow the confirmed product specification — size, material and finish.</p>
+  <a class="dk-btn dk-btn--ghost" href="#specs">See the specs</a></div>
+</div></section>
+
+<section class="dk dk-specs" id="specs"><div class="dk-wrap">
+  <div class="dk-specs__head"><p class="dk-eyebrow">Specification</p><h2 class="dk-h2">The details.</h2></div>
+  <dl class="dk-specs__list">
+    <div class="dk-specs__row"><dt>Size</dt><dd class="dk-specs__pending">—</dd></div>
+    <div class="dk-specs__row"><dt>Material</dt><dd class="dk-specs__pending">—</dd></div>
+    <div class="dk-specs__row"><dt>Finish</dt><dd class="dk-specs__pending">—</dd></div>
+    <div class="dk-specs__row"><dt>Base</dt><dd class="dk-specs__pending">—</dd></div>
+    <div class="dk-specs__row"><dt>Care</dt><dd class="dk-specs__pending">—</dd></div>
+    <div class="dk-specs__row"><dt>Ships from</dt><dd>Lahore, Pakistan</dd></div>
+  </dl>
+</div></section>
+
+<section class="dk dk-faq"><div class="dk-wrap dk-faq__grid">
+  <div class="dk-faq__head"><p class="dk-eyebrow">Questions</p><h2 class="dk-h2">Before you order.</h2></div>
+  <div class="dk-faq__list">
+    <details class="dk-faq__item" open><summary><span>How long does delivery take?</span><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary><div class="dk-faq__answer"><p class="dk-body">Placeholder — delivery times will be filled in from the store's confirmed shipping policy.</p></div></details>
+    <details class="dk-faq__item"><summary><span>Do you offer cash on delivery?</span><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary><div class="dk-faq__answer"><p class="dk-body">Placeholder — payment methods will be listed once payments are activated on the store.</p></div></details>
+    <details class="dk-faq__item"><summary><span>Can I return it?</span><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary><div class="dk-faq__answer"><p class="dk-body">Placeholder — the return window and conditions will follow the store's refund policy.</p></div></details>
+    <details class="dk-faq__item"><summary><span>How do I clean it?</span><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary><div class="dk-faq__answer"><p class="dk-body">Placeholder — care instructions will follow the confirmed product material.</p></div></details>
+  </div>
+</div></section>
+
+<section class="dk dk-cta"><div class="dk-wrap dk-cta__inner">
+  <h2 class="dk-h2 dk-cta__title">Finish the desk.</h2>
+  <p class="dk-cta__body">One mat, one surface, one less thing to think about.</p>
+  <a class="dk-btn dk-cta__btn" href="#">Shop the desk mat</a>
+</div></section>
+
+<footer class="dk-foot"><div class="dk-wrap">
+  <div class="dk-foot__grid">
+    <div><h4>Desk Mat</h4><p style="margin:0;font-size:.9375rem;line-height:1.6;max-width:34ch">Workspace gear, shipped from Lahore. Contact details to be confirmed.</p></div>
+    <div><h4>Shop</h4><ul><li><a href="#">Desk Mat</a></li><li><a href="#">All products</a></li></ul></div>
+    <div><h4>Help</h4><ul><li><a href="#">Shipping policy</a></li><li><a href="#">Returns &amp; refunds</a></li><li><a href="#">FAQs</a></li><li><a href="#">Contact</a></li></ul></div>
+    <div><h4>Legal</h4><ul><li><a href="#">Privacy policy</a></li><li><a href="#">Terms of service</a></li></ul></div>
+  </div>
+  <div class="dk-foot__bar"><span>© 2026 — store name to be confirmed</span><span>Powered by Shopify</span></div>
+</div></footer>
+</body></html>

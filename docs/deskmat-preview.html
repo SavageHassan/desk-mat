@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desk Mat storefront preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>/* Desk Mat storefront — design system tokens and primitives */
+:root {
+  --dk-paper: #fbf9f6;
+  --dk-sand: #f1ece4;
+  --dk-stone: #e4ddd2;
+  --dk-ink: #16140f;
+  --dk-ink-soft: #3a352d;
+  --dk-muted: #5c564c;
+  --dk-clay: #a9693c;
+  --dk-clay-dark: #8a5430;
+
+  --dk-max: 1280px;
+  --dk-gutter: 24px;
+
+  --dk-s1: 8px;
+  --dk-s2: 16px;
+  --dk-s3: 24px;
+  --dk-s4: 40px;
+  --dk-s5: 64px;
+  --dk-s6: 96px;
+  --dk-s7: 128px;
+
+  --dk-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@media (min-width: 750px) {
+  :root { --dk-gutter: 40px; }
+}
+
+.dk { color: var(--dk-ink); }
+
+.dk-wrap {
+  max-width: var(--dk-max);
+  margin-inline: auto;
+  padding-inline: var(--dk-gutter);
+}
+
+.dk-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--dk-clay-dark);
+  margin: 0;
+}
+
+.dk-display {
+  font-family: var(--font-heading--family, inherit);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  margin: 0;
+  color: var(--dk-ink);
+  font-size: clamp(2.5rem, 6.2vw, 4.75rem);
+  text-wrap: balance;
+}
+
+.dk-h2 {
+  font-family: var(--font-heading--family, inherit);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.04;
+  margin: 0;
+  font-size: clamp(1.9rem, 3.6vw, 2.85rem);
+  text-wrap: balance;
+}
+
+.dk-h3 {
+  font-family: var(--font-heading--family, inherit);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.dk-body {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--dk-muted);
+  margin: 0;
+  max-width: 56ch;
+}
+
+.dk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 4px;
+  border: 1px solid var(--dk-ink);
+  background: var(--dk-ink);
+  color: var(--dk-paper);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s var(--dk-ease), color 0.25s var(--dk-ease), transform 0.25s var(--dk-ease);
+}
+
+.dk-btn:hover { background: var(--dk-clay-dark); border-color: var(--dk-clay-dark); color: #fff; }
+
+.dk-btn--ghost {
+  background: transparent;
+  color: var(--dk-ink);
+  border-color: var(--dk-stone);
+}
+
+.dk-btn--ghost:hover { background: var(--dk-ink); border-color: var(--dk-ink); color: var(--dk-paper); }
+
+.dk-rule { height: 1px; background: var(--dk-stone); border: 0; margin: 0; }
+
+.dk-placeholder-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  border-radius: 3px;
+  background: rgba(22, 20, 15, 0.82);
+  color: #fbf9f6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+
+  .dk-hero { background: var(--dk-paper); padding-block: clamp(32px, 6vw, 72px) 0; }
+  .dk-hero__grid {
+    display: grid;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: center;
+  }
+  .dk-hero__copy { display: flex; flex-direction: column; gap: 20px; }
+  .dk-hero__body { font-size: 1.0625rem; }
+  .dk-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .dk-hero__media {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--dk-sand);
+    aspect-ratio: 16 / 11;
+  }
+  .dk-hero__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .dk-hero__strip {
+    list-style: none;
+    margin: clamp(32px, 5vw, 56px) 0 0;
+    padding: 20px 0;
+    border-top: 1px solid var(--dk-stone);
+    border-bottom: 1px solid var(--dk-stone);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 24px;
+    font-size: 0.8125rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--dk-ink-soft);
+  }
+  @media (min-width: 750px) {
+    .dk-hero__grid { grid-template-columns: 0.92fr 1.08fr; gap: 56px; }
+    .dk-hero__strip { grid-template-columns: repeat(4, 1fr); }
+  }
+
+
+  .dk-showcase { background: var(--dk-paper); padding-block: clamp(56px, 9vw, 112px); }
+  .dk-showcase__grid { display: grid; gap: clamp(28px, 4vw, 64px); align-items: center; }
+  .dk-showcase__media { position: relative; border-radius: 6px; overflow: hidden; background: var(--dk-sand); aspect-ratio: 1 / 1; }
+  .dk-showcase__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .dk-showcase__copy { display: flex; flex-direction: column; gap: 18px; }
+  .dk-showcase__price { font-size: 1.25rem; font-weight: 600; margin: 0; color: var(--dk-ink); }
+  .dk-showcase__price--empty { color: var(--dk-muted); font-weight: 500; }
+  .dk-showcase__price s { color: var(--dk-muted); font-weight: 400; margin-left: 8px; }
+  .dk-showcase__points { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .dk-showcase__points li { display: flex; gap: 12px; align-items: flex-start; font-size: 0.9375rem; color: var(--dk-ink-soft); }
+  .dk-showcase__points svg { width: 16px; height: 16px; flex: none; margin-top: 4px; color: var(--dk-clay-dark); }
+  .dk-showcase__form { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .dk-showcase__note { font-size: 0.8125rem; color: var(--dk-muted); margin: 0; max-width: 46ch; }
+  @media (min-width: 750px) { .dk-showcase__grid { grid-template-columns: 1fr 1fr; } }
+
+
+  .dk-features { background: var(--dk-sand); padding-block: clamp(56px, 9vw, 112px); }
+  .dk-features__head { display: flex; flex-direction: column; gap: 12px; max-width: 46ch; margin-bottom: clamp(32px, 5vw, 56px); }
+  .dk-features__grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--dk-stone); border-block: 1px solid var(--dk-stone); }
+  .dk-features__item { background: var(--dk-sand); padding: clamp(24px, 3vw, 36px) 0; display: flex; flex-direction: column; gap: 10px; }
+  .dk-features__num { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; color: var(--dk-clay-dark); }
+  .dk-features__item .dk-body { font-size: 0.9375rem; }
+  @media (min-width: 750px) {
+    .dk-features__grid { grid-template-columns: repeat(3, 1fr); }
+    .dk-features__item { padding: clamp(28px, 3vw, 40px); }
+  }
+
+
+  .dk-split { background: var(--dk-paper); padding-block: clamp(56px, 9vw, 112px); }
+  .dk-split__grid { display: grid; gap: clamp(28px, 4vw, 64px); align-items: center; }
+  .dk-split__media { position: relative; border-radius: 6px; overflow: hidden; background: var(--dk-sand); aspect-ratio: 7 / 5; }
+  .dk-split__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .dk-split__copy { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+  @media (min-width: 750px) {
+    .dk-split__grid { grid-template-columns: 1.1fr 0.9fr; }
+    .dk-split--right .dk-split__media { order: 2; }
+  }
+
+
+  .dk-specs { background: var(--dk-paper); padding-block: clamp(48px, 7vw, 96px); }
+  .dk-specs__head { display: flex; flex-direction: column; gap: 12px; margin-bottom: clamp(24px, 4vw, 40px); }
+  .dk-specs__list { margin: 0; border-top: 1px solid var(--dk-stone); }
+  .dk-specs__row { display: grid; grid-template-columns: 1fr; gap: 4px; padding: 18px 0; border-bottom: 1px solid var(--dk-stone); }
+  .dk-specs__row dt { font-size: 0.8125rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--dk-muted); margin: 0; }
+  .dk-specs__row dd { margin: 0; font-size: 1rem; color: var(--dk-ink); }
+  .dk-specs__pending { color: var(--dk-muted); font-style: italic; }
+  @media (min-width: 750px) { .dk-specs__row { grid-template-columns: 240px 1fr; gap: 24px; align-items: baseline; } }
+
+
+  .dk-faq { background: var(--dk-sand); padding-block: clamp(56px, 9vw, 112px); }
+  .dk-faq__grid { display: grid; gap: clamp(24px, 4vw, 56px); }
+  .dk-faq__head { display: flex; flex-direction: column; gap: 12px; }
+  .dk-faq__list { border-top: 1px solid var(--dk-stone); }
+  .dk-faq__item { border-bottom: 1px solid var(--dk-stone); }
+  .dk-faq__item summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    gap: 24px; padding: 20px 0; font-weight: 600; font-size: 1rem; color: var(--dk-ink);
+  }
+  .dk-faq__item summary::-webkit-details-marker { display: none; }
+  .dk-faq__item summary svg { width: 16px; height: 16px; flex: none; transition: transform 0.25s var(--dk-ease); color: var(--dk-muted); }
+  .dk-faq__item[open] summary svg { transform: rotate(45deg); }
+  .dk-faq__answer { padding-bottom: 22px; }
+  @media (min-width: 750px) { .dk-faq__grid { grid-template-columns: 0.8fr 1.2fr; } }
+
+
+  .dk-cta { background: var(--dk-ink); color: var(--dk-paper); padding-block: clamp(64px, 10vw, 128px); }
+  .dk-cta__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; }
+  .dk-cta__title { color: var(--dk-paper); max-width: 18ch; }
+  .dk-cta__body { color: rgba(251, 249, 246, 0.7); margin: 0; max-width: 52ch; line-height: 1.65; }
+  .dk-cta__btn { background: var(--dk-paper); border-color: var(--dk-paper); color: var(--dk-ink); margin-top: 8px; }
+  .dk-cta__btn:hover { background: var(--dk-clay); border-color: var(--dk-clay); color: #fff; }
+</style>
+<style>
+  body { margin:0; background: var(--dk-paper); font-family: Inter, system-ui, sans-serif; color: var(--dk-ink); -webkit-font-smoothing: antialiased; }
+  :root { --font-heading--family: Archivo, system-ui, sans-serif; }
+  .dk-nav { position: sticky; top:0; z-index:10; background: rgba(251,249,246,.88); backdrop-filter: blur(10px); border-bottom:1px solid var(--dk-stone); }
+  .dk-nav__inner { display:flex; align-items:center; justify-content:space-between; height:66px; }
+  .dk-nav__brand { font-family: Archivo, sans-serif; font-weight:700; letter-spacing:-0.02em; font-size:1.0625rem; }
+  .dk-nav__links { display:none; gap:28px; font-size:.9375rem; }
+  .dk-nav__links a { color: var(--dk-ink-soft); text-decoration:none; }
+  .dk-nav__links a:hover { color: var(--dk-clay-dark); }
+  .dk-nav__right { display:flex; align-items:center; gap:18px; font-size:.9375rem; }
+  .dk-ann { background: var(--dk-ink); color: var(--dk-paper); font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; text-align:center; padding:9px 16px; font-weight:600; }
+  .dk-foot { background: var(--dk-ink); color: rgba(251,249,246,.72); padding: 64px 0 36px; }
+  .dk-foot__grid { display:grid; gap:36px; }
+  .dk-foot h4 { color: var(--dk-paper); font-family:Archivo,sans-serif; font-size:.8125rem; letter-spacing:.12em; text-transform:uppercase; margin:0 0 14px; }
+  .dk-foot ul { list-style:none; margin:0; padding:0; display:grid; gap:9px; font-size:.9375rem; }
+  .dk-foot a { color: rgba(251,249,246,.72); text-decoration:none; }
+  .dk-foot a:hover { color:#fff; }
+  .dk-foot__bar { margin-top:40px; padding-top:20px; border-top:1px solid rgba(251,249,246,.16); font-size:.8125rem; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  @media (min-width:750px){ .dk-nav__links{display:flex} .dk-foot__grid{grid-template-columns: 1.4fr 1fr 1fr 1fr} }
+</style></head>
+<body>
+<div class="dk-ann">Static design preview — placeholder content</div>
+<header class="dk-nav"><div class="dk-wrap dk-nav__inner">
+  <span class="dk-nav__brand">DESK&thinsp;MAT</span>
+  <nav class="dk-nav__links"><a href="#">Shop</a><a href="#dk-details">The mat</a><a href="#">About</a><a href="#">Contact</a></nav>
+  <div class="dk-nav__right"><span>Search</span><span>Cart (0)</span></div>
+</div></header>
+
+<section class="dk dk-hero">
+  <div class="dk-wrap dk-hero__grid">
+    <div class="dk-hero__copy">
+      <p class="dk-eyebrow">Desk mats, made for long hours</p>
+      <h1 class="dk-display">Your desk, finally finished.</h1>
+      <p class="dk-body dk-hero__body">A single surface that quiets the clatter, glides under the mouse and pulls the whole desk together.</p>
+      <div class="dk-hero__actions"><a class="dk-btn" href="#">Shop the desk mat</a><a class="dk-btn dk-btn--ghost" href="#dk-details">See the details</a></div>
+    </div>
+    <div class="dk-hero__media"><span class="dk-placeholder-tag">Placeholder artwork</span>
+      <img class="dk-hero__img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDExMDAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iUGxhY2Vob2xkZXIgaWxsdXN0cmF0aW9uIG9mIGEgZGVzayBtYXQgaW4gYSB3b3Jrc3BhY2UiPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJ3b29kIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2VmZThkZCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2UyZDdjNyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ibWF0IiB4MT0iMCIgeTE9IjAiIHgyPSIwLjYiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMmIyODIyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMWIxOTE1Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJnbG93IiB4MT0iMC4xIiB5MT0iMCIgeDI9IjAuOSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC41Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InNjcmVlbiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMzYjM3MzAiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyNDIxMWMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgoKICA8cmVjdCB3aWR0aD0iMTYwMCIgaGVpZ2h0PSIxMTAwIiBmaWxsPSJ1cmwoI3dvb2QpIi8+CiAgPGVsbGlwc2UgY3g9IjUyMCIgY3k9IjE4MCIgcng9Ijc2MCIgcnk9IjQyMCIgZmlsbD0idXJsKCNnbG93KSIvPgoKICA8IS0tIG1vbml0b3IgLS0+CiAgPHJlY3QgeD0iNTIwIiB5PSI5MCIgd2lkdGg9IjU2MCIgaGVpZ2h0PSIzMjAiIHJ4PSIxMCIgZmlsbD0idXJsKCNzY3JlZW4pIi8+CiAgPHJlY3QgeD0iNTQ0IiB5PSIxMTQiIHdpZHRoPSI1MTIiIGhlaWdodD0iMjcyIiByeD0iNCIgZmlsbD0iIzE1MTMwZiIvPgogIDxyZWN0IHg9IjU3NiIgeT0iMTUwIiB3aWR0aD0iMTkwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iI2E5NjkzYyIgb3BhY2l0eT0iMC44NSIvPgogIDxyZWN0IHg9IjU3NiIgeT0iMTgwIiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjgiIHJ4PSI0IiBmaWxsPSIjNWM1NjRjIi8+CiAgPHJlY3QgeD0iNTc2IiB5PSIyMDIiIHdpZHRoPSIyNzAiIGhlaWdodD0iOCIgcng9IjQiIGZpbGw9IiM0NTQwM2EiLz4KICA8cmVjdCB4PSI1NzYiIHk9IjI0NiIgd2lkdGg9IjQyMCIgaGVpZ2h0PSIxMDAiIHJ4PSI2IiBmaWxsPSIjMjExZTFhIi8+CiAgPHJlY3QgeD0iNzYwIiB5PSI0MTAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI0NiIgZmlsbD0iIzJiMjgyMiIvPgogIDxyZWN0IHg9IjY5MCIgeT0iNDUyIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzMzMmYyOSIvPgoKICA8IS0tIGRlc2sgbWF0IC0tPgogIDxnPgogICAgPHJlY3QgeD0iMjAwIiB5PSI0NzAiIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjUyMCIgcng9IjE4IiBmaWxsPSIjY2ZjNGI0IiBvcGFjaXR5PSIwLjUiLz4KICAgIDxyZWN0IHg9IjE5MCIgeT0iNDYwIiB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI1MjAiIHJ4PSIxOCIgZmlsbD0idXJsKCNtYXQpIi8+CiAgICA8cmVjdCB4PSIyMTIiIHk9IjQ4MiIgd2lkdGg9IjExNTYiIGhlaWdodD0iNDc2IiByeD0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzZiNjE1NSIgc3Ryb2tlLW9wYWNpdHk9IjAuNTUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iMTAgOSIvPgogICAgPHJlY3QgeD0iMTkwIiB5PSI0NjAiIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYwIiByeD0iMTgiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDQiLz4KICA8L2c+CgogIDwhLS0ga2V5Ym9hcmQgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzYwIDYwMCkiPgogICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjYyMCIgaGVpZ2h0PSIyMTAiIHJ4PSIxMiIgZmlsbD0iI2Y0ZWZlNyIvPgogICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjYyMCIgaGVpZ2h0PSIyMTAiIHJ4PSIxMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDljZmMwIiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxnIGZpbGw9IiNlM2RhY2QiPgogICAgICA8cmVjdCB4PSIyMiIgeT0iMjIiIHdpZHRoPSI1MiIgaGVpZ2h0PSIzNCIgcng9IjYiLz48cmVjdCB4PSI4NiIgeT0iMjIiIHdpZHRoPSI1MiIgaGVpZ2h0PSIzNCIgcng9IjYiLz4KICAgICAgPHJlY3QgeD0iMTUwIiB5PSIyMiIgd2lkdGg9IjUyIiBoZWlnaHQ9IjM0IiByeD0iNiIvPjxyZWN0IHg9IjIxNCIgeT0iMjIiIHdpZHRoPSI1MiIgaGVpZ2h0PSIzNCIgcng9IjYiLz4KICAgICAgPHJlY3QgeD0iMjc4IiB5PSIyMiIgd2lkdGg9IjUyIiBoZWlnaHQ9IjM0IiByeD0iNiIvPjxyZWN0IHg9IjM0MiIgeT0iMjIiIHdpZHRoPSI1MiIgaGVpZ2h0PSIzNCIgcng9IjYiLz4KICAgICAgPHJlY3QgeD0iNDA2IiB5PSIyMiIgd2lkdGg9IjUyIiBoZWlnaHQ9IjM0IiByeD0iNiIvPjxyZWN0IHg9IjQ3MCIgeT0iMjIiIHdpZHRoPSI1MiIgaGVpZ2h0PSIzNCIgcng9IjYiLz4KICAgICAgPHJlY3QgeD0iNTM0IiB5PSIyMiIgd2lkdGg9IjY0IiBoZWlnaHQ9IjM0IiByeD0iNiIvPgogICAgICA8cmVjdCB4PSIyMiIgeT0iNjgiIHdpZHRoPSI1MiIgaGVpZ2h0PSIzNCIgcng9IjYiLz48cmVjdCB4PSI4NiIgeT0iNjgiIHdpZHRoPSI1MiIgaGVpZ2h0PSIzNCIgcng9IjYiLz4KICAgICAgPHJlY3QgeD0iMTUwIiB5PSI2OCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjM0IiByeD0iNiIvPjxyZWN0IHg9IjIxNCIgeT0iNjgiIHdpZHRoPSI1MiIgaGVpZ2h0PSIzNCIgcng9IjYiLz4KICAgICAgPHJlY3QgeD0iMjc4IiB5PSI2OCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjM0IiByeD0iNiIvPjxyZWN0IHg9IjM0MiIgeT0iNjgiIHdpZHRoPSI1MiIgaGVpZ2h0PSIzNCIgcng9IjYiLz4KICAgICAgPHJlY3QgeD0iNDA2IiB5PSI2OCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjM0IiByeD0iNiIvPjxyZWN0IHg9IjQ3MCIgeT0iNjgiIHdpZHRoPSI1MiIgaGVpZ2h0PSIzNCIgcng9IjYiLz4KICAgICAgPHJlY3QgeD0iNTM0IiB5PSI2OCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjM0IiByeD0iNiIvPgogICAgICA8cmVjdCB4PSIyMiIgeT0iMTE0IiB3aWR0aD0iNTIiIGhlaWdodD0iMzQiIHJ4PSI2Ii8+PHJlY3QgeD0iODYiIHk9IjExNCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjM0IiByeD0iNiIvPgogICAgICA8cmVjdCB4PSIxNTAiIHk9IjExNCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjM0IiByeD0iNiIvPjxyZWN0IHg9IjIxNCIgeT0iMTE0IiB3aWR0aD0iNTIiIGhlaWdodD0iMzQiIHJ4PSI2Ii8+CiAgICAgIDxyZWN0IHg9IjI3OCIgeT0iMTE0IiB3aWR0aD0iNTIiIGhlaWdodD0iMzQiIHJ4PSI2Ii8+PHJlY3QgeD0iMzQyIiB5PSIxMTQiIHdpZHRoPSI1MiIgaGVpZ2h0PSIzNCIgcng9IjYiLz4KICAgICAgPHJlY3QgeD0iNDA2IiB5PSIxMTQiIHdpZHRoPSI1MiIgaGVpZ2h0PSIzNCIgcng9IjYiLz48cmVjdCB4PSI0NzAiIHk9IjExNCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIzNCIgcng9IjYiLz4KICAgICAgPHJlY3QgeD0iMTUwIiB5PSIxNjAiIHdpZHRoPSIzMjAiIGhlaWdodD0iMzAiIHJ4PSI2Ii8+CiAgICAgIDxyZWN0IHg9IjIyIiB5PSIxNjAiIHdpZHRoPSIxMTAiIGhlaWdodD0iMzAiIHJ4PSI2Ii8+PHJlY3QgeD0iNDg4IiB5PSIxNjAiIHdpZHRoPSIxMTAiIGhlaWdodD0iMzAiIHJ4PSI2Ii8+CiAgICA8L2c+CiAgPC9nPgoKICA8IS0tIG1vdXNlIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwNzIgNjQwKSI+CiAgICA8cmVjdCB4PSI2IiB5PSIxMCIgd2lkdGg9IjExMiIgaGVpZ2h0PSIxNzAiIHJ4PSI1NiIgZmlsbD0iI2NmYzRiNCIgb3BhY2l0eT0iMC40NSIvPgogICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjExMiIgaGVpZ2h0PSIxNzAiIHJ4PSI1NiIgZmlsbD0iI2Y0ZWZlNyIgc3Ryb2tlPSIjZDljZmMwIiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1NiIgeTE9IjE0IiB4Mj0iNTYiIHkyPSI2MiIgc3Ryb2tlPSIjZDljZmMwIiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxyZWN0IHg9IjQ5IiB5PSIyNiIgd2lkdGg9IjE0IiBoZWlnaHQ9IjMwIiByeD0iNyIgZmlsbD0iI2E5NjkzYyIgb3BhY2l0eT0iMC44Ii8+CiAgPC9nPgoKICA8IS0tIG11ZyAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMTgwIDQzMCkiPgogICAgPGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiNmNGVmZTciIHN0cm9rZT0iI2Q5Y2ZjMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI0MCIgZmlsbD0iI2E5NjkzYyIgb3BhY2l0eT0iMC42NSIvPgogICAgPHBhdGggZD0iTTEyMCA0MCBhMzAgMzAgMCAwIDEgMCA0NCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDljZmMwIiBzdHJva2Utd2lkdGg9IjEwIi8+CiAgPC9nPgoKICA8IS0tIG5vdGVib29rICsgcGVuIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIzMCA1NDApIj4KICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI5MiIgaGVpZ2h0PSIzMDAiIHJ4PSI4IiBmaWxsPSIjYTk2OTNjIiBvcGFjaXR5PSIwLjkiLz4KICAgIDxyZWN0IHg9IjEyIiB5PSIxNiIgd2lkdGg9IjY4IiBoZWlnaHQ9IjI2OCIgcng9IjQiIGZpbGw9IiNmNGVmZTciIG9wYWNpdHk9IjAuMzUiLz4KICAgIDxyZWN0IHg9IjMwIiB5PSIzMzAiIHdpZHRoPSI0NiIgaGVpZ2h0PSI4IiByeD0iNCIgZmlsbD0iI2Y0ZWZlNyIgb3BhY2l0eT0iMC41Ii8+CiAgPC9nPgoKICA8IS0tIHBsYW50IC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEzNDAgMTUwKSI+CiAgICA8cGF0aCBkPSJNMTEwIDMwMCBDNjAgMjMwIDYwIDE1MCAxMDggOTIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzZmN2E1YyIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cGF0aCBkPSJNMTA4IDkyIEMxNTAgNDAgMTk2IDM2IDIxNCA0OCBDMjA0IDExMCAxNTAgMTMyIDEwOCA5MloiIGZpbGw9IiM3ZDhhNjUiLz4KICAgIDxwYXRoIGQ9Ik0xMTIgMTcwIEM3MCAxNDAgNDYgOTYgNTIgNzAgQzEwNCA4MCAxMzIgMTI4IDExMiAxNzBaIiBmaWxsPSIjNmY3YTVjIi8+CiAgICA8cGF0aCBkPSJNNzAgMzAwIGg5MiBsLTEyIDkyIGgtNjhaIiBmaWxsPSIjYzlhMDdhIi8+CiAgPC9nPgo8L3N2Zz4K" alt="Placeholder workspace illustration"></div>
+  </div>
+  <div class="dk-wrap"><ul class="dk-hero__strip"><li>Delivery across Pakistan</li><li>Cash on delivery</li><li>Easy returns</li><li>Ships from Lahore</li></ul></div>
+</section>
+
+<section class="dk dk-showcase" id="dk-details"><div class="dk-wrap dk-showcase__grid">
+  <div class="dk-showcase__media"><span class="dk-placeholder-tag">Placeholder artwork</span><img class="dk-showcase__img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDEyMDAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iUGxhY2Vob2xkZXIgY2xvc2UtdXAgaWxsdXN0cmF0aW9uIG9mIGEgZGVzayBtYXQgZWRnZSI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImQxIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMzEyZDI2Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMWExODE0Ii8+PC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZDIiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNjOWEwN2EiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNhOTY5M2MiLz48L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSIjZjFlY2U0Ii8+CiAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoLTE0IDYwMCA2MDApIj4KICAgIDxyZWN0IHg9IjExMCIgeT0iMzAwIiB3aWR0aD0iMTEyMCIgaGVpZ2h0PSI2MjAiIHJ4PSIyMCIgZmlsbD0idXJsKCNkMikiLz4KICAgIDxyZWN0IHg9IjExMCIgeT0iMjYwIiB3aWR0aD0iMTEyMCIgaGVpZ2h0PSI2MjAiIHJ4PSIyMCIgZmlsbD0idXJsKCNkMSkiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iMjkwIiB3aWR0aD0iMTA2MCIgaGVpZ2h0PSI1NjAiIHJ4PSIxMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGQ4NDc3IiBzdHJva2Utb3BhY2l0eT0iMC42IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1kYXNoYXJyYXk9IjE0IDEyIi8+CiAgICA8ZyBvcGFjaXR5PSIwLjA4IiBmaWxsPSIjZmZmZmZmIj4KICAgICAgPHJlY3QgeD0iMTQwIiB5PSIzMjAiIHdpZHRoPSIxMDYwIiBoZWlnaHQ9IjIiLz48cmVjdCB4PSIxNDAiIHk9IjQwMCIgd2lkdGg9IjEwNjAiIGhlaWdodD0iMiIvPgogICAgICA8cmVjdCB4PSIxNDAiIHk9IjQ4MCIgd2lkdGg9IjEwNjAiIGhlaWdodD0iMiIvPjxyZWN0IHg9IjE0MCIgeT0iNTYwIiB3aWR0aD0iMTA2MCIgaGVpZ2h0PSIyIi8+CiAgICAgIDxyZWN0IHg9IjE0MCIgeT0iNjQwIiB3aWR0aD0iMTA2MCIgaGVpZ2h0PSIyIi8+PHJlY3QgeD0iMTQwIiB5PSI3MjAiIHdpZHRoPSIxMDYwIiBoZWlnaHQ9IjIiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="Placeholder desk mat detail"></div>
+  <div class="dk-showcase__copy">
+    <p class="dk-eyebrow">The product</p><h2 class="dk-h2">The Desk Mat</h2>
+    <p class="dk-showcase__price dk-showcase__price--empty">Price to be set</p>
+    <p class="dk-body">One surface for keyboard, mouse and everything else the day puts on your desk.</p>
+    <ul class="dk-showcase__points">
+      <li><svg viewBox="0 0 16 16"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Full-desk coverage for keyboard and mouse</span></li>
+      <li><svg viewBox="0 0 16 16"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Smooth, consistent tracking surface</span></li>
+      <li><svg viewBox="0 0 16 16"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Wipes clean in seconds</span></li>
+      <li><svg viewBox="0 0 16 16"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Lies flat, stays put</span></li>
+    </ul>
+    <div class="dk-showcase__form"><a class="dk-btn" href="#">Add to cart</a><a class="dk-btn dk-btn--ghost" href="#">Full details</a></div>
+    <p class="dk-showcase__note">On the live theme this block is wired to the Shopify product — title, price, description and Add to cart come from real product data.</p>
+  </div>
+</div></section>
+
+<section class="dk dk-features"><div class="dk-wrap">
+  <div class="dk-features__head"><p class="dk-eyebrow">Why it matters</p><h2 class="dk-h2">Small change, obvious difference.</h2></div>
+  <ul class="dk-features__grid">
+    <li class="dk-features__item"><span class="dk-features__num">01</span><h3 class="dk-h3">A calmer desk</h3><p class="dk-body">The mat softens key chatter and mouse clicks, so long sessions feel quieter.</p></li>
+    <li class="dk-features__item"><span class="dk-features__num">02</span><h3 class="dk-h3">Consistent tracking</h3><p class="dk-body">An even surface edge to edge means the cursor behaves the same everywhere.</p></li>
+    <li class="dk-features__item"><span class="dk-features__num">03</span><h3 class="dk-h3">One clean surface</h3><p class="dk-body">Keyboard, mouse, phone, notebook — everything sits on the same defined area.</p></li>
+  </ul>
+</div></section>
+
+<section class="dk dk-split dk-split--left"><div class="dk-wrap dk-split__grid">
+  <div class="dk-split__media"><span class="dk-placeholder-tag">Placeholder artwork</span><img class="dk-split__img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNDAwIDEwMDAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iUGxhY2Vob2xkZXIgaWxsdXN0cmF0aW9uIG9mIGEgd29ya3NwYWNlIHdpdGggYSBkZXNrIG1hdCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9IncxIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZjZmMWU5Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZThkZGNkIi8+PC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ibTEiIHgxPSIwIiB5MT0iMCIgeDI9IjAuNCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzJkMmEyNCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzE5MTcxMyIvPjwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxNDAwIiBoZWlnaHQ9IjEwMDAiIGZpbGw9InVybCgjdzEpIi8+CiAgPGNpcmNsZSBjeD0iMTEzMCIgY3k9IjIyMCIgcj0iMTUwIiBmaWxsPSIjYTk2OTNjIiBvcGFjaXR5PSIwLjEyIi8+CiAgPHJlY3QgeD0iMCIgeT0iNjkwIiB3aWR0aD0iMTQwMCIgaGVpZ2h0PSIzMTAiIGZpbGw9IiNkY2NmYmMiLz4KICA8cmVjdCB4PSIwIiB5PSI2NzIiIHdpZHRoPSIxNDAwIiBoZWlnaHQ9IjIyIiBmaWxsPSIjYzliOWEyIi8+CgogIDwhLS0gbGFtcCAtLT4KICA8Zz4KICAgIDxyZWN0IHg9IjE1MCIgeT0iNjQwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzQ1NDAzYSIvPgogICAgPHJlY3QgeD0iMjAzIiB5PSIzNDAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIzMDAiIGZpbGw9IiM0NTQwM2EiLz4KICAgIDxwYXRoIGQ9Ik0xNDAgMzQwIGgxNTAgbC00MCAtOTAgaC03MFoiIGZpbGw9IiNhOTY5M2MiLz4KICAgIDxjaXJjbGUgY3g9IjIxNSIgY3k9IjM2NiIgcj0iMTIiIGZpbGw9IiNmZmQ5YTMiLz4KICA8L2c+CgogIDwhLS0gbWF0ICsgZGV2aWNlcyAtLT4KICA8Zz4KICAgIDxyZWN0IHg9IjMzMCIgeT0iNTYwIiB3aWR0aD0iOTAwIiBoZWlnaHQ9IjEzMCIgcng9IjEyIiBmaWxsPSJ1cmwoI20xKSIvPgogICAgPHJlY3QgeD0iMzUwIiB5PSI1NzgiIHdpZHRoPSI4NjAiIGhlaWdodD0iOTQiIHJ4PSI4IiBmaWxsPSJub25lIiBzdHJva2U9IiM2YjYxNTUiIHN0cm9rZS1vcGFjaXR5PSIwLjUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iOSA4Ii8+CiAgICA8cmVjdCB4PSI0MjAiIHk9IjQ5OCIgd2lkdGg9IjUyMCIgaGVpZ2h0PSI2NiIgcng9IjgiIGZpbGw9IiNmNGVmZTciIHN0cm9rZT0iI2Q5Y2ZjMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8ZyBmaWxsPSIjZTNkYWNkIj4KICAgICAgPHJlY3QgeD0iNDQwIiB5PSI1MTQiIHdpZHRoPSI2MCIgaGVpZ2h0PSIxNiIgcng9IjQiLz48cmVjdCB4PSI1MTIiIHk9IjUxNCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjE2IiByeD0iNCIvPgogICAgICA8cmVjdCB4PSI1ODQiIHk9IjUxNCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjE2IiByeD0iNCIvPjxyZWN0IHg9IjY1NiIgeT0iNTE0IiB3aWR0aD0iNjAiIGhlaWdodD0iMTYiIHJ4PSI0Ii8+CiAgICAgIDxyZWN0IHg9IjcyOCIgeT0iNTE0IiB3aWR0aD0iNjAiIGhlaWdodD0iMTYiIHJ4PSI0Ii8+PHJlY3QgeD0iODAwIiB5PSI1MTQiIHdpZHRoPSIxMjAiIGhlaWdodD0iMTYiIHJ4PSI0Ii8+CiAgICAgIDxyZWN0IHg9IjUwMCIgeT0iNTM4IiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE0IiByeD0iNCIvPgogICAgPC9nPgogICAgPHJlY3QgeD0iOTkwIiB5PSI1MDAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI2NCIgcng9IjMyIiBmaWxsPSIjZjRlZmU3IiBzdHJva2U9IiNkOWNmYzAiIHN0cm9rZS13aWR0aD0iMiIvPgogIDwvZz4KCiAgPCEtLSBtb25pdG9yIC0tPgogIDxyZWN0IHg9IjQ3MCIgeT0iMTkwIiB3aWR0aD0iNTIwIiBoZWlnaHQ9IjMwMCIgcng9IjEwIiBmaWxsPSIjMmIyODIyIi8+CiAgPHJlY3QgeD0iNDkyIiB5PSIyMTIiIHdpZHRoPSI0NzYiIGhlaWdodD0iMjU2IiByeD0iNCIgZmlsbD0iIzE0MTIwZiIvPgogIDxyZWN0IHg9IjUyNCIgeT0iMjUwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iI2E5NjkzYyIgb3BhY2l0eT0iMC45Ii8+CiAgPHJlY3QgeD0iNTI0IiB5PSIyODAiIHdpZHRoPSIzMDAiIGhlaWdodD0iOCIgcng9IjQiIGZpbGw9IiM1NzRmNDUiLz4KICA8cmVjdCB4PSI1MjQiIHk9IjMwMiIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI4IiByeD0iNCIgZmlsbD0iIzQyM2MzNCIvPgogIDxyZWN0IHg9IjcwMCIgeT0iNDkwIiB3aWR0aD0iNjAiIGhlaWdodD0iMTQiIGZpbGw9IiMyYjI4MjIiLz4KPC9zdmc+Cg==" alt="Placeholder workspace"></div>
+  <div class="dk-split__copy"><p class="dk-eyebrow">In use</p><h2 class="dk-h2">Built for the desk you actually use.</h2>
+  <p class="dk-body">Placeholder copy. Final wording will follow the confirmed product specification — size, material and finish.</p>
+  <a class="dk-btn dk-btn--ghost" href="#specs">See the specs</a></div>
+</div></section>
+
+<section class="dk dk-specs" id="specs"><div class="dk-wrap">
+  <div class="dk-specs__head"><p class="dk-eyebrow">Specification</p><h2 class="dk-h2">The details.</h2></div>
+  <dl class="dk-specs__list">
+    <div class="dk-specs__row"><dt>Size</dt><dd class="dk-specs__pending">—</dd></div>
+    <div class="dk-specs__row"><dt>Material</dt><dd class="dk-specs__pending">—</dd></div>
+    <div class="dk-specs__row"><dt>Finish</dt><dd class="dk-specs__pending">—</dd></div>
+    <div class="dk-specs__row"><dt>Base</dt><dd class="dk-specs__pending">—</dd></div>
+    <div class="dk-specs__row"><dt>Care</dt><dd class="dk-specs__pending">—</dd></div>
+    <div class="dk-specs__row"><dt>Ships from</dt><dd>Lahore, Pakistan</dd></div>
+  </dl>
+</div></section>
+
+<section class="dk dk-faq"><div class="dk-wrap dk-faq__grid">
+  <div class="dk-faq__head"><p class="dk-eyebrow">Questions</p><h2 class="dk-h2">Before you order.</h2></div>
+  <div class="dk-faq__list">
+    <details class="dk-faq__item" open><summary><span>How long does delivery take?</span><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary><div class="dk-faq__answer"><p class="dk-body">Placeholder — delivery times will be filled in from the store's confirmed shipping policy.</p></div></details>
+    <details class="dk-faq__item"><summary><span>Do you offer cash on delivery?</span><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary><div class="dk-faq__answer"><p class="dk-body">Placeholder — payment methods will be listed once payments are activated on the store.</p></div></details>
+    <details class="dk-faq__item"><summary><span>Can I return it?</span><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary><div class="dk-faq__answer"><p class="dk-body">Placeholder — the return window and conditions will follow the store's refund policy.</p></div></details>
+    <details class="dk-faq__item"><summary><span>How do I clean it?</span><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary><div class="dk-faq__answer"><p class="dk-body">Placeholder — care instructions will follow the confirmed product material.</p></div></details>
+  </div>
+</div></section>
+
+<section class="dk dk-cta"><div class="dk-wrap dk-cta__inner">
+  <h2 class="dk-h2 dk-cta__title">Finish the desk.</h2>
+  <p class="dk-cta__body">One mat, one surface, one less thing to think about.</p>
+  <a class="dk-btn dk-cta__btn" href="#">Shop the desk mat</a>
+</div></section>
+
+<footer class="dk-foot"><div class="dk-wrap">
+  <div class="dk-foot__grid">
+    <div><h4>Desk Mat</h4><p style="margin:0;font-size:.9375rem;line-height:1.6;max-width:34ch">Workspace gear, shipped from Lahore. Contact details to be confirmed.</p></div>
+    <div><h4>Shop</h4><ul><li><a href="#">Desk Mat</a></li><li><a href="#">All products</a></li></ul></div>
+    <div><h4>Help</h4><ul><li><a href="#">Shipping policy</a></li><li><a href="#">Returns &amp; refunds</a></li><li><a href="#">FAQs</a></li><li><a href="#">Contact</a></li></ul></div>
+    <div><h4>Legal</h4><ul><li><a href="#">Privacy policy</a></li><li><a href="#">Terms of service</a></li></ul></div>
+  </div>
+  <div class="dk-foot__bar"><span>© 2026 — store name to be confirmed</span><span>Powered by Shopify</span></div>
+</div></footer>
+</body></html>
