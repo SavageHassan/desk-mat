@@ -1,0 +1,32 @@
+<section class="dk dk-marquee" aria-hidden="true">
+  <div class="dk-marquee__track">
+    {%- for i in (1..3) -%}
+      <div class="dk-marquee__group">
+        {%- for block in section.blocks -%}
+          <span class="dk-marquee__item">{{ block.settings.text }}</span>
+          <span class="dk-marquee__dot">&bull;</span>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .dk-marquee { background: var(--dk-ink); color: #fbf9f6; overflow: hidden; padding-block: 14px; }
+  .dk-marquee__track { display: flex; width: max-content; animation: dk-marquee 38s linear infinite; }
+  .dk-marquee__group { display: flex; align-items: center; gap: 22px; padding-right: 22px; }
+  .dk-marquee__item { font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; white-space: nowrap; }
+  .dk-marquee__dot { color: var(--dk-clay); }
+  @keyframes dk-marquee { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
+  @media (prefers-reduced-motion: reduce) { .dk-marquee__track { animation: none; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Marquee",
+  "blocks": [
+    { "type": "item", "name": "Item", "settings": [ { "type": "text", "id": "text", "label": "Text", "default": "Built for long hours" } ] }
+  ],
+  "presets": [{ "name": "DK Marquee" }]
+}
+{% endschema %}

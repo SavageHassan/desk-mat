@@ -1,0 +1,142 @@
+{%- liquid
+  assign p = section.settings.product
+-%}
+<section class="dk dk-shop">
+  <div class="dk-wrap">
+    <div class="dk-shop__head">
+      <div>
+        <p class="dk-eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2 class="dk-h2">{{ section.settings.heading }}</h2>
+      </div>
+      <a class="dk-shop__all" href="{{ routes.all_products_collection_url }}">View all
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="dk-shop__grid">
+      {%- if p != blank -%}
+        <article class="dk-card">
+          <a class="dk-card__media" href="{{ p.url }}">
+            {%- if p.featured_image != blank -%}
+              {{ p.featured_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'dk-card__img', alt: p.title }}
+            {%- endif -%}
+            {%- if p.images[1] != blank -%}
+              {{ p.images[1] | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'dk-card__img dk-card__img--alt', alt: p.title }}
+            {%- endif -%}
+            <span class="dk-card__tag">In stock</span>
+          </a>
+          <div class="dk-card__body">
+            <h3 class="dk-card__title"><a href="{{ p.url }}">{{ p.title }}</a></h3>
+            <p class="dk-card__price">{{ p.price | money }}</p>
+            {%- form 'product', p, class: 'dk-card__form' -%}
+              <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+              <button type="submit" class="dk-btn dk-card__btn" {% unless p.available %}disabled{% endunless %}>
+                {% if p.available %}Add to cart{% else %}Sold out{% endif %}
+              </button>
+            {%- endform -%}
+          </div>
+        </article>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        <article class="dk-promo dk-promo--{{ block.settings.tone }}" {{ block.shopify_attributes }}>
+          <div class="dk-promo__inner">
+            <p class="dk-promo__kicker">{{ block.settings.kicker }}</p>
+            <h3 class="dk-promo__title">{{ block.settings.title }}</h3>
+            <p class="dk-promo__body">{{ block.settings.body }}</p>
+            {%- if block.settings.link_label != blank -%}
+              <a class="dk-promo__link" href="{{ block.settings.link | default: '#dk-details' }}">{{ block.settings.link_label }}
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            {%- endif -%}
+          </div>
+          {%- if block.settings.tone == 'image' -%}
+            <img class="dk-promo__img" src="{{ block.settings.fallback | default: 'dk-life-2.jpg' | asset_url }}" alt="" loading="lazy" width="1200" height="900">
+          {%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .dk-shop { background: var(--dk-sand); padding-block: clamp(48px, 7vw, 96px); }
+  .dk-shop__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: clamp(22px, 3vw, 36px); }
+  .dk-shop__head .dk-eyebrow { margin-bottom: 8px; }
+  .dk-shop__all { display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem; font-weight: 600; color: var(--dk-ink); text-decoration: none; white-space: nowrap; }
+  .dk-shop__all svg { width: 15px; height: 15px; transition: transform 0.25s var(--dk-ease); }
+  .dk-shop__all:hover svg { transform: translateX(4px); }
+  .dk-shop__grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+
+  .dk-card { background: var(--dk-paper); border: 1px solid var(--dk-stone); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; }
+  .dk-card__media { position: relative; display: block; aspect-ratio: 4 / 3; background: var(--dk-sand); overflow: hidden; }
+  .dk-card__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.5s var(--dk-ease), transform 0.6s var(--dk-ease); }
+  .dk-card__img--alt { opacity: 0; }
+  .dk-card__media:hover .dk-card__img--alt { opacity: 1; }
+  .dk-card__media:hover .dk-card__img { transform: scale(1.03); }
+  .dk-card__tag {
+    position: absolute; top: 10px; left: 10px; z-index: 2; background: var(--dk-ink); color: var(--dk-paper);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 9px; border-radius: 2px;
+  }
+  .dk-card__body { padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .dk-card__title { margin: 0; font-size: 1rem; font-weight: 600; }
+  .dk-card__title a { color: inherit; text-decoration: none; }
+  .dk-card__price { margin: 0 0 6px; font-size: 1rem; font-weight: 600; color: var(--dk-ink); }
+  .dk-card__btn { width: 100%; min-height: 46px; }
+
+  .dk-promo { position: relative; border-radius: 4px; overflow: hidden; display: flex; min-height: 220px; }
+  .dk-promo__inner { position: relative; z-index: 2; padding: 22px; display: flex; flex-direction: column; gap: 8px; justify-content: flex-end; }
+  .dk-promo__kicker { margin: 0; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+  .dk-promo__title { margin: 0; font-family: var(--font-heading--family, inherit); font-size: 1.5rem; line-height: 1.1; letter-spacing: -0.02em; }
+  .dk-promo__body { margin: 0; font-size: 0.875rem; line-height: 1.55; max-width: 32ch; }
+  .dk-promo__link { display: inline-flex; align-items: center; gap: 7px; font-size: 0.875rem; font-weight: 600; text-decoration: none; color: inherit; margin-top: 4px; }
+  .dk-promo__link svg { width: 14px; height: 14px; transition: transform 0.25s var(--dk-ease); }
+  .dk-promo__link:hover svg { transform: translateX(4px); }
+
+  .dk-promo--ink { background: var(--dk-ink); color: var(--dk-paper); }
+  .dk-promo--ink .dk-promo__kicker { color: #e2b183; }
+  .dk-promo--ink .dk-promo__body { color: rgba(251, 249, 246, 0.72); }
+  .dk-promo--clay { background: #e9d9c8; color: var(--dk-ink); }
+  .dk-promo--clay .dk-promo__kicker { color: var(--dk-clay-dark); }
+  .dk-promo--clay .dk-promo__body { color: var(--dk-ink-soft); }
+  .dk-promo--image { color: #fff; }
+  .dk-promo--image .dk-promo__kicker { color: #e2b183; }
+  .dk-promo--image .dk-promo__body { color: rgba(255, 255, 255, 0.84); }
+  .dk-promo__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .dk-promo--image::after {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to top, rgba(12, 11, 8, 0.88) 10%, rgba(12, 11, 8, 0.55) 55%, rgba(12, 11, 8, 0.3) 100%);
+  }
+  .dk-promo--image .dk-promo__inner { z-index: 2; }
+  @media (min-width: 750px) {
+    .dk-shop__grid { grid-template-columns: repeat(3, 1fr); }
+    .dk-promo { min-height: 0; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Shop row",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The DeskKart line-up." }
+  ],
+  "blocks": [
+    {
+      "type": "promo",
+      "name": "Promo card",
+      "settings": [
+        { "type": "select", "id": "tone", "label": "Style", "options": [{"value":"ink","label":"Dark"},{"value":"clay","label":"Clay"},{"value":"image","label":"Image"}], "default": "ink" },
+        { "type": "text", "id": "fallback", "label": "Image asset (image style)", "default": "dk-life-2.jpg" },
+        { "type": "text", "id": "kicker", "label": "Kicker", "default": "Kicker" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Title" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Body" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Learn more" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "DK Shop row" }]
+}
+{% endschema %}

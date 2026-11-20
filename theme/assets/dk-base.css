@@ -173,3 +173,39 @@ footer .shopify-section-group-footer-group .email-signup__input-group {
   border: 1px solid rgba(251, 249, 246, 0.3) !important;
 }
 footer .shopify-section-group-footer-group .email-signup__input-group input { color: #fbf9f6 !important; }
+
+/* --- Header: height, weight, sticky --- */
+#header-group .header__row--top { border-bottom: 1px solid var(--dk-stone); }
+#header-group .header__columns { padding-block: 0 !important; min-height: 78px; align-items: center; }
+#header-group .header-logo {
+  font-family: var(--font-heading--family, inherit);
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em;
+  color: var(--dk-ink);
+  text-transform: none;
+}
+#header-group .header__column--center a,
+#header-group .header__column a:not(.header-logo) {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  color: var(--dk-ink-soft);
+}
+#header-group .header__column a:not(.header-logo):hover { color: var(--dk-clay-dark); }
+#header-group .header__column--right { gap: 6px; }
+#header-group .header__column--right svg { width: 21px; height: 21px; }
+
+/* announcement bar */
+#header-group .shopify-section:first-child { background: var(--dk-ink); }
+#header-group .shopify-section:first-child :is(p, span, a) {
+  color: rgba(251, 249, 246, 0.92) !important;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+@media (max-width: 749px) {
+  #header-group .header__columns { min-height: 62px; }
+  #header-group .header-logo { font-size: 1.2rem !important; }
+}

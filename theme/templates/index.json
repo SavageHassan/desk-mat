@@ -3,7 +3,7 @@
     "hero": {
       "type": "dk-hero",
       "settings": {
-        "eyebrow": "Desk mats, made for long hours",
+        "eyebrow": "DeskKart \u2014 built for long hours",
         "heading": "Your desk, finally finished.",
         "body": "One surface that quiets the keys, glides under the mouse and gives the whole desk a single, deliberate edge.",
         "cta_label": "Shop the Desk Mat",
@@ -11,7 +11,8 @@
         "strip_1": "Delivery across Pakistan",
         "strip_2": "Cash on delivery",
         "strip_3": "Easy returns",
-        "strip_4": "Ships from Lahore"
+        "strip_4": "Ships from Lahore",
+        "height": 78
       }
     },
     "showcase": {
@@ -309,12 +310,138 @@
         "heading": "Looks right in any setup.",
         "body": "Warm wood, white minimal or dark battlestation \u2014 the mat is the piece that ties the surface together."
       }
+    },
+    "marquee": {
+      "type": "dk-marquee",
+      "blocks": {
+        "m1": {
+          "type": "item",
+          "settings": {
+            "text": "Built for long hours"
+          }
+        },
+        "m2": {
+          "type": "item",
+          "settings": {
+            "text": "Ships from Lahore"
+          }
+        },
+        "m3": {
+          "type": "item",
+          "settings": {
+            "text": "Cash on delivery"
+          }
+        },
+        "m4": {
+          "type": "item",
+          "settings": {
+            "text": "One surface, whole desk"
+          }
+        },
+        "m5": {
+          "type": "item",
+          "settings": {
+            "text": "Easy returns"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5"
+      ],
+      "settings": {}
+    },
+    "tiles": {
+      "type": "dk-tiles",
+      "blocks": {
+        "t1": {
+          "type": "tile",
+          "settings": {
+            "fallback": "dk-product.jpg",
+            "title": "The Desk Mat",
+            "subtitle": "One mat, full desk coverage",
+            "link": "/products/desk-mat"
+          }
+        },
+        "t2": {
+          "type": "tile",
+          "settings": {
+            "fallback": "dk-detail.jpg",
+            "title": "Surface & feel",
+            "subtitle": "How it works under hand",
+            "link": "#dk-details"
+          }
+        },
+        "t3": {
+          "type": "tile",
+          "settings": {
+            "fallback": "dk-life-3.jpg",
+            "title": "Delivery & returns",
+            "subtitle": "Shipped nationwide from Lahore",
+            "link": "/pages/faq"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "settings": {
+        "eyebrow": "Start here",
+        "heading": "Everything you need to know.",
+        "link_label": "Shop the Desk Mat",
+        "link_url": "/products/desk-mat"
+      }
+    },
+    "shop": {
+      "type": "dk-shop",
+      "blocks": {
+        "p1": {
+          "type": "promo",
+          "settings": {
+            "tone": "ink",
+            "kicker": "Delivery",
+            "title": "Shipped nationwide from Lahore",
+            "body": "Orders go out from our Lahore base to anywhere in Pakistan. Cash on delivery available at checkout.",
+            "link_label": "Delivery details",
+            "link": "/pages/faq"
+          }
+        },
+        "p2": {
+          "type": "promo",
+          "settings": {
+            "tone": "image",
+            "fallback": "dk-life-2.jpg",
+            "kicker": "Why a mat",
+            "title": "The upgrade you feel every hour",
+            "body": "Softer under the keyboard, even under the mouse, and the whole desk finally looks deliberate.",
+            "link_label": "See the details",
+            "link": "#dk-details"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2"
+      ],
+      "settings": {
+        "product": "desk-mat",
+        "eyebrow": "Shop",
+        "heading": "The DeskKart line-up."
+      }
     }
   },
   "order": [
     "hero",
+    "marquee",
+    "shop",
     "bar",
     "showcase",
+    "tiles",
     "features",
     "gallery",
     "split",
