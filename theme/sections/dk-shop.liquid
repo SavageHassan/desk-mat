@@ -14,48 +14,38 @@
     </div>
 
     <div class="dk-shop__grid">
-      {%- if p != blank -%}
+      {%- assign coll = collections[section.settings.collection] -%}
+      {%- if coll == blank or coll.products_count == 0 -%}
+        {%- assign items = collections.all.products -%}
+      {%- else -%}
+        {%- assign items = coll.products -%}
+      {%- endif -%}
+
+      {%- for item in items limit: section.settings.max_products -%}
         <article class="dk-card">
-          <a class="dk-card__media" href="{{ p.url }}">
-            {%- if p.featured_image != blank -%}
-              {{ p.featured_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'dk-card__img', alt: p.title }}
+          <a class="dk-card__media" href="{{ item.url }}">
+            {%- if item.featured_image != blank -%}
+              {{ item.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'dk-card__img', alt: item.title }}
             {%- endif -%}
-            {%- if p.images[1] != blank -%}
-              {{ p.images[1] | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'dk-card__img dk-card__img--alt', alt: p.title }}
+            {%- if item.images[1] != blank -%}
+              {{ item.images[1] | image_url: width: 900 | image_tag: loading: 'lazy', class: 'dk-card__img dk-card__img--alt', alt: item.title }}
             {%- endif -%}
-            <span class="dk-card__tag">In stock</span>
+            {%- unless item.available -%}<span class="dk-card__tag dk-card__tag--out">Sold out</span>{%- endunless -%}
           </a>
           <div class="dk-card__body">
-            <h3 class="dk-card__title"><a href="{{ p.url }}">{{ p.title }}</a></h3>
-            <p class="dk-card__price">{{ p.price | money }}</p>
-            {%- form 'product', p, class: 'dk-card__form' -%}
-              <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
-              <button type="submit" class="dk-btn dk-card__btn" {% unless p.available %}disabled{% endunless %}>
-                {% if p.available %}Add to cart{% else %}Sold out{% endif %}
+            <h3 class="dk-card__title"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+            <p class="dk-card__price">{{ item.price | money }}</p>
+            {%- form 'product', item, class: 'dk-card__form' -%}
+              <input type="hidden" name="id" value="{{ item.selected_or_first_available_variant.id }}">
+              <button type="submit" class="dk-btn dk-card__btn" {% unless item.available %}disabled{% endunless %}>
+                {% if item.available %}Add to cart{% else %}Sold out{% endif %}
               </button>
             {%- endform -%}
           </div>
         </article>
-      {%- endif -%}
-
-      {%- for block in section.blocks -%}
-        <article class="dk-promo dk-promo--{{ block.settings.tone }}" {{ block.shopify_attributes }}>
-          <div class="dk-promo__inner">
-            <p class="dk-promo__kicker">{{ block.settings.kicker }}</p>
-            <h3 class="dk-promo__title">{{ block.settings.title }}</h3>
-            <p class="dk-promo__body">{{ block.settings.body }}</p>
-            {%- if block.settings.link_label != blank -%}
-              <a class="dk-promo__link" href="{{ block.settings.link | default: '#dk-details' }}">{{ block.settings.link_label }}
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-            {%- endif -%}
-          </div>
-          {%- if block.settings.tone == 'image' -%}
-            <img class="dk-promo__img" src="{{ block.settings.fallback | default: 'dk-life-2.jpg' | asset_url }}" alt="" loading="lazy" width="1200" height="900">
-          {%- endif -%}
-        </article>
       {%- endfor -%}
     </div>
+
   </div>
 </section>
 
@@ -66,7 +56,7 @@
   .dk-shop__all { display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem; font-weight: 600; color: var(--dk-ink); text-decoration: none; white-space: nowrap; }
   .dk-shop__all svg { width: 15px; height: 15px; transition: transform 0.25s var(--dk-ease); }
   .dk-shop__all:hover svg { transform: translateX(4px); }
-  .dk-shop__grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  .dk-shop__grid { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); }
 
   .dk-card { background: var(--dk-paper); border: 1px solid var(--dk-stone); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; }
   .dk-card__media { position: relative; display: block; aspect-ratio: 4 / 3; background: var(--dk-sand); overflow: hidden; }
@@ -109,7 +99,7 @@
   }
   .dk-promo--image .dk-promo__inner { z-index: 2; }
   @media (min-width: 750px) {
-    .dk-shop__grid { grid-template-columns: repeat(3, 1fr); }
+    .dk-shop__grid { grid-template-columns: repeat(4, 1fr); }
     .dk-promo { min-height: 0; }
   }
 {% endstylesheet %}
@@ -118,7 +108,8 @@
 {
   "name": "DK Shop row",
   "settings": [
-    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "max_products", "label": "Products shown", "min": 2, "max": 8, "step": 1, "default": 4 },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "The DeskKart line-up." }
   ],

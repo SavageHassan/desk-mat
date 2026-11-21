@@ -399,37 +399,11 @@
     },
     "shop": {
       "type": "dk-shop",
-      "blocks": {
-        "p1": {
-          "type": "promo",
-          "settings": {
-            "tone": "ink",
-            "kicker": "Delivery",
-            "title": "Shipped nationwide from Lahore",
-            "body": "Orders go out from our Lahore base to anywhere in Pakistan. Cash on delivery available at checkout.",
-            "link_label": "Delivery details",
-            "link": "/pages/faq"
-          }
-        },
-        "p2": {
-          "type": "promo",
-          "settings": {
-            "tone": "image",
-            "fallback": "dk-life-2.jpg",
-            "kicker": "Why a mat",
-            "title": "The upgrade you feel every hour",
-            "body": "Softer under the keyboard, even under the mouse, and the whole desk finally looks deliberate.",
-            "link_label": "See the details",
-            "link": "#dk-details"
-          }
-        }
-      },
-      "block_order": [
-        "p1",
-        "p2"
-      ],
+      "blocks": {},
+      "block_order": [],
       "settings": {
-        "product": "desk-mat",
+        "collection": "",
+        "max_products": 4,
         "eyebrow": "Shop",
         "heading": "The DeskKart line-up."
       }
