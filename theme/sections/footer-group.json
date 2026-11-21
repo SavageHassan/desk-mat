@@ -115,7 +115,7 @@
             "border_radius": 100,
             "input_background_color": "rgba(0,0,0,0)",
             "input_text_color": "#FBF9F6",
-            "input_border_color": "#5a5349",
+            "input_border_color": "#6f8a7d",
             "input_type_preset": "paragraph",
             "style_class": "button-unstyled",
             "display_type": "arrow",
@@ -138,7 +138,7 @@
       "settings": {
         "section_width": "page-width",
         "gap": 20,
-        "background_color": "#16140F",
+        "background_color": "#27463A",
         "padding-block-start": 30,
         "padding-block-end": 30
       }
@@ -185,8 +185,8 @@
         "section_width": "page-width",
         "gap": 24,
         "divider_thickness": 1,
-        "divider_color": "#3a352d",
-        "background_color": "#16140F",
+        "divider_color": "#3d5f51",
+        "background_color": "#27463A",
         "padding-block-start": 20,
         "padding-block-end": 48
       }

@@ -25,3 +25,8 @@ No images, code, copy or assets were taken from gimmi.pk.
 Written for this store. It describes what a desk mat does in general terms and makes **no factual claims**
 about size, material, thickness, warranty, delivery times or returns — those are left as `—` or point to
 the store's own policies, pending confirmed information.
+
+## Image format rule
+All store imagery is **JPEG**. The SVG placeholder illustrations were removed from the theme on 22 Nov 2026
+at the client's request — no PNG or SVG image files are served as store media. Inline SVG is still used for
+UI icons inside Liquid markup (arrows, checkmarks, trust icons), which are markup rather than image files.

@@ -1,13 +1,21 @@
 /* Desk Mat storefront — design system tokens and primitives */
 :root {
-  --dk-paper: #fbf9f6;
-  --dk-sand: #f1ece4;
-  --dk-stone: #e4ddd2;
-  --dk-ink: #16140f;
-  --dk-ink-soft: #3a352d;
-  --dk-muted: #5c564c;
-  --dk-clay: #a9693c;
-  --dk-clay-dark: #8a5430;
+  /* surfaces */
+  --dk-paper: #faf5ec;
+  --dk-sand: #f2e8d8;
+  --dk-stone: #e0d3be;
+
+  /* ink */
+  --dk-ink: #14120e;
+  --dk-ink-soft: #3a3328;
+  --dk-muted: #6b6253;
+
+  /* brand colour */
+  --dk-forest: #27463a;
+  --dk-forest-soft: #35594a;
+  --dk-clay: #c2683a;
+  --dk-clay-dark: #a85528;
+  --dk-butter: #efc87c;
 
   --dk-max: 1280px;
   --dk-gutter: 24px;
@@ -90,9 +98,9 @@
   min-height: 52px;
   padding: 0 28px;
   border-radius: 4px;
-  border: 1px solid var(--dk-ink);
-  background: var(--dk-ink);
-  color: var(--dk-paper);
+  border: 1px solid var(--dk-clay-dark);
+  background: var(--dk-clay-dark);
+  color: #fff;
   font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -101,7 +109,7 @@
   transition: background 0.25s var(--dk-ease), color 0.25s var(--dk-ease), transform 0.25s var(--dk-ease);
 }
 
-.dk-btn:hover { background: var(--dk-clay-dark); border-color: var(--dk-clay-dark); color: #fff; }
+.dk-btn:hover { background: var(--dk-ink); border-color: var(--dk-ink); color: var(--dk-paper); }
 
 .dk-btn--ghost {
   background: transparent;
@@ -209,3 +217,41 @@ footer .shopify-section-group-footer-group .email-signup__input-group input { co
   #header-group .header__columns { min-height: 62px; }
   #header-group .header-logo { font-size: 1.2rem !important; }
 }
+
+
+/* --- Colour bands --- */
+.dk-features { background: var(--dk-forest) !important; color: #f3efe4; }
+.dk-features .dk-h2, .dk-features .dk-h3 { color: #fff; }
+.dk-features .dk-eyebrow { color: var(--dk-butter); }
+.dk-features .dk-body { color: rgba(243, 239, 228, 0.76); }
+.dk-features__grid { background: rgba(255, 255, 255, 0.14) !important; border-block-color: rgba(255, 255, 255, 0.16) !important; }
+.dk-features__item { background: var(--dk-forest) !important; }
+.dk-features__num { color: var(--dk-butter) !important; }
+
+.dk-faq { background: var(--dk-sand) !important; }
+.dk-shop { background: var(--dk-sand) !important; }
+.dk-split { background: var(--dk-paper) !important; }
+.dk-gallery { background: var(--dk-paper) !important; }
+.dk-specs { background: var(--dk-paper) !important; }
+
+.dk-cta { background: var(--dk-clay-dark) !important; }
+.dk-cta__body { color: rgba(255, 255, 255, 0.82) !important; }
+.dk-cta__btn { background: #fff; border-color: #fff; color: var(--dk-ink); }
+.dk-cta__btn:hover { background: var(--dk-ink); border-color: var(--dk-ink); color: #fff; }
+
+.dk-marquee { background: var(--dk-forest) !important; color: #f3efe4; }
+.dk-marquee__dot { color: var(--dk-butter) !important; }
+
+.dk-bar { background: var(--dk-paper); }
+.dk-bar__icon { color: var(--dk-clay-dark); }
+
+.dk-card__tag { background: var(--dk-butter) !important; color: var(--dk-ink) !important; }
+.dk-promo--ink { background: var(--dk-forest) !important; }
+.dk-promo--clay { background: var(--dk-clay-dark) !important; color: #fff; }
+
+/* footer in brand green */
+footer .shopify-section-group-footer-group,
+footer .shopify-section-group-footer-group .section,
+footer .shopify-section-group-footer-group .section-background { background: var(--dk-forest) !important; }
+footer .shopify-section-group-footer-group { --color-background: #27463a; --color-background-rgb: 39, 70, 58; }
+#header-group .shopify-section:first-child { background: var(--dk-forest) !important; }
