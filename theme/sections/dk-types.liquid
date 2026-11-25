@@ -11,7 +11,13 @@
             <span class="dk-type__media">
               <img src="{{ block.settings.image | default: 'dk-product.jpg' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy" width="600" height="600">
             </span>
-            <span class="dk-type__name">{{ block.settings.title }}</span>
+            <span class="dk-type__meta">
+              <span class="dk-type__name">{{ block.settings.title }}</span>
+              {%- if block.settings.price != blank -%}<span class="dk-type__price">{{ block.settings.price }}</span>{%- endif -%}
+            </span>
+            <span class="dk-type__go" aria-hidden="true">
+              <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
           </a>
         </li>
       {%- endfor -%}
@@ -20,15 +26,30 @@
 </section>
 
 {% stylesheet %}
-  .dk-types { background: var(--dk-sand); padding-block: clamp(40px, 6vw, 72px); }
+  .dk-types { background: var(--dk-sand); padding-block: clamp(44px, 6vw, 80px); }
   .dk-types__head { display: flex; flex-direction: column; gap: 8px; margin-bottom: clamp(20px, 3vw, 32px); }
   .dk-types__row { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
-  .dk-type a { display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; color: var(--dk-ink); }
-  .dk-type__media { width: 100%; aspect-ratio: 1 / 1; border-radius: 100%; overflow: hidden; background: var(--dk-paper); border: 1px solid var(--dk-stone); }
-  .dk-type__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--dk-ease); }
-  .dk-type a:hover .dk-type__media img { transform: scale(1.07); }
-  .dk-type__name { font-size: 0.875rem; font-weight: 600; text-align: center; }
-  @media (min-width: 750px) { .dk-types__row { grid-template-columns: repeat(5, 1fr); gap: 20px; } }
+  .dk-type a {
+    position: relative; display: block; background: var(--dk-paper);
+    border: 1px solid var(--dk-stone); border-radius: 10px; overflow: hidden;
+    text-decoration: none; color: var(--dk-ink);
+    transition: transform 0.3s var(--dk-ease), box-shadow 0.3s var(--dk-ease), border-color 0.3s var(--dk-ease);
+  }
+  .dk-type a:hover { transform: translateY(-3px); box-shadow: 0 16px 32px rgba(13, 17, 23, 0.1); border-color: transparent; }
+  .dk-type__media { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: var(--dk-sand); }
+  .dk-type__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--dk-ease); }
+  .dk-type a:hover .dk-type__media img { transform: scale(1.06); }
+  .dk-type__meta { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px 14px; }
+  .dk-type__name { font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.01em; }
+  .dk-type__price { font-size: 0.8125rem; color: var(--dk-muted); }
+  .dk-type__go {
+    position: absolute; right: 12px; bottom: 12px; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--dk-ink); color: #fff; display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(6px); transition: opacity 0.25s var(--dk-ease), transform 0.25s var(--dk-ease), background 0.25s var(--dk-ease);
+  }
+  .dk-type__go svg { width: 14px; height: 14px; }
+  .dk-type a:hover .dk-type__go { opacity: 1; transform: none; background: var(--dk-clay); }
+  @media (min-width: 750px) { .dk-types__row { grid-template-columns: repeat(5, 1fr); gap: 16px; } }
 {% endstylesheet %}
 
 {% schema %}
@@ -45,6 +66,7 @@
       "settings": [
         { "type": "text", "id": "image", "label": "Image asset", "default": "dk-product.jpg" },
         { "type": "text", "id": "title", "label": "Title", "default": "Type" },
+        { "type": "text", "id": "price", "label": "Price line", "default": "From Rs.1,799" },
         { "type": "url", "id": "link", "label": "Link" }
       ]
     }

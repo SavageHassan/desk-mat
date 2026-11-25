@@ -1,0 +1,104 @@
+<footer class="dk dk-foot">
+  <div class="dk-wrap">
+    <div class="dk-foot__top">
+      <div class="dk-foot__brand">
+        <span class="dk-foot__logo">{{ shop.name }}</span>
+        <p class="dk-foot__blurb">{{ section.settings.blurb }}</p>
+        <p class="dk-foot__ships">{{ section.settings.ships }}</p>
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'links' -%}
+          <nav class="dk-foot__col" {{ block.shopify_attributes }}>
+            <h2 class="dk-foot__h">{{ block.settings.title }}</h2>
+            <ul>
+              {%- for i in (1..5) -%}
+                {%- assign lk = 'label_' | append: i -%}
+                {%- assign uk = 'url_' | append: i -%}
+                {%- if block.settings[lk] != blank -%}
+                  <li><a href="{{ block.settings[uk] | default: '/' }}">{{ block.settings[lk] }}</a></li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </nav>
+        {%- endif -%}
+      {%- endfor -%}
+
+      <div class="dk-foot__news">
+        <h2 class="dk-foot__h">{{ section.settings.news_title }}</h2>
+        <p class="dk-foot__newsbody">{{ section.settings.news_body }}</p>
+        {%- form 'customer', class: 'dk-foot__form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <label class="visually-hidden" for="dk-news-email">Email</label>
+          <input id="dk-news-email" type="email" name="contact[email]" placeholder="Email address" required>
+          <button type="submit" aria-label="Subscribe">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          {%- if form.posted_successfully? -%}<p class="dk-foot__ok">You are on the list.</p>{%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+
+    <div class="dk-foot__bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+      <p class="dk-foot__pay">{{ section.settings.pay_note }}</p>
+    </div>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .dk-foot { background: var(--dk-forest); color: #e9edf4; padding-block: clamp(44px, 6vw, 76px) 24px; }
+  .dk-foot__top { display: grid; gap: 32px; grid-template-columns: 1fr; padding-bottom: 32px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+  .dk-foot__logo { font-family: var(--font-heading--family, inherit); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.03em; color: #fff; display: block; margin-bottom: 12px; }
+  .dk-foot__blurb { margin: 0 0 10px; font-size: 0.9375rem; line-height: 1.6; color: rgba(233, 237, 244, 0.72); max-width: 34ch; }
+  .dk-foot__ships { margin: 0; font-size: 0.8125rem; color: rgba(233, 237, 244, 0.55); }
+  .dk-foot__h { margin: 0 0 14px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; }
+  .dk-foot__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .dk-foot__col a { font-size: 0.9375rem; color: rgba(233, 237, 244, 0.74); text-decoration: none; transition: color 0.2s var(--dk-ease); }
+  .dk-foot__col a:hover { color: #fff; }
+  .dk-foot__newsbody { margin: 0 0 12px; font-size: 0.9375rem; color: rgba(233, 237, 244, 0.72); max-width: 32ch; line-height: 1.6; }
+  .dk-foot__form { display: flex; align-items: center; gap: 0; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 100px; padding: 4px 4px 4px 16px; max-width: 320px; }
+  .dk-foot__form input { flex: 1; min-width: 0; background: none; border: 0; color: #fff; font: inherit; font-size: 0.9375rem; padding: 10px 0; }
+  .dk-foot__form input::placeholder { color: rgba(233, 237, 244, 0.5); }
+  .dk-foot__form input:focus { outline: none; }
+  .dk-foot__form button { width: 38px; height: 38px; flex: none; border-radius: 50%; border: 0; cursor: pointer; background: var(--dk-clay); color: #fff; display: flex; align-items: center; justify-content: center; transition: background 0.2s var(--dk-ease); }
+  .dk-foot__form button:hover { background: #fff; color: var(--dk-ink); }
+  .dk-foot__form svg { width: 15px; height: 15px; }
+  .dk-foot__ok { margin: 8px 0 0; font-size: 0.8125rem; color: var(--dk-butter); }
+  .dk-foot__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 20px; padding-top: 20px; font-size: 0.8125rem; color: rgba(233, 237, 244, 0.55); }
+  .dk-foot__bottom p { margin: 0; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  @media (min-width: 750px) { .dk-foot__top { grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 40px; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Footer",
+  "settings": [
+    { "type": "textarea", "id": "blurb", "label": "Blurb", "default": "Desk mats for people who spend the day at their desk. One surface, properly made." },
+    { "type": "text", "id": "ships", "label": "Ships line", "default": "Shipping across Pakistan from Lahore." },
+    { "type": "text", "id": "news_title", "label": "Newsletter title", "default": "Stay in the loop" },
+    { "type": "textarea", "id": "news_body", "label": "Newsletter body", "default": "New surfaces and restocks, occasionally. No spam." },
+    { "type": "text", "id": "pay_note", "label": "Bottom note", "default": "Payment methods shown at checkout" }
+  ],
+  "blocks": [
+    {
+      "type": "links",
+      "name": "Link column",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Shop" },
+        { "type": "text", "id": "label_1", "label": "Label 1", "default": "All desk mats" },
+        { "type": "url", "id": "url_1", "label": "URL 1" },
+        { "type": "text", "id": "label_2", "label": "Label 2", "default": "Link 2" },
+        { "type": "url", "id": "url_2", "label": "URL 2" },
+        { "type": "text", "id": "label_3", "label": "Label 3", "default": "Link 3" },
+        { "type": "url", "id": "url_3", "label": "URL 3" },
+        { "type": "text", "id": "label_4", "label": "Label 4", "default": "Link 4" },
+        { "type": "url", "id": "url_4", "label": "URL 4" },
+        { "type": "text", "id": "label_5", "label": "Label 5", "default": "Link 5" },
+        { "type": "url", "id": "url_5", "label": "URL 5" }
+      ]
+    }
+  ]
+}
+{% endschema %}

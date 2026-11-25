@@ -1,0 +1,89 @@
+{%- liquid
+  assign coll = collection
+  assign count = coll.products_count | default: 0
+-%}
+<section class="dk dk-coll">
+  <div class="dk-coll__banner">
+    <img class="dk-coll__bg" src="{{ section.settings.image | default: 'dk-slide-leather.jpg' | asset_url }}" alt="" width="2200" height="900" fetchpriority="high">
+    <span class="dk-coll__scrim"></span>
+    <div class="dk-wrap dk-coll__banner-inner">
+      <p class="dk-coll__eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 class="dk-coll__title">{{ coll.title | default: 'Desk mats' }}</h1>
+      <p class="dk-coll__sub">{{ section.settings.subtitle }}</p>
+    </div>
+  </div>
+
+  <div class="dk-wrap">
+    <div class="dk-coll__bar">
+      <span class="dk-coll__count">{{ count }} product{% if count != 1 %}s{% endif %}</span>
+      <div class="dk-coll__sorts">
+        {%- assign sorts = 'manual|Featured,price-ascending|Price low to high,price-descending|Price high to low,title-ascending|A–Z' | split: ',' -%}
+        {%- for s in sorts -%}
+          {%- assign parts = s | split: '|' -%}
+          <a class="dk-coll__sort{% if coll.sort_by == parts[0] %} is-active{% endif %}" href="{{ coll.url }}?sort_by={{ parts[0] }}">{{ parts[1] }}</a>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <ul class="dk-grid__list dk-coll__grid">
+      {%- for item in coll.products -%}
+        <li class="dk-pcard" data-dk-reveal="fade" data-dk-delay="{{ forloop.index0 | times: 50 }}">
+          <a class="dk-pcard__media" href="{{ item.url }}">
+            {%- if item.featured_image != blank -%}
+              {{ item.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'dk-pcard__img', alt: item.title }}
+            {%- endif -%}
+            {%- if item.images[1] != blank -%}
+              {{ item.images[1] | image_url: width: 900 | image_tag: loading: 'lazy', class: 'dk-pcard__img dk-pcard__img--alt', alt: item.title }}
+            {%- endif -%}
+            {%- unless item.available -%}<span class="dk-pcard__badge dk-pcard__badge--out">Sold out</span>{%- endunless -%}
+          </a>
+          <div class="dk-pcard__body">
+            <h2 class="dk-pcard__title"><a href="{{ item.url }}">{{ item.title }}</a></h2>
+            <p class="dk-pcard__price">{{ item.price | money }}</p>
+            {%- form 'product', item, class: 'dk-pcard__form dk-buy__form' -%}
+              <input type="hidden" name="id" value="{{ item.selected_or_first_available_variant.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <button type="submit" class="dk-btn dk-pcard__btn dk-buy__add" {% unless item.available %}disabled{% endunless %}>
+                {% if item.available %}Add to cart{% else %}Sold out{% endif %}
+              </button>
+            {%- endform -%}
+          </div>
+        </li>
+      {%- else -%}
+        <li class="dk-coll__empty"><p class="dk-body">Nothing here yet.</p></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% stylesheet %}
+  .dk-coll { background: var(--dk-paper); padding-bottom: clamp(48px, 7vw, 88px); }
+  .dk-coll__banner { position: relative; isolation: isolate; overflow: hidden; margin-bottom: clamp(24px, 4vw, 44px); }
+  .dk-coll__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  .dk-coll__scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(to right, rgba(8, 11, 16, 0.9) 0%, rgba(8, 11, 16, 0.72) 48%, rgba(8, 11, 16, 0.42) 100%); }
+  .dk-coll__banner-inner { padding-block: clamp(48px, 7vw, 86px); display: flex; flex-direction: column; gap: 10px; }
+  .dk-coll__eyebrow { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dk-butter); }
+  .dk-coll__title { margin: 0; color: #fff; font-family: var(--font-heading--family, inherit); font-weight: 700; font-size: clamp(2.2rem, 4.6vw, 3.6rem); line-height: 1.02; letter-spacing: -0.03em; }
+  .dk-coll__sub { margin: 0; color: rgba(255, 255, 255, 0.82); max-width: 52ch; line-height: 1.6; }
+  .dk-coll__bar { display: flex; flex-wrap: wrap; gap: 12px 20px; justify-content: space-between; align-items: center; padding-bottom: 16px; margin-bottom: 20px; border-bottom: 1px solid var(--dk-stone); }
+  .dk-coll__count { font-size: 0.875rem; font-weight: 600; color: var(--dk-muted); }
+  .dk-coll__sorts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .dk-coll__sort { font-size: 0.8125rem; font-weight: 600; padding: 7px 12px; border-radius: 100px; border: 1px solid var(--dk-stone); color: var(--dk-ink-soft); text-decoration: none; transition: all 0.2s var(--dk-ease); }
+  .dk-coll__sort:hover { border-color: var(--dk-ink); color: var(--dk-ink); }
+  .dk-coll__sort.is-active { background: var(--dk-ink); border-color: var(--dk-ink); color: #fff; }
+  .dk-coll__grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
+  .dk-coll__empty { grid-column: 1 / -1; }
+  @media (min-width: 750px) { .dk-coll__grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1100px) { .dk-coll__grid { grid-template-columns: repeat(4, 1fr); } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Collection",
+  "settings": [
+    { "type": "text", "id": "image", "label": "Banner image asset", "default": "dk-slide-leather.jpg" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "DeskKart" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Felt, cork, leather and gaming surfaces — pick the one that suits how your desk gets used." }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,94 @@
+{%- liquid
+  assign is_contact = false
+  if page.handle contains 'contact'
+    assign is_contact = true
+  endif
+-%}
+
+{%- if is_contact -%}
+  <section class="dk dk-contact">
+    <div class="dk-wrap dk-contact__grid">
+      <aside class="dk-contact__aside">
+        <p class="dk-eyebrow" data-dk-reveal>Contact</p>
+        <h1 class="dk-contact__title" data-dk-reveal data-dk-delay="60">{{ section.settings.contact_heading }}</h1>
+        <div class="dk-body dk-page__rte" data-dk-reveal data-dk-delay="110">{{ page.content }}</div>
+        <ul class="dk-contact__facts" data-dk-reveal data-dk-delay="160">
+          <li><span class="dk-contact__fact-label">Ships from</span><span class="dk-contact__fact-value">Lahore, Pakistan</span></li>
+          <li><span class="dk-contact__fact-label">Order help</span><span class="dk-contact__fact-value">Include your order number so we can find it quickly</span></li>
+          <li><span class="dk-contact__fact-label">Before you write</span><span class="dk-contact__fact-value">Delivery and returns are covered in the FAQ</span></li>
+        </ul>
+        <a class="dk-contact__faq" href="/pages/faq">Read the FAQ first
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </aside>
+
+      <div class="dk-contact__panel" data-dk-reveal="fade" data-dk-delay="120">
+        {%- form 'contact', class: 'dk-form' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="dk-form__ok">Thanks — your message is with us.</p>
+          {%- endif -%}
+          {%- if form.errors -%}
+            <p class="dk-form__err">{{ form.errors | default_errors }}</p>
+          {%- endif -%}
+          <div class="dk-form__row">
+            <div class="dk-field"><label for="dk-name">Name</label>
+              <input id="dk-name" type="text" name="contact[name]" value="{{ form.name }}" autocomplete="name" required></div>
+            <div class="dk-field"><label for="dk-email">Email</label>
+              <input id="dk-email" type="email" name="contact[email]" value="{{ form.email }}" autocomplete="email" required></div>
+          </div>
+          <div class="dk-field"><label for="dk-order">Order number <span>(optional)</span></label>
+            <input id="dk-order" type="text" name="contact[order]"></div>
+          <div class="dk-field"><label for="dk-body">How can we help?</label>
+            <textarea id="dk-body" name="contact[body]" rows="6" required>{{ form.body }}</textarea></div>
+          <button type="submit" class="dk-btn dk-form__submit">Send message</button>
+        {%- endform -%}
+      </div>
+    </div>
+  </section>
+{%- else -%}
+  <section class="dk dk-page">
+    <div class="dk-page__head">
+      <div class="dk-wrap">
+        <p class="dk-eyebrow" data-dk-reveal>{{ shop.name }}</p>
+        <h1 class="dk-page__title" data-dk-reveal data-dk-delay="60">{{ page.title }}</h1>
+      </div>
+    </div>
+    <div class="dk-wrap dk-page__body">
+      <article class="dk-page__rte" data-dk-reveal data-dk-delay="90">{{ page.content }}</article>
+      <aside class="dk-page__side" data-dk-reveal="fade" data-dk-delay="140">
+        <h2 class="dk-page__sideh">{{ section.settings.side_title }}</h2>
+        <p>{{ section.settings.side_body }}</p>
+        <a class="dk-btn" href="{{ section.settings.side_link | default: routes.all_products_collection_url }}">{{ section.settings.side_cta }}</a>
+      </aside>
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .dk-page { background: var(--dk-paper); padding-bottom: clamp(48px, 7vw, 88px); }
+  .dk-page__head { background: var(--dk-sand); border-bottom: 1px solid var(--dk-stone); padding-block: clamp(36px, 5vw, 64px); margin-bottom: clamp(28px, 4vw, 52px); }
+  .dk-page__title { margin: 6px 0 0; font-family: var(--font-heading--family, inherit); font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.02; letter-spacing: -0.03em; }
+  .dk-page__body { display: grid; gap: clamp(28px, 4vw, 52px); align-items: start; }
+  .dk-page__rte { color: var(--dk-ink-soft); font-size: 1.0625rem; line-height: 1.75; max-width: 68ch; }
+  .dk-page__rte h2, .dk-page__rte h3 { font-family: var(--font-heading--family, inherit); color: var(--dk-ink); letter-spacing: -0.02em; margin: 1.8em 0 0.5em; font-size: 1.25rem; }
+  .dk-page__rte h3:first-child, .dk-page__rte h2:first-child { margin-top: 0; }
+  .dk-page__rte p { margin: 0 0 1.1em; }
+  .dk-page__rte a { color: var(--dk-clay-dark); }
+  .dk-page__side { background: var(--dk-sand); border: 1px solid var(--dk-stone); border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+  .dk-page__sideh { margin: 0; font-size: 1rem; font-weight: 700; }
+  .dk-page__side p { margin: 0; font-size: 0.9375rem; color: var(--dk-muted); line-height: 1.6; }
+  @media (min-width: 900px) { .dk-page__body { grid-template-columns: 1.6fr 0.9fr; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Page",
+  "settings": [
+    { "type": "text", "id": "contact_heading", "label": "Contact heading", "default": "Talk to us about your order." },
+    { "type": "text", "id": "side_title", "label": "Sidebar title", "default": "Shop the range" },
+    { "type": "textarea", "id": "side_body", "label": "Sidebar body", "default": "Felt, cork, leather and gaming surfaces — all shipping from Lahore." },
+    { "type": "text", "id": "side_cta", "label": "Sidebar button", "default": "Browse desk mats" },
+    { "type": "url", "id": "side_link", "label": "Sidebar link" }
+  ]
+}
+{% endschema %}

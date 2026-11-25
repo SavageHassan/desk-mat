@@ -45,3 +45,17 @@
     });
   });
 })();
+
+/* sticky header scroll state */
+(function () {
+  var last = false;
+  function onScroll() {
+    var on = window.scrollY > 24;
+    if (on !== last) {
+      last = on;
+      document.documentElement.classList.toggle('dk-scrolled', on);
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();

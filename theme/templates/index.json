@@ -311,15 +311,17 @@
           "settings": {
             "image": "dk-product.jpg",
             "title": "Felt",
-            "link": "/products/felt-desk-mat"
+            "link": "/products/felt-desk-mat",
+            "price": "Rs.2,199"
           }
         },
         "t2": {
           "type": "type",
           "settings": {
-            "image": "dk-top.jpg",
+            "image": "dk-slide-leather.jpg",
             "title": "PU Leather",
-            "link": "/products/pu-leather-desk-mat"
+            "link": "/products/pu-leather-desk-mat",
+            "price": "Rs.1,799"
           }
         },
         "t3": {
@@ -327,23 +329,26 @@
           "settings": {
             "image": "dk-context.jpg",
             "title": "Cork & Felt",
-            "link": "/products/cork-and-felt-desk-mat"
+            "link": "/products/cork-and-felt-desk-mat",
+            "price": "Rs.2,499"
           }
         },
         "t4": {
           "type": "type",
           "settings": {
-            "image": "dk-alt.jpg",
+            "image": "dk-promo-1.jpg",
             "title": "XXL Gaming",
-            "link": "/products/xxl-gaming-desk-mat"
+            "link": "/products/xxl-gaming-desk-mat",
+            "price": "Rs.1,849"
           }
         },
         "t5": {
           "type": "type",
           "settings": {
-            "image": "dk-detail.jpg",
+            "image": "dk-slide-gaming.jpg",
             "title": "RGB Gaming",
-            "link": "/products/rgb-gaming-desk-mat"
+            "link": "/products/rgb-gaming-desk-mat",
+            "price": "Rs.2,999"
           }
         }
       },

@@ -1,0 +1,187 @@
+{%- liquid
+  assign cart_count = cart.item_count
+-%}
+<div class="dk-head" data-dk-head>
+  {%- if section.blocks.size > 0 -%}
+    <div class="dk-head__ann" data-dk-ann>
+      {%- for block in section.blocks -%}
+        <p class="dk-head__ann-item{% if forloop.first %} is-active{% endif %}" data-dk-ann-item>{{ block.settings.text }}</p>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  <header class="dk-head__bar">
+    <div class="dk-wrap dk-head__inner">
+      <button class="dk-head__burger" type="button" data-dk-menu-open aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <a class="dk-head__logo" href="{{ routes.root_url }}">
+        <svg class="dk-head__mark" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="1.6" y="5" width="20.8" height="14" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <rect x="5.2" y="8.6" width="7.2" height="4.2" rx="1" fill="var(--dk-clay)"/>
+          <circle cx="17" cy="14.4" r="1.9" fill="currentColor"/>
+        </svg>
+        <span>{{ shop.name }}</span>
+      </a>
+
+      <nav class="dk-head__nav" aria-label="Primary">
+        {%- for link in linklists[section.settings.menu].links -%}
+          <a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>{{ link.title }}</a>
+        {%- endfor -%}
+      </nav>
+
+      <div class="dk-head__actions">
+        <form class="dk-head__search" action="{{ routes.search_url }}" method="get" role="search">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.6 10.6L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <label class="visually-hidden" for="dk-search">Search</label>
+          <input id="dk-search" type="search" name="q" placeholder="Search desk mats" autocomplete="off">
+        </form>
+
+        <a class="dk-head__icon" href="{{ routes.account_url }}" aria-label="Account">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="7" r="3.2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 16.5c1.4-2.6 3.5-3.9 6-3.9s4.6 1.3 6 3.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+
+        <a class="dk-head__icon dk-head__cart" href="{{ routes.cart_url }}" aria-label="Cart">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6h12l-1.2 9.2a1.4 1.4 0 0 1-1.4 1.2H6.6a1.4 1.4 0 0 1-1.4-1.2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7.4 6a2.6 2.6 0 0 1 5.2 0" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span class="dk-head__count{% if cart_count == 0 %} is-empty{% endif %}" data-dk-cart-count>{{ cart_count }}</span>
+        </a>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="dk-drawer" data-dk-drawer hidden>
+  <div class="dk-drawer__scrim" data-dk-menu-close></div>
+  <aside class="dk-drawer__panel" role="dialog" aria-label="Menu">
+    <div class="dk-drawer__top">
+      <span class="dk-drawer__brand">{{ shop.name }}</span>
+      <button type="button" class="dk-drawer__close" data-dk-menu-close aria-label="Close menu">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <nav class="dk-drawer__nav">
+      {%- for link in linklists[section.settings.menu].links -%}
+        <a href="{{ link.url }}">{{ link.title }}
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      {%- endfor -%}
+    </nav>
+    <form class="dk-drawer__search" action="{{ routes.search_url }}" method="get" role="search">
+      <input type="search" name="q" placeholder="Search desk mats">
+      <button type="submit" class="dk-btn">Search</button>
+    </form>
+  </aside>
+</div>
+
+<script>
+  (function () {
+    var head = document.querySelector('[data-dk-head]');
+    if (!head || head.dataset.init) return;
+    head.dataset.init = '1';
+
+    /* rotating announcements */
+    var items = head.querySelectorAll('[data-dk-ann-item]');
+    if (items.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var i = 0;
+      setInterval(function () {
+        items[i].classList.remove('is-active');
+        i = (i + 1) % items.length;
+        items[i].classList.add('is-active');
+      }, 4500);
+    }
+
+    /* mobile drawer */
+    var drawer = document.querySelector('[data-dk-drawer]');
+    function open() { drawer.hidden = false; requestAnimationFrame(function () { drawer.classList.add('is-open'); }); document.body.style.overflow = 'hidden'; }
+    function close() { drawer.classList.remove('is-open'); document.body.style.overflow = ''; setTimeout(function () { drawer.hidden = true; }, 300); }
+    document.querySelectorAll('[data-dk-menu-open]').forEach(function (b) { b.addEventListener('click', open); });
+    document.querySelectorAll('[data-dk-menu-close]').forEach(function (b) { b.addEventListener('click', close); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer && !drawer.hidden) close(); });
+  })();
+</script>
+
+{% stylesheet %}
+  .dk-head { position: sticky; top: 0; z-index: 50; }
+  .dk-head__ann { background: var(--dk-forest); color: #fff; min-height: 40px; position: relative; overflow: hidden; }
+  .dk-head__ann-item {
+    position: absolute; inset: 0; margin: 0; display: flex; align-items: center; justify-content: center;
+    line-height: 1.35;
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    opacity: 0; transform: translateY(100%); transition: opacity 0.5s var(--dk-ease), transform 0.5s var(--dk-ease);
+    padding-inline: 16px; text-align: center;
+  }
+  .dk-head__ann-item.is-active { opacity: 1; transform: none; }
+
+  .dk-head__bar { background: rgba(255, 255, 255, 0.92); backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid var(--dk-stone); transition: box-shadow 0.3s var(--dk-ease); }
+  html.dk-scrolled .dk-head__bar { box-shadow: 0 8px 26px rgba(13, 17, 23, 0.08); border-bottom-color: transparent; }
+  .dk-head__inner { display: flex; align-items: center; gap: 16px; min-height: 72px; transition: min-height 0.3s var(--dk-ease); }
+  html.dk-scrolled .dk-head__inner { min-height: 60px; }
+
+  .dk-head__burger { display: flex; flex-direction: column; justify-content: center; gap: 4px; width: 34px; height: 34px; padding: 0 6px; border: 0; background: none; cursor: pointer; }
+  .dk-head__burger span { display: block; height: 1.8px; background: var(--dk-ink); border-radius: 2px; }
+  .dk-head__burger span:nth-child(2) { width: 70%; }
+
+  .dk-head__logo { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; color: var(--dk-ink); font-family: var(--font-heading--family, inherit); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.035em; }
+  .dk-head__mark { width: 24px; height: 24px; flex: none; }
+
+  .dk-head__nav { display: none; gap: 26px; margin-left: 14px; }
+  .dk-head__nav a { position: relative; font-size: 0.9375rem; font-weight: 500; color: var(--dk-ink-soft); text-decoration: none; padding-block: 6px; transition: color 0.2s var(--dk-ease); }
+  .dk-head__nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--dk-clay); transform: scaleX(0); transform-origin: left; transition: transform 0.28s var(--dk-ease); }
+  .dk-head__nav a:hover { color: var(--dk-ink); }
+  .dk-head__nav a:hover::after, .dk-head__nav a[aria-current="page"]::after { transform: scaleX(1); }
+
+  .dk-head__actions { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+  .dk-head__search { display: none; align-items: center; gap: 8px; background: var(--dk-sand); border: 1px solid var(--dk-stone); border-radius: 100px; padding: 0 14px; height: 40px; transition: border-color 0.2s var(--dk-ease), box-shadow 0.2s var(--dk-ease); }
+  .dk-head__search:focus-within { border-color: var(--dk-clay); box-shadow: 0 0 0 3px rgba(47, 107, 255, 0.14); }
+  .dk-head__search svg { width: 15px; height: 15px; color: var(--dk-muted); flex: none; }
+  .dk-head__search input { border: 0; background: none; font: inherit; font-size: 0.875rem; color: var(--dk-ink); width: 170px; }
+  .dk-head__search input:focus { outline: none; }
+
+  .dk-head__icon { position: relative; width: 40px; height: 40px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--dk-ink); text-decoration: none; transition: background 0.2s var(--dk-ease); }
+  .dk-head__icon:hover { background: var(--dk-sand); }
+  .dk-head__icon svg { width: 21px; height: 21px; }
+  .dk-head__count { position: absolute; top: 3px; right: 2px; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 100px; background: var(--dk-clay); color: #fff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .dk-head__count.is-empty { display: none; }
+
+  .dk-drawer { position: fixed; inset: 0; z-index: 60; }
+  .dk-drawer__scrim { position: absolute; inset: 0; background: rgba(8, 11, 16, 0.5); opacity: 0; transition: opacity 0.3s var(--dk-ease); }
+  .dk-drawer.is-open .dk-drawer__scrim { opacity: 1; }
+  .dk-drawer__panel { position: absolute; inset: 0 auto 0 0; width: min(86vw, 350px); background: var(--dk-paper); transform: translateX(-100%); transition: transform 0.32s var(--dk-ease); display: flex; flex-direction: column; padding: 18px; gap: 18px; }
+  .dk-drawer.is-open .dk-drawer__panel { transform: none; }
+  .dk-drawer__top { display: flex; align-items: center; justify-content: space-between; }
+  .dk-drawer__brand { font-family: var(--font-heading--family, inherit); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.03em; }
+  .dk-drawer__close { width: 34px; height: 34px; border: 0; background: var(--dk-sand); border-radius: 50%; cursor: pointer; color: var(--dk-ink); }
+  .dk-drawer__close svg { width: 15px; height: 15px; }
+  .dk-drawer__nav { display: grid; }
+  .dk-drawer__nav a { display: flex; align-items: center; justify-content: space-between; padding: 15px 2px; border-bottom: 1px solid var(--dk-stone); color: var(--dk-ink); text-decoration: none; font-size: 1.0625rem; font-weight: 600; }
+  .dk-drawer__nav svg { width: 15px; height: 15px; color: var(--dk-muted); }
+  .dk-drawer__search { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+  .dk-drawer__search input { border: 1px solid var(--dk-stone); border-radius: 6px; padding: 12px 14px; font: inherit; }
+  .dk-drawer__search input:focus { outline: none; border-color: var(--dk-clay); }
+
+  @media (max-width: 749px) {
+    .dk-head__ann { min-height: 46px; }
+    .dk-head__ann-item { font-size: 0.625rem; letter-spacing: 0.12em; }
+  }
+  @media (min-width: 900px) {
+    .dk-head__burger { display: none; }
+    .dk-head__nav { display: flex; }
+    .dk-head__search { display: flex; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .dk-head__ann-item, .dk-drawer__panel, .dk-drawer__scrim { transition: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ],
+  "blocks": [
+    { "type": "ann", "name": "Announcement", "settings": [ { "type": "text", "id": "text", "label": "Text", "default": "Free message" } ] }
+  ]
+}
+{% endschema %}
