@@ -1,0 +1,150 @@
+{%- liquid
+  assign p = section.settings.product
+  if p == blank
+    assign p = collections.all.products.first
+  endif
+-%}
+<section class="dk dk-buy" id="buy">
+  <div class="dk-wrap dk-buy__grid">
+    <div class="dk-buy__media" data-dk-reveal="scale">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', class: 'dk-buy__img', alt: p.title }}
+      {%- else -%}
+        <img class="dk-buy__img" src="{{ section.settings.fallback | default: 'dk-product.jpg' | asset_url }}" alt="{{ p.title | default: 'Desk mat' }} on a wooden desk" loading="lazy" width="1600" height="1200">
+      {%- endif -%}
+    </div>
+
+    <div class="dk-buy__panel">
+      <p class="dk-eyebrow" data-dk-reveal>{{ section.settings.eyebrow }}</p>
+      <h2 class="dk-buy__title" data-dk-reveal data-dk-delay="60">{%- if p != blank -%}{{ p.title }}{%- else -%}Desk Mat{%- endif -%}</h2>
+
+      {%- if p != blank -%}
+        <p class="dk-buy__price" data-dk-reveal data-dk-delay="90">
+          {{ p.price | money }}
+          {%- if p.compare_at_price > p.price %} <s>{{ p.compare_at_price | money }}</s>{% endif -%}
+        </p>
+        <p class="dk-buy__stock{% unless p.available %} dk-buy__stock--out{% endunless %}" data-dk-reveal data-dk-delay="110">
+          <span></span>{% if p.available %}In stock{% else %}Currently unavailable{% endif %}
+        </p>
+        {%- if p.description != blank -%}
+          <div class="dk-body dk-buy__desc" data-dk-reveal data-dk-delay="140">{{ p.description | strip_html | truncatewords: 46 }}</div>
+        {%- endif -%}
+
+        {%- form 'product', p, class: 'dk-buy__form', data-dk-reveal: true -%}
+          {%- unless p.has_only_default_variant -%}
+            <div class="dk-buy__variants">
+              <label class="dk-buy__label" for="dk-variant-{{ section.id }}">Options</label>
+              <select class="dk-buy__select" id="dk-variant-{{ section.id }}" name="id">
+                {%- for v in p.variants -%}
+                  <option value="{{ v.id }}" {% if v == p.selected_or_first_available_variant %}selected{% endif %} {% unless v.available %}disabled{% endunless %}>
+                    {{ v.title }} — {{ v.price | money }}{% unless v.available %} (sold out){% endunless %}
+                  </option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- else -%}
+            <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+          {%- endunless -%}
+
+          <div class="dk-buy__row">
+            <div class="dk-qty">
+              <button type="button" class="dk-qty__btn" data-dk-qty="-1" aria-label="Decrease quantity">&minus;</button>
+              <input class="dk-qty__input" type="number" name="quantity" value="1" min="1" inputmode="numeric" aria-label="Quantity">
+              <button type="button" class="dk-qty__btn" data-dk-qty="1" aria-label="Increase quantity">+</button>
+            </div>
+            <button type="submit" class="dk-btn dk-buy__add" {% unless p.available %}disabled{% endunless %}>
+              {% if p.available %}Add to cart{% else %}Sold out{% endif %}
+            </button>
+          </div>
+
+          {%- if p.available -%}
+            <button type="submit" name="checkout" class="dk-btn dk-btn--ghost dk-buy__now">Buy it now</button>
+          {%- endif -%}
+        {%- endform -%}
+
+        <ul class="dk-buy__points">
+          {%- for i in (1..3) -%}
+            {%- assign key = 'point_' | append: i -%}
+            {%- assign val = section.settings[key] -%}
+            {%- if val != blank -%}
+              <li>
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>{{ val }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+
+        <a class="dk-buy__link" href="{{ p.url }}">Full product details
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      {%- else -%}
+        <p class="dk-body">No product is connected yet. Assign one in the theme editor.</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.dk-qty').forEach(function (wrap) {
+    var input = wrap.querySelector('.dk-qty__input');
+    wrap.querySelectorAll('[data-dk-qty]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var step = parseInt(btn.getAttribute('data-dk-qty'), 10);
+        var next = Math.max(1, (parseInt(input.value, 10) || 1) + step);
+        input.value = next;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+    });
+  });
+</script>
+
+{% stylesheet %}
+  .dk-buy { background: var(--dk-sand); padding-block: clamp(56px, 9vw, 120px); }
+  .dk-buy__grid { display: grid; gap: clamp(28px, 4vw, 64px); align-items: center; }
+  .dk-buy__media { border-radius: 4px; overflow: hidden; background: var(--dk-paper); aspect-ratio: 4 / 3; }
+  .dk-buy__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .dk-buy__panel { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  .dk-buy__title { margin: 0; font-family: var(--font-heading--family, inherit); font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.75rem); line-height: 1.04; letter-spacing: -0.03em; }
+  .dk-buy__price { margin: 0; font-size: 1.375rem; font-weight: 600; }
+  .dk-buy__price s { color: var(--dk-muted); font-weight: 400; margin-left: 8px; }
+  .dk-buy__stock { margin: 0; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dk-forest); display: flex; align-items: center; gap: 8px; }
+  .dk-buy__stock span { width: 7px; height: 7px; border-radius: 50%; background: var(--dk-forest); display: inline-block; }
+  .dk-buy__stock--out { color: var(--dk-muted); }
+  .dk-buy__stock--out span { background: var(--dk-muted); }
+  .dk-buy__desc { font-size: 0.9375rem; }
+  .dk-buy__form { width: 100%; max-width: 30rem; display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+  .dk-buy__label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dk-muted); display: block; margin-bottom: 6px; }
+  .dk-buy__select { width: 100%; min-height: 50px; padding: 0 14px; border: 1px solid var(--dk-stone); border-radius: 4px; background: var(--dk-paper); font: inherit; color: var(--dk-ink); }
+  .dk-buy__row { display: flex; gap: 10px; }
+  .dk-qty { display: flex; align-items: center; border: 1px solid var(--dk-stone); border-radius: 4px; background: var(--dk-paper); flex: none; }
+  .dk-qty__btn { width: 44px; min-height: 52px; background: none; border: 0; cursor: pointer; font-size: 1.125rem; color: var(--dk-ink); line-height: 1; }
+  .dk-qty__btn:hover { color: var(--dk-clay-dark); }
+  .dk-qty__input { width: 46px; min-height: 52px; border: 0; background: none; text-align: center; font: inherit; font-weight: 600; color: var(--dk-ink); -moz-appearance: textfield; }
+  .dk-qty__input::-webkit-outer-spin-button, .dk-qty__input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .dk-buy__add { flex: 1; }
+  .dk-buy__now { width: 100%; }
+  .dk-buy__points { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 9px; }
+  .dk-buy__points li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9375rem; color: var(--dk-ink-soft); }
+  .dk-buy__points svg { width: 15px; height: 15px; flex: none; margin-top: 4px; color: var(--dk-clay-dark); }
+  .dk-buy__link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem; font-weight: 600; color: var(--dk-ink); text-decoration: none; border-bottom: 1px solid var(--dk-stone); padding-bottom: 3px; margin-top: 4px; }
+  .dk-buy__link svg { width: 14px; height: 14px; transition: transform 0.25s var(--dk-ease); }
+  .dk-buy__link:hover svg { transform: translateX(4px); }
+  @media (min-width: 900px) { .dk-buy__grid { grid-template-columns: 1.05fr 0.95fr; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Buy block",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "fallback", "label": "Fallback asset", "default": "dk-product.jpg" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Order" },
+    { "type": "text", "id": "point_1", "label": "Point 1", "default": "Dispatched from Lahore" },
+    { "type": "text", "id": "point_2", "label": "Point 2", "default": "Cash on delivery available at checkout" },
+    { "type": "text", "id": "point_3", "label": "Point 3", "default": "Returns handled under the store policy" }
+  ],
+  "presets": [{ "name": "DK Buy block" }]
+}
+{% endschema %}

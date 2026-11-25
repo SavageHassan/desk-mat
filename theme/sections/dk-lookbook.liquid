@@ -1,0 +1,63 @@
+<section class="dk dk-lookbook">
+  <div class="dk-wrap">
+    <div class="dk-lookbook__head">
+      <p class="dk-eyebrow" data-dk-reveal>{{ section.settings.eyebrow }}</p>
+      <h2 class="dk-h2" data-dk-reveal data-dk-delay="60">{{ section.settings.heading }}</h2>
+      {%- if section.settings.body != blank -%}<p class="dk-body" data-dk-reveal data-dk-delay="110">{{ section.settings.body }}</p>{%- endif -%}
+    </div>
+  </div>
+
+  <div class="dk-lookbook__strip">
+    {%- for block in section.blocks -%}
+      <figure class="dk-lookbook__item" data-dk-reveal="scale" data-dk-delay="{{ forloop.index0 | times: 70 }}" {{ block.shopify_attributes }}>
+        <img src="{{ block.settings.image | default: 'dk-lifestyle.jpg' | asset_url }}" alt="{{ block.settings.caption }}" loading="lazy" width="1400" height="1050">
+        {%- if block.settings.caption != blank -%}<figcaption>{{ block.settings.caption }}</figcaption>{%- endif -%}
+      </figure>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .dk-lookbook { background: var(--dk-paper); padding-block: clamp(56px, 9vw, 112px); overflow: hidden; }
+  .dk-lookbook__head { display: flex; flex-direction: column; gap: 12px; max-width: 52ch; margin-bottom: clamp(26px, 4vw, 44px); }
+  .dk-lookbook__strip {
+    display: grid; grid-auto-flow: column; grid-auto-columns: 78%;
+    gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding-inline: var(--dk-gutter); padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+  .dk-lookbook__strip::-webkit-scrollbar { display: none; }
+  .dk-lookbook__item { margin: 0; position: relative; scroll-snap-align: start; border-radius: 4px; overflow: hidden; background: var(--dk-sand); aspect-ratio: 4 / 3; }
+  .dk-lookbook__item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s var(--dk-ease); }
+  .dk-lookbook__item:hover img { transform: scale(1.035); }
+  .dk-lookbook__item figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 32px 16px 14px;
+    font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.04em; color: #fff;
+    background: linear-gradient(to top, rgba(12, 14, 11, 0.72), rgba(12, 14, 11, 0));
+  }
+  @media (min-width: 750px) {
+    .dk-lookbook__strip { grid-auto-columns: 34%; padding-inline: max(var(--dk-gutter), calc((100vw - var(--dk-max)) / 2 + var(--dk-gutter))); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Lookbook",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "In the workspace" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Made to sit under everything you use." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Shot across real desks — wood, white, warm light. The mat does the same job in all of them: it draws the working area and lets the rest of the setup settle." }
+  ],
+  "blocks": [
+    {
+      "type": "shot",
+      "name": "Shot",
+      "settings": [
+        { "type": "text", "id": "image", "label": "Image asset", "default": "dk-lifestyle.jpg" },
+        { "type": "text", "id": "caption", "label": "Caption", "default": "Desk setup" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "DK Lookbook" }]
+}
+{% endschema %}

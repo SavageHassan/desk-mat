@@ -1,0 +1,58 @@
+<section class="dk dk-intro">
+  <div class="dk-wrap dk-intro__grid">
+    <div class="dk-intro__copy">
+      <p class="dk-eyebrow" data-dk-reveal>{{ section.settings.eyebrow }}</p>
+      <h2 class="dk-intro__title" data-dk-reveal data-dk-delay="60">{{ section.settings.heading }}</h2>
+      <p class="dk-body dk-intro__body" data-dk-reveal data-dk-delay="120">{{ section.settings.body }}</p>
+      {%- if section.settings.cta_label != blank -%}
+        <a class="dk-btn" href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}" data-dk-reveal data-dk-delay="180">{{ section.settings.cta_label }}</a>
+      {%- endif -%}
+    </div>
+
+    <figure class="dk-intro__media dk-intro__media--tall" data-dk-reveal="scale">
+      <img src="{{ section.settings.image_1 | default: 'dk-product.jpg' | asset_url }}" alt="{{ section.settings.alt_1 }}" loading="lazy" width="1400" height="1800">
+    </figure>
+    <figure class="dk-intro__media dk-intro__media--wide" data-dk-reveal="scale" data-dk-delay="120">
+      <img src="{{ section.settings.image_2 | default: 'dk-detail.jpg' | asset_url }}" alt="{{ section.settings.alt_2 }}" loading="lazy" width="1400" height="1000">
+    </figure>
+  </div>
+</section>
+
+{% stylesheet %}
+  .dk-intro { background: var(--dk-paper); padding-block: clamp(56px, 9vw, 120px); }
+  .dk-intro__grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+  .dk-intro__copy { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; max-width: 40rem; }
+  .dk-intro__title {
+    margin: 0; font-family: var(--font-heading--family, inherit); font-weight: 700;
+    font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1.02; letter-spacing: -0.03em; text-wrap: balance;
+  }
+  .dk-intro__body { font-size: 1.0625rem; }
+  .dk-intro__media { margin: 0; overflow: hidden; border-radius: 4px; background: var(--dk-sand); }
+  .dk-intro__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .dk-intro__media--tall { aspect-ratio: 4 / 5; }
+  .dk-intro__media--wide { aspect-ratio: 4 / 3; }
+  @media (min-width: 900px) {
+    .dk-intro__grid { grid-template-columns: repeat(12, 1fr); gap: 20px; align-items: center; }
+    .dk-intro__copy { grid-column: 1 / span 5; }
+    .dk-intro__media--tall { grid-column: 6 / span 4; aspect-ratio: 4 / 5; }
+    .dk-intro__media--wide { grid-column: 10 / span 3; aspect-ratio: 3 / 4; margin-top: 15%; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Intro",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The product" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "One surface. The whole desk makes sense." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "A desk mat is the quietest upgrade you can make. It gives the keyboard a softer floor, the mouse an even run, and everything else a boundary to sit inside — so the desk reads as one considered surface instead of scattered hardware." },
+    { "type": "text", "id": "cta_label", "label": "Button", "default": "Shop the Desk Mat" },
+    { "type": "url", "id": "cta_link", "label": "Button link" },
+    { "type": "text", "id": "image_1", "label": "Image 1 asset", "default": "dk-product.jpg" },
+    { "type": "text", "id": "alt_1", "label": "Image 1 alt", "default": "Desk mat on a wooden desk with laptop and keyboard" },
+    { "type": "text", "id": "image_2", "label": "Image 2 asset", "default": "dk-detail.jpg" },
+    { "type": "text", "id": "alt_2", "label": "Image 2 alt", "default": "Close-up of the desk mat surface in use" }
+  ],
+  "presets": [{ "name": "DK Intro" }]
+}
+{% endschema %}

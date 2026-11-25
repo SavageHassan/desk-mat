@@ -3,29 +3,131 @@
     "hero": {
       "type": "dk-hero",
       "settings": {
-        "eyebrow": "DeskKart \u2014 built for long hours",
-        "heading": "Your desk, finally finished.",
-        "body": "One surface that quiets the keys, glides under the mouse and gives the whole desk a single, deliberate edge.",
+        "height": 82,
+        "eyebrow": "DeskKart \u2014 workspace essentials",
+        "heading": "Where your setup comes together.",
+        "body": "A desk mat that gives the keyboard a softer floor, the mouse an even run, and the whole desk one deliberate edge.",
         "cta_label": "Shop the Desk Mat",
-        "cta2_label": "See the details",
-        "strip_1": "Delivery across Pakistan",
+        "cta_link": "/products/desk-mat",
+        "cta2_label": "See the detail",
+        "cta2_link": "#buy",
+        "strip_1": "Dispatched from Lahore",
         "strip_2": "Cash on delivery",
-        "strip_3": "Easy returns",
-        "strip_4": "Ships from Lahore",
-        "height": 78
+        "strip_3": "Nationwide delivery",
+        "strip_4": "Returns under store policy",
+        "fallback": "dk-lifestyle.jpg"
       }
     },
-    "showcase": {
-      "type": "dk-showcase",
+    "marquee": {
+      "type": "dk-marquee",
+      "blocks": {
+        "m1": {
+          "type": "item",
+          "settings": {
+            "text": "One surface, whole desk"
+          }
+        },
+        "m2": {
+          "type": "item",
+          "settings": {
+            "text": "Built for long hours"
+          }
+        },
+        "m3": {
+          "type": "item",
+          "settings": {
+            "text": "Dispatched from Lahore"
+          }
+        },
+        "m4": {
+          "type": "item",
+          "settings": {
+            "text": "Cash on delivery"
+          }
+        },
+        "m5": {
+          "type": "item",
+          "settings": {
+            "text": "DeskKart"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5"
+      ],
+      "settings": {}
+    },
+    "intro": {
+      "type": "dk-intro",
       "settings": {
         "eyebrow": "The product",
-        "heading": "The Desk Mat",
-        "body": "A desk mat is the one upgrade you feel every hour. It gives the keyboard a softer floor, the mouse an even surface, and the desk a defined working area instead of scattered gear.",
-        "point_1": "Full-desk coverage for keyboard and mouse",
-        "point_2": "Even, consistent tracking from edge to edge",
-        "point_3": "Wipes clean in seconds",
-        "point_4": "Lies flat and stays where you put it",
-        "product": "desk-mat"
+        "heading": "One surface. The whole desk makes sense.",
+        "body": "A desk mat is the quietest upgrade you can make. It gives the keyboard a softer floor, the mouse an even run, and everything else a boundary to sit inside \u2014 so the desk reads as one considered surface instead of scattered hardware.",
+        "cta_label": "Shop the Desk Mat",
+        "cta_link": "/products/desk-mat",
+        "image_1": "dk-lifestyle.jpg",
+        "alt_1": "Desk mat on a wooden desk with keyboard and laptop",
+        "image_2": "dk-detail.jpg",
+        "alt_2": "Close-up of the desk mat surface in use"
+      }
+    },
+    "bar": {
+      "type": "dk-bar",
+      "blocks": {
+        "b1": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Nationwide delivery",
+            "subtitle": "Dispatched from Lahore"
+          }
+        },
+        "b2": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "title": "Returns",
+            "subtitle": "Handled under store policy"
+          }
+        },
+        "b3": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "Checked before dispatch",
+            "subtitle": "Every order inspected"
+          }
+        },
+        "b4": {
+          "type": "item",
+          "settings": {
+            "icon": "plus",
+            "title": "Cash on delivery",
+            "subtitle": "Pay when it arrives"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
+      "settings": {}
+    },
+    "buy": {
+      "type": "dk-buy",
+      "settings": {
+        "product": "desk-mat",
+        "eyebrow": "Order",
+        "point_1": "Dispatched from Lahore",
+        "point_2": "Cash on delivery available at checkout",
+        "point_3": "Returns handled under the store policy",
+        "fallback": "dk-product.jpg"
       }
     },
     "features": {
@@ -87,14 +189,68 @@
         "heading": "Small change, obvious difference."
       }
     },
-    "split": {
-      "type": "dk-split",
+    "lookbook": {
+      "type": "dk-lookbook",
+      "blocks": {
+        "l1": {
+          "type": "shot",
+          "settings": {
+            "image": "dk-lifestyle.jpg",
+            "caption": "Wood desk, morning light"
+          }
+        },
+        "l2": {
+          "type": "shot",
+          "settings": {
+            "image": "dk-alt.jpg",
+            "caption": "Laptop stand and keyboard"
+          }
+        },
+        "l3": {
+          "type": "shot",
+          "settings": {
+            "image": "dk-top.jpg",
+            "caption": "From above"
+          }
+        },
+        "l4": {
+          "type": "shot",
+          "settings": {
+            "image": "dk-context.jpg",
+            "caption": "Everyday desk objects"
+          }
+        },
+        "l5": {
+          "type": "shot",
+          "settings": {
+            "image": "dk-detail.jpg",
+            "caption": "Surface detail"
+          }
+        }
+      },
+      "block_order": [
+        "l1",
+        "l2",
+        "l3",
+        "l4",
+        "l5"
+      ],
       "settings": {
-        "media_position": "left",
-        "eyebrow": "In use",
-        "heading": "Built for the hours you actually spend here.",
-        "body": "Work days run long. The mat is there for the whole of it \u2014 under the keyboard at nine, under the notebook at two, wiped down at six and ready again tomorrow.",
-        "cta_label": "See the specification"
+        "eyebrow": "In the workspace",
+        "heading": "Made to sit under everything you use.",
+        "body": "Shot across real desks \u2014 wood, white, warm light. The mat does the same job in all of them: it draws the working area and lets the rest of the setup settle."
+      }
+    },
+    "brand": {
+      "type": "dk-brand",
+      "settings": {
+        "eyebrow": "DeskKart",
+        "heading": "We make one thing, and we make it the centre of the desk.",
+        "body": "DeskKart is a workspace brand built around a simple idea: the surface you work on deserves as much thought as the hardware you put on it. We started with the desk mat because it is the piece that touches everything else \u2014 and the one most setups are missing.",
+        "cta_label": "About DeskKart",
+        "cta_link": "/pages/about",
+        "image": "dk-context.jpg",
+        "alt": "Desk mat with everyday desk objects"
       }
     },
     "specs": {
@@ -162,36 +318,43 @@
         "q1": {
           "type": "qa",
           "settings": {
-            "question": "How long does delivery take?",
-            "answer": "Orders are dispatched from Lahore. Exact delivery times are set in the store's shipping policy and shown at checkout."
+            "question": "What exactly is a desk mat?",
+            "answer": "A single large surface that sits on your desk and holds your keyboard, mouse and everyday items. It defines the working area, softens the surface under your hardware and protects the desk underneath."
           }
         },
         "q2": {
           "type": "qa",
           "settings": {
-            "question": "Can I pay cash on delivery?",
-            "answer": "Payment methods available to you are shown at checkout once payment providers are activated on the store."
+            "question": "How do I choose the right one for my desk?",
+            "answer": "Measure the span your keyboard and mouse occupy when you work comfortably, then leave room on either side. Confirmed sizes for this mat are listed in the specification section once finalised."
           }
         },
         "q3": {
           "type": "qa",
           "settings": {
-            "question": "What if it is not right for my desk?",
-            "answer": "Returns follow the store's refund policy. Contact us with your order number and we will take it from there."
+            "question": "How long does delivery take?",
+            "answer": "Orders are dispatched from Lahore. Delivery times and charges are shown at checkout and set by the store's shipping policy."
           }
         },
         "q4": {
           "type": "qa",
           "settings": {
-            "question": "How do I clean it?",
-            "answer": "A damp cloth handles everyday dust and marks. Let it dry flat before putting hardware back on it."
+            "question": "Can I pay cash on delivery?",
+            "answer": "The payment methods available to you are shown at checkout once the store's payment providers are active."
           }
         },
         "q5": {
           "type": "qa",
           "settings": {
-            "question": "Will it stay flat?",
-            "answer": "Store it flat rather than rolled. If it has been rolled in transit, leave it on the desk overnight and it settles."
+            "question": "What if it is not right for my desk?",
+            "answer": "Returns are handled under the store's refund policy. Contact us with your order number and we will take it from there."
+          }
+        },
+        "q6": {
+          "type": "qa",
+          "settings": {
+            "question": "How do I keep it clean?",
+            "answer": "A damp cloth handles everyday dust and marks. Let it dry flat before putting hardware back on top."
           }
         }
       },
@@ -200,7 +363,8 @@
         "q2",
         "q3",
         "q4",
-        "q5"
+        "q5",
+        "q6"
       ],
       "settings": {
         "eyebrow": "Questions",
@@ -212,213 +376,20 @@
       "settings": {
         "heading": "Finish the desk.",
         "body": "One mat, one surface, one less thing to think about.",
-        "cta_label": "Shop the Desk Mat"
-      }
-    },
-    "bar": {
-      "type": "dk-bar",
-      "blocks": {
-        "b1": {
-          "type": "item",
-          "settings": {
-            "icon": "truck",
-            "title": "Nationwide delivery",
-            "subtitle": "Dispatched from Lahore"
-          }
-        },
-        "b2": {
-          "type": "item",
-          "settings": {
-            "icon": "return",
-            "title": "Easy returns",
-            "subtitle": "Terms set by store policy"
-          }
-        },
-        "b3": {
-          "type": "item",
-          "settings": {
-            "icon": "shield",
-            "title": "Checked before dispatch",
-            "subtitle": "Every order inspected"
-          }
-        },
-        "b4": {
-          "type": "item",
-          "settings": {
-            "icon": "plus",
-            "title": "Cash on delivery",
-            "subtitle": "Pay when it arrives"
-          }
-        }
-      },
-      "block_order": [
-        "b1",
-        "b2",
-        "b3",
-        "b4"
-      ],
-      "settings": {}
-    },
-    "gallery": {
-      "type": "dk-gallery",
-      "blocks": {
-        "g1": {
-          "type": "shot",
-          "settings": {
-            "fallback": "dk-life-2.jpg",
-            "caption": "Warm wood, green felt"
-          }
-        },
-        "g2": {
-          "type": "shot",
-          "settings": {
-            "fallback": "dk-life-3.jpg",
-            "caption": "Minimal desk"
-          }
-        },
-        "g3": {
-          "type": "shot",
-          "settings": {
-            "fallback": "dk-detail.jpg",
-            "caption": "Surface detail"
-          }
-        },
-        "g4": {
-          "type": "shot",
-          "settings": {
-            "fallback": "dk-life-4.jpg",
-            "caption": "Laptop setup"
-          }
-        },
-        "g5": {
-          "type": "shot",
-          "settings": {
-            "fallback": "dk-life-1.jpg",
-            "caption": "Home office"
-          }
-        }
-      },
-      "block_order": [
-        "g1",
-        "g2",
-        "g3",
-        "g4",
-        "g5"
-      ],
-      "settings": {
-        "eyebrow": "On real desks",
-        "heading": "Looks right in any setup.",
-        "body": "Warm wood, white minimal or dark battlestation \u2014 the mat is the piece that ties the surface together."
-      }
-    },
-    "marquee": {
-      "type": "dk-marquee",
-      "blocks": {
-        "m1": {
-          "type": "item",
-          "settings": {
-            "text": "Built for long hours"
-          }
-        },
-        "m2": {
-          "type": "item",
-          "settings": {
-            "text": "Ships from Lahore"
-          }
-        },
-        "m3": {
-          "type": "item",
-          "settings": {
-            "text": "Cash on delivery"
-          }
-        },
-        "m4": {
-          "type": "item",
-          "settings": {
-            "text": "One surface, whole desk"
-          }
-        },
-        "m5": {
-          "type": "item",
-          "settings": {
-            "text": "Easy returns"
-          }
-        }
-      },
-      "block_order": [
-        "m1",
-        "m2",
-        "m3",
-        "m4",
-        "m5"
-      ],
-      "settings": {}
-    },
-    "tiles": {
-      "type": "dk-tiles",
-      "blocks": {
-        "t1": {
-          "type": "tile",
-          "settings": {
-            "fallback": "dk-product.jpg",
-            "title": "The Desk Mat",
-            "subtitle": "One mat, full desk coverage",
-            "link": "/products/desk-mat"
-          }
-        },
-        "t2": {
-          "type": "tile",
-          "settings": {
-            "fallback": "dk-detail.jpg",
-            "title": "Surface & feel",
-            "subtitle": "How it works under hand",
-            "link": "#dk-details"
-          }
-        },
-        "t3": {
-          "type": "tile",
-          "settings": {
-            "fallback": "dk-life-3.jpg",
-            "title": "Delivery & returns",
-            "subtitle": "Shipped nationwide from Lahore",
-            "link": "/pages/faq"
-          }
-        }
-      },
-      "block_order": [
-        "t1",
-        "t2",
-        "t3"
-      ],
-      "settings": {
-        "eyebrow": "Start here",
-        "heading": "Everything you need to know.",
-        "link_label": "Shop the Desk Mat",
-        "link_url": "/products/desk-mat"
-      }
-    },
-    "shop": {
-      "type": "dk-shop",
-      "blocks": {},
-      "block_order": [],
-      "settings": {
-        "collection": "",
-        "max_products": 4,
-        "eyebrow": "Shop",
-        "heading": "The DeskKart line-up."
+        "cta_label": "Shop the Desk Mat",
+        "cta_link": "/products/desk-mat"
       }
     }
   },
   "order": [
     "hero",
     "marquee",
-    "shop",
+    "intro",
     "bar",
-    "showcase",
-    "tiles",
+    "buy",
     "features",
-    "gallery",
-    "split",
+    "lookbook",
+    "brand",
     "specs",
     "faq",
     "cta"

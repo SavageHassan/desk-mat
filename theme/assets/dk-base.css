@@ -255,3 +255,42 @@ footer .shopify-section-group-footer-group .section,
 footer .shopify-section-group-footer-group .section-background { background: var(--dk-forest) !important; }
 footer .shopify-section-group-footer-group { --color-background: #27463a; --color-background-rgb: 39, 70, 58; }
 #header-group .shopify-section:first-child { background: var(--dk-forest) !important; }
+
+/* --- Motion --- */
+[data-dk-reveal] { opacity: 1; }
+.dk-motion-ready [data-dk-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s var(--dk-ease), transform 0.7s var(--dk-ease);
+  will-change: opacity, transform;
+}
+.dk-motion-ready [data-dk-reveal].dk-in { opacity: 1; transform: none; }
+.dk-motion-ready [data-dk-reveal="fade"] { transform: none; }
+.dk-motion-ready [data-dk-reveal="scale"] { transform: scale(1.04); }
+.dk-motion-ready [data-dk-reveal="scale"].dk-in { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-motion-ready [data-dk-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* --- Logo mark --- */
+#header-group .header-logo::before {
+  content: '';
+  display: inline-block;
+  width: 22px; height: 22px;
+  margin-right: 9px;
+  vertical-align: -4px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='1.6' y='5' width='20.8' height='14' rx='2.4' fill='none' stroke='%2327463a' stroke-width='1.8'/%3E%3Crect x='5.2' y='8.6' width='7.2' height='4.2' rx='1' fill='%23c2683a'/%3E%3Ccircle cx='17' cy='14.4' r='1.9' fill='%2327463a'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* --- Product page --- */
+@media (min-width: 990px) {
+  .product-information .product-details,
+  .product-information [class*="product-info"] { align-self: start; }
+  .product-information .product-information__container > *:last-child { position: sticky; top: calc(var(--header-height, 78px) + 24px); }
+}
+.product-information h1 { letter-spacing: -0.03em; }
+.product-information .price { font-weight: 600; }
+.shopify-section .quantity-selector, .product-information input[type="number"] { border-radius: 4px; }
