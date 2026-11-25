@@ -1,0 +1,54 @@
+<section class="dk dk-types">
+  <div class="dk-wrap">
+    <div class="dk-types__head">
+      <p class="dk-eyebrow" data-dk-reveal>{{ section.settings.eyebrow }}</p>
+      <h2 class="dk-h2" data-dk-reveal data-dk-delay="60">{{ section.settings.heading }}</h2>
+    </div>
+    <ul class="dk-types__row">
+      {%- for block in section.blocks -%}
+        <li class="dk-type" data-dk-reveal="fade" data-dk-delay="{{ forloop.index0 | times: 60 }}" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.link | default: routes.all_products_collection_url }}">
+            <span class="dk-type__media">
+              <img src="{{ block.settings.image | default: 'dk-product.jpg' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy" width="600" height="600">
+            </span>
+            <span class="dk-type__name">{{ block.settings.title }}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% stylesheet %}
+  .dk-types { background: var(--dk-sand); padding-block: clamp(40px, 6vw, 72px); }
+  .dk-types__head { display: flex; flex-direction: column; gap: 8px; margin-bottom: clamp(20px, 3vw, 32px); }
+  .dk-types__row { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
+  .dk-type a { display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; color: var(--dk-ink); }
+  .dk-type__media { width: 100%; aspect-ratio: 1 / 1; border-radius: 100%; overflow: hidden; background: var(--dk-paper); border: 1px solid var(--dk-stone); }
+  .dk-type__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--dk-ease); }
+  .dk-type a:hover .dk-type__media img { transform: scale(1.07); }
+  .dk-type__name { font-size: 0.875rem; font-weight: 600; text-align: center; }
+  @media (min-width: 750px) { .dk-types__row { grid-template-columns: repeat(5, 1fr); gap: 20px; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Types",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Browse by type" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Five surfaces, one desk." }
+  ],
+  "blocks": [
+    {
+      "type": "type",
+      "name": "Type",
+      "settings": [
+        { "type": "text", "id": "image", "label": "Image asset", "default": "dk-product.jpg" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Type" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "DK Types" }]
+}
+{% endschema %}

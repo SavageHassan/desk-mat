@@ -7,8 +7,8 @@
         "eyebrow": "DeskKart \u2014 workspace essentials",
         "heading": "Where your setup comes together.",
         "body": "A desk mat that gives the keyboard a softer floor, the mouse an even run, and the whole desk one deliberate edge.",
-        "cta_label": "Shop the Desk Mat",
-        "cta_link": "/products/desk-mat",
+        "cta_label": "Shop desk mats",
+        "cta_link": "/collections/all",
         "cta2_label": "See the detail",
         "cta2_link": "#buy",
         "strip_1": "Dispatched from Lahore",
@@ -67,8 +67,8 @@
         "eyebrow": "The product",
         "heading": "One surface. The whole desk makes sense.",
         "body": "A desk mat is the quietest upgrade you can make. It gives the keyboard a softer floor, the mouse an even run, and everything else a boundary to sit inside \u2014 so the desk reads as one considered surface instead of scattered hardware.",
-        "cta_label": "Shop the Desk Mat",
-        "cta_link": "/products/desk-mat",
+        "cta_label": "Shop the range",
+        "cta_link": "/collections/all",
         "image_1": "dk-lifestyle.jpg",
         "alt_1": "Desk mat on a wooden desk with keyboard and laptop",
         "image_2": "dk-detail.jpg",
@@ -122,7 +122,7 @@
     "buy": {
       "type": "dk-buy",
       "settings": {
-        "product": "desk-mat",
+        "product": "felt-desk-mat",
         "eyebrow": "Order",
         "point_1": "Dispatched from Lahore",
         "point_2": "Cash on delivery available at checkout",
@@ -253,65 +253,6 @@
         "alt": "Desk mat with everyday desk objects"
       }
     },
-    "specs": {
-      "type": "dk-specs",
-      "blocks": {
-        "s1": {
-          "type": "spec",
-          "settings": {
-            "label": "Size",
-            "value": "\u2014"
-          }
-        },
-        "s2": {
-          "type": "spec",
-          "settings": {
-            "label": "Material",
-            "value": "\u2014"
-          }
-        },
-        "s3": {
-          "type": "spec",
-          "settings": {
-            "label": "Finish",
-            "value": "\u2014"
-          }
-        },
-        "s4": {
-          "type": "spec",
-          "settings": {
-            "label": "Base",
-            "value": "\u2014"
-          }
-        },
-        "s5": {
-          "type": "spec",
-          "settings": {
-            "label": "Care",
-            "value": "\u2014"
-          }
-        },
-        "s6": {
-          "type": "spec",
-          "settings": {
-            "label": "Ships from",
-            "value": "Lahore, Pakistan"
-          }
-        }
-      },
-      "block_order": [
-        "s1",
-        "s2",
-        "s3",
-        "s4",
-        "s5",
-        "s6"
-      ],
-      "settings": {
-        "eyebrow": "Specification",
-        "heading": "The details."
-      }
-    },
     "faq": {
       "type": "dk-faq",
       "blocks": {
@@ -377,20 +318,86 @@
         "heading": "Finish the desk.",
         "body": "One mat, one surface, one less thing to think about.",
         "cta_label": "Shop the Desk Mat",
-        "cta_link": "/products/desk-mat"
+        "cta_link": "/collections/all"
+      }
+    },
+    "types": {
+      "type": "dk-types",
+      "blocks": {
+        "t1": {
+          "type": "type",
+          "settings": {
+            "image": "dk-product.jpg",
+            "title": "Felt",
+            "link": "/products/felt-desk-mat"
+          }
+        },
+        "t2": {
+          "type": "type",
+          "settings": {
+            "image": "dk-top.jpg",
+            "title": "PU Leather",
+            "link": "/products/pu-leather-desk-mat"
+          }
+        },
+        "t3": {
+          "type": "type",
+          "settings": {
+            "image": "dk-context.jpg",
+            "title": "Cork & Felt",
+            "link": "/products/cork-and-felt-desk-mat"
+          }
+        },
+        "t4": {
+          "type": "type",
+          "settings": {
+            "image": "dk-alt.jpg",
+            "title": "XXL Gaming",
+            "link": "/products/xxl-gaming-desk-mat"
+          }
+        },
+        "t5": {
+          "type": "type",
+          "settings": {
+            "image": "dk-detail.jpg",
+            "title": "RGB Gaming",
+            "link": "/products/rgb-gaming-desk-mat"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5"
+      ],
+      "settings": {
+        "eyebrow": "Browse by type",
+        "heading": "Five surfaces, one desk."
+      }
+    },
+    "grid": {
+      "type": "dk-grid",
+      "settings": {
+        "collection": "",
+        "max_products": 5,
+        "eyebrow": "Shop desk mats",
+        "heading": "Pick your surface."
       }
     }
   },
   "order": [
     "hero",
     "marquee",
-    "intro",
+    "types",
+    "grid",
     "bar",
+    "intro",
     "buy",
     "features",
     "lookbook",
     "brand",
-    "specs",
     "faq",
     "cta"
   ]

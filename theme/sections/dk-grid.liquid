@@ -1,0 +1,98 @@
+{%- liquid
+  assign coll = collections[section.settings.collection]
+  if coll == blank or coll.products_count == 0
+    assign items = collections.all.products
+  else
+    assign items = coll.products
+  endif
+-%}
+<section class="dk dk-grid">
+  <div class="dk-wrap">
+    <div class="dk-grid__head">
+      <div>
+        <p class="dk-eyebrow" data-dk-reveal>{{ section.settings.eyebrow }}</p>
+        <h2 class="dk-h2" data-dk-reveal data-dk-delay="60">{{ section.settings.heading }}</h2>
+      </div>
+      <a class="dk-grid__all" href="{{ routes.all_products_collection_url }}">View all
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <ul class="dk-grid__list">
+      {%- for item in items limit: section.settings.max_products -%}
+        <li class="dk-pcard" data-dk-reveal="fade" data-dk-delay="{{ forloop.index0 | times: 60 }}">
+          <a class="dk-pcard__media" href="{{ item.url }}">
+            {%- if item.featured_image != blank -%}
+              {{ item.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'dk-pcard__img', alt: item.title }}
+            {%- endif -%}
+            {%- if item.images[1] != blank -%}
+              {{ item.images[1] | image_url: width: 900 | image_tag: loading: 'lazy', class: 'dk-pcard__img dk-pcard__img--alt', alt: item.title }}
+            {%- endif -%}
+            {%- if item.compare_at_price > item.price -%}
+              <span class="dk-pcard__badge dk-pcard__badge--sale">Save {{ item.compare_at_price | minus: item.price | times: 100 | divided_by: item.compare_at_price }}%</span>
+            {%- elsif item.available == false -%}
+              <span class="dk-pcard__badge dk-pcard__badge--out">Sold out</span>
+            {%- endif -%}
+          </a>
+          <div class="dk-pcard__body">
+            <h3 class="dk-pcard__title"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+            <p class="dk-pcard__price">
+              {{ item.price | money }}
+              {%- if item.compare_at_price > item.price %} <s>{{ item.compare_at_price | money }}</s>{% endif -%}
+            </p>
+            {%- form 'product', item, class: 'dk-pcard__form dk-buy__form' -%}
+              <input type="hidden" name="id" value="{{ item.selected_or_first_available_variant.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <button type="submit" class="dk-btn dk-pcard__btn dk-buy__add" {% unless item.available %}disabled{% endunless %}>
+                {% if item.available %}Add to cart{% else %}Sold out{% endif %}
+              </button>
+            {%- endform -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% stylesheet %}
+  .dk-grid { background: var(--dk-paper); padding-block: clamp(48px, 7vw, 92px); }
+  .dk-grid__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: clamp(22px, 3vw, 36px); }
+  .dk-grid__head .dk-eyebrow { margin-bottom: 8px; }
+  .dk-grid__all { display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem; font-weight: 600; color: var(--dk-clay-dark); text-decoration: none; white-space: nowrap; }
+  .dk-grid__all svg { width: 15px; height: 15px; transition: transform 0.25s var(--dk-ease); }
+  .dk-grid__all:hover svg { transform: translateX(4px); }
+  .dk-grid__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
+
+  .dk-pcard { display: flex; flex-direction: column; background: var(--dk-paper); border: 1px solid var(--dk-stone); border-radius: 6px; overflow: hidden; transition: box-shadow 0.3s var(--dk-ease), transform 0.3s var(--dk-ease); }
+  .dk-pcard:hover { box-shadow: 0 14px 34px rgba(13, 17, 23, 0.1); transform: translateY(-3px); }
+  .dk-pcard__media { position: relative; display: block; aspect-ratio: 4 / 3; background: var(--dk-sand); overflow: hidden; }
+  .dk-pcard__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.45s var(--dk-ease), transform 0.6s var(--dk-ease); }
+  .dk-pcard__img--alt { opacity: 0; }
+  .dk-pcard__media:hover .dk-pcard__img--alt { opacity: 1; }
+  .dk-pcard__media:hover .dk-pcard__img { transform: scale(1.04); }
+  .dk-pcard__badge { position: absolute; top: 10px; left: 10px; z-index: 2; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 9px; border-radius: 3px; color: #fff; }
+  .dk-pcard__badge--sale { background: var(--dk-flash); }
+  .dk-pcard__badge--out { background: var(--dk-muted); }
+  .dk-pcard__body { padding: 14px 14px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .dk-pcard__title { margin: 0; font-size: 0.9375rem; font-weight: 600; line-height: 1.3; }
+  .dk-pcard__title a { color: inherit; text-decoration: none; }
+  .dk-pcard__price { margin: 0 0 8px; font-size: 1rem; font-weight: 700; color: var(--dk-ink); }
+  .dk-pcard__price s { color: var(--dk-muted); font-weight: 400; margin-left: 6px; font-size: 0.875rem; }
+  .dk-pcard__form { margin-top: auto; }
+  .dk-pcard__btn { width: 100%; min-height: 44px; font-size: 0.875rem; }
+  @media (min-width: 750px) { .dk-grid__list { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1100px) { .dk-grid__list { grid-template-columns: repeat(5, 1fr); } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Product grid",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "max_products", "label": "Products shown", "min": 2, "max": 12, "step": 1, "default": 5 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop desk mats" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Pick your surface." }
+  ],
+  "presets": [{ "name": "DK Product grid" }]
+}
+{% endschema %}
