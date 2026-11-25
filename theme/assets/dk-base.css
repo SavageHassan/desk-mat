@@ -294,3 +294,21 @@ footer .shopify-section-group-footer-group { --color-background: #27463a; --colo
 .product-information h1 { letter-spacing: -0.03em; }
 .product-information .price { font-weight: 600; }
 .shopify-section .quantity-selector, .product-information input[type="number"] { border-radius: 4px; }
+
+/* --- Cart toast --- */
+.dk-toast {
+  position: fixed; z-index: 60; left: 50%; bottom: 24px;
+  transform: translate(-50%, 16px); opacity: 0;
+  display: flex; align-items: center; gap: 12px;
+  padding: 13px 16px; border-radius: 5px;
+  background: var(--dk-forest); color: #f3efe4;
+  font-size: 0.9375rem; box-shadow: 0 12px 30px rgba(10, 14, 11, 0.22);
+  transition: opacity 0.35s var(--dk-ease), transform 0.35s var(--dk-ease);
+  max-width: calc(100vw - 32px);
+}
+.dk-toast--in { opacity: 1; transform: translate(-50%, 0); }
+.dk-toast__tick { width: 18px; height: 18px; color: var(--dk-butter); flex: none; }
+.dk-toast__tick svg { width: 100%; height: 100%; }
+.dk-toast__msg { flex: 1; }
+.dk-toast__link { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .dk-toast { transition: none; } }
