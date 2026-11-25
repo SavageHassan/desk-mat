@@ -1,0 +1,179 @@
+<section
+  class="dk dk-slides"
+  data-dk-slides
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-interval="{{ section.settings.interval | times: 1000 }}"
+  style="--dk-slide-h: {{ section.settings.height }}vh;"
+  aria-roledescription="carousel"
+  aria-label="{{ section.settings.heading | default: 'Featured' }}"
+>
+  <div class="dk-slides__viewport" data-dk-viewport>
+    {%- for block in section.blocks -%}
+      <article class="dk-slide{% if forloop.first %} is-active{% endif %}" data-dk-slide aria-roledescription="slide" aria-label="{{ forloop.index }} of {{ section.blocks.size }}" {{ block.shopify_attributes }}>
+        <img class="dk-slide__img" src="{{ block.settings.image | default: 'dk-lifestyle.jpg' | asset_url }}" alt="{{ block.settings.alt }}" {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %} width="2200" height="1400">
+        <span class="dk-slide__scrim"></span>
+        <div class="dk-wrap dk-slide__inner">
+          <div class="dk-slide__copy">
+            {%- if block.settings.eyebrow != blank -%}<p class="dk-slide__eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
+            <h2 class="dk-slide__title">{{ block.settings.heading }}</h2>
+            {%- if block.settings.body != blank -%}<p class="dk-slide__body">{{ block.settings.body }}</p>{%- endif -%}
+            <div class="dk-slide__actions">
+              {%- if block.settings.cta_label != blank -%}
+                <a class="dk-btn dk-slide__cta" href="{{ block.settings.cta_link | default: routes.all_products_collection_url }}">{{ block.settings.cta_label }}</a>
+              {%- endif -%}
+              {%- if block.settings.price_note != blank -%}
+                <span class="dk-slide__price">{{ block.settings.price_note }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      </article>
+    {%- endfor -%}
+  </div>
+
+  {%- if section.blocks.size > 1 -%}
+    <button class="dk-slides__arrow dk-slides__arrow--prev" type="button" data-dk-prev aria-label="Previous slide">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="dk-slides__arrow dk-slides__arrow--next" type="button" data-dk-next aria-label="Next slide">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="dk-slides__dots" role="tablist" aria-label="Slides">
+      {%- for block in section.blocks -%}
+        <button class="dk-slides__dot{% if forloop.first %} is-active{% endif %}" type="button" data-dk-dot="{{ forloop.index0 }}" role="tab" aria-label="Go to slide {{ forloop.index }}"><span></span></button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+<script>
+  (function () {
+    document.querySelectorAll('[data-dk-slides]').forEach(function (root) {
+      if (root.dataset.dkInit) return;
+      root.dataset.dkInit = '1';
+
+      var slides = Array.prototype.slice.call(root.querySelectorAll('[data-dk-slide]'));
+      if (slides.length < 2) return;
+      var dots = Array.prototype.slice.call(root.querySelectorAll('[data-dk-dot]'));
+      var index = 0;
+      var timer = null;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var autoplay = root.getAttribute('data-autoplay') === 'true' && !reduce;
+      var interval = parseInt(root.getAttribute('data-interval'), 10) || 6000;
+
+      function show(next) {
+        index = (next + slides.length) % slides.length;
+        slides.forEach(function (s, i) { s.classList.toggle('is-active', i === index); });
+        dots.forEach(function (d, i) { d.classList.toggle('is-active', i === index); });
+      }
+      function start() { if (autoplay) { stop(); timer = setInterval(function () { show(index + 1); }, interval); } }
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+      var prev = root.querySelector('[data-dk-prev]');
+      var next = root.querySelector('[data-dk-next]');
+      if (prev) prev.addEventListener('click', function () { show(index - 1); start(); });
+      if (next) next.addEventListener('click', function () { show(index + 1); start(); });
+      dots.forEach(function (d) {
+        d.addEventListener('click', function () { show(parseInt(d.getAttribute('data-dk-dot'), 10)); start(); });
+      });
+
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', start);
+      root.addEventListener('focusin', stop);
+      root.addEventListener('focusout', start);
+      document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+
+      /* touch swipe */
+      var x0 = null;
+      var vp = root.querySelector('[data-dk-viewport]');
+      vp.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+      vp.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1));
+        x0 = null; start();
+      }, { passive: true });
+
+      start();
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  .dk-slides { position: relative; background: var(--dk-forest); overflow: hidden; }
+  .dk-slides__viewport { position: relative; min-height: clamp(440px, var(--dk-slide-h, 76), 820px); }
+  .dk-slide {
+    position: absolute; inset: 0; display: flex; align-items: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.75s var(--dk-ease);
+  }
+  .dk-slide.is-active { opacity: 1; visibility: visible; z-index: 1; }
+  .dk-slide__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 7s linear; }
+  .dk-slide.is-active .dk-slide__img { transform: scale(1); }
+  .dk-slide__scrim {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(8, 11, 16, 0.92) 0%, rgba(8, 11, 16, 0.82) 32%, rgba(8, 11, 16, 0.5) 62%, rgba(8, 11, 16, 0.22) 100%),
+      linear-gradient(to top, rgba(8, 11, 16, 0.6), rgba(8, 11, 16, 0) 55%);
+  }
+  .dk-slide__inner { position: relative; z-index: 2; width: 100%; padding-block: clamp(56px, 9vw, 110px); }
+  .dk-slide__copy { max-width: 40rem; display: flex; flex-direction: column; gap: 16px; }
+  .dk-slide__eyebrow { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dk-butter); }
+  .dk-slide__title {
+    margin: 0; color: #fff; font-family: var(--font-heading--family, inherit); font-weight: 700;
+    font-size: clamp(2.3rem, 5.6vw, 4.4rem); line-height: 1; letter-spacing: -0.035em; text-wrap: balance;
+  }
+  .dk-slide__body { margin: 0; max-width: 44ch; color: rgba(255, 255, 255, 0.84); font-size: 1.0625rem; line-height: 1.6; }
+  .dk-slide__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; margin-top: 6px; }
+  .dk-slide__cta { background: #fff; border-color: #fff; color: var(--dk-ink); min-height: 54px; padding-inline: 30px; }
+  .dk-slide__cta:hover { background: var(--dk-clay); border-color: var(--dk-clay); color: #fff; }
+  .dk-slide__price { color: #fff; font-weight: 600; font-size: 0.9375rem; }
+
+  .dk-slides__arrow {
+    position: absolute; top: 50%; z-index: 3; transform: translateY(-50%);
+    width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
+    background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff; display: none; align-items: center; justify-content: center;
+    backdrop-filter: blur(6px); transition: background 0.25s var(--dk-ease);
+  }
+  .dk-slides__arrow:hover { background: rgba(255, 255, 255, 0.28); }
+  .dk-slides__arrow svg { width: 16px; height: 16px; }
+  .dk-slides__arrow--prev { left: 18px; }
+  .dk-slides__arrow--next { right: 18px; }
+  .dk-slides__dots { position: absolute; z-index: 3; left: 0; right: 0; bottom: 18px; display: flex; justify-content: center; gap: 8px; }
+  .dk-slides__dot { width: 26px; height: 16px; padding: 0; border: 0; background: none; cursor: pointer; display: flex; align-items: center; }
+  .dk-slides__dot span { display: block; width: 100%; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, 0.38); transition: background 0.3s var(--dk-ease); }
+  .dk-slides__dot.is-active span { background: #fff; }
+  @media (min-width: 750px) { .dk-slides__arrow { display: flex; } .dk-slides__dots { justify-content: flex-start; padding-inline: var(--dk-gutter); max-width: var(--dk-max); margin-inline: auto; } }
+  @media (prefers-reduced-motion: reduce) {
+    .dk-slide { transition: none; }
+    .dk-slide__img, .dk-slide.is-active .dk-slide__img { transform: none; transition: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Hero slideshow",
+  "settings": [
+    { "type": "checkbox", "id": "autoplay", "label": "Auto-rotate", "default": true },
+    { "type": "range", "id": "interval", "label": "Seconds per slide", "min": 3, "max": 12, "step": 1, "default": 6 },
+    { "type": "range", "id": "height", "label": "Height", "min": 50, "max": 90, "step": 2, "default": 76 }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "text", "id": "image", "label": "Image asset", "default": "dk-lifestyle.jpg" },
+        { "type": "text", "id": "alt", "label": "Image alt", "default": "Desk mat on a desk" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "DeskKart" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Where your setup comes together." },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "One surface for keyboard, mouse and everything else." },
+        { "type": "text", "id": "cta_label", "label": "Button", "default": "Shop desk mats" },
+        { "type": "url", "id": "cta_link", "label": "Button link" },
+        { "type": "text", "id": "price_note", "label": "Price note", "default": "From Rs.1,799" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "DK Hero slideshow" }]
+}
+{% endschema %}

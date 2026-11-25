@@ -1,0 +1,63 @@
+<section class="dk dk-promos">
+  <div class="dk-wrap">
+    <ul class="dk-promos__row">
+      {%- for block in section.blocks -%}
+        <li class="dk-promo2 dk-promo2--{{ block.settings.tone }}" data-dk-reveal="fade" data-dk-delay="{{ forloop.index0 | times: 70 }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <img class="dk-promo2__img" src="{{ block.settings.image | asset_url }}" alt="" loading="lazy" width="1400" height="900">
+          {%- endif -%}
+          <div class="dk-promo2__inner">
+            <p class="dk-promo2__kicker">{{ block.settings.kicker }}</p>
+            <h3 class="dk-promo2__title">{{ block.settings.title }}</h3>
+            {%- if block.settings.body != blank -%}<p class="dk-promo2__body">{{ block.settings.body }}</p>{%- endif -%}
+            <a class="dk-promo2__link" href="{{ block.settings.link | default: routes.all_products_collection_url }}">{{ block.settings.link_label }}
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% stylesheet %}
+  .dk-promos { background: var(--dk-paper); padding-block: clamp(28px, 4vw, 52px); }
+  .dk-promos__row { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: 1fr; }
+  .dk-promo2 { position: relative; overflow: hidden; border-radius: 8px; min-height: 230px; display: flex; isolation: isolate; }
+  .dk-promo2__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 0.7s var(--dk-ease); }
+  .dk-promo2:hover .dk-promo2__img { transform: scale(1.04); }
+  .dk-promo2::after { content: ''; position: absolute; inset: 0; z-index: -1; }
+  .dk-promo2--ink::after { background: linear-gradient(100deg, rgba(10, 13, 19, 0.92) 12%, rgba(10, 13, 19, 0.6) 65%, rgba(10, 13, 19, 0.35) 100%); }
+  .dk-promo2--blue::after { background: linear-gradient(100deg, rgba(25, 56, 150, 0.92) 12%, rgba(47, 107, 255, 0.72) 70%, rgba(47, 107, 255, 0.45) 100%); }
+  .dk-promo2--amber::after { background: linear-gradient(100deg, rgba(120, 72, 6, 0.92) 12%, rgba(255, 183, 55, 0.6) 75%, rgba(255, 207, 74, 0.4) 100%); }
+  .dk-promo2__inner { position: relative; padding: clamp(22px, 3vw, 34px); display: flex; flex-direction: column; gap: 8px; justify-content: center; color: #fff; }
+  .dk-promo2__kicker { margin: 0; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255, 255, 255, 0.82); }
+  .dk-promo2__title { margin: 0; font-family: var(--font-heading--family, inherit); font-weight: 700; font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1.06; letter-spacing: -0.025em; max-width: 18ch; }
+  .dk-promo2__body { margin: 0; font-size: 0.9375rem; line-height: 1.55; color: rgba(255, 255, 255, 0.84); max-width: 34ch; }
+  .dk-promo2__link { display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 0.875rem; font-weight: 700; color: #fff; text-decoration: none; }
+  .dk-promo2__link svg { width: 15px; height: 15px; transition: transform 0.25s var(--dk-ease); }
+  .dk-promo2__link:hover svg { transform: translateX(4px); }
+  @media (min-width: 750px) { .dk-promos__row { grid-template-columns: repeat(3, 1fr); } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Promo banners",
+  "blocks": [
+    {
+      "type": "promo",
+      "name": "Banner",
+      "settings": [
+        { "type": "select", "id": "tone", "label": "Tone", "options": [{"value":"ink","label":"Ink"},{"value":"blue","label":"Blue"},{"value":"amber","label":"Amber"}], "default": "ink" },
+        { "type": "text", "id": "image", "label": "Image asset", "default": "dk-promo-1.jpg" },
+        { "type": "text", "id": "kicker", "label": "Kicker", "default": "Kicker" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Title" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Short supporting line." },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Shop now" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "DK Promo banners" }]
+}
+{% endschema %}

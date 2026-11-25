@@ -1,23 +1,5 @@
 {
   "sections": {
-    "hero": {
-      "type": "dk-hero",
-      "settings": {
-        "height": 82,
-        "eyebrow": "DeskKart \u2014 workspace essentials",
-        "heading": "Where your setup comes together.",
-        "body": "A desk mat that gives the keyboard a softer floor, the mouse an even run, and the whole desk one deliberate edge.",
-        "cta_label": "Shop desk mats",
-        "cta_link": "/collections/all",
-        "cta2_label": "See the detail",
-        "cta2_link": "#buy",
-        "strip_1": "Dispatched from Lahore",
-        "strip_2": "Cash on delivery",
-        "strip_3": "Nationwide delivery",
-        "strip_4": "Returns under store policy",
-        "fallback": "dk-lifestyle.jpg"
-      }
-    },
     "marquee": {
       "type": "dk-marquee",
       "blocks": {
@@ -385,17 +367,129 @@
         "eyebrow": "Shop desk mats",
         "heading": "Pick your surface."
       }
+    },
+    "slides": {
+      "type": "dk-slideshow",
+      "blocks": {
+        "s1": {
+          "type": "slide",
+          "settings": {
+            "image": "dk-lifestyle.jpg",
+            "alt": "Felt desk mat on a wooden desk",
+            "eyebrow": "DeskKart \u2014 workspace essentials",
+            "heading": "Where your setup comes together.",
+            "body": "One surface for the keyboard, the mouse and everything else the day puts on your desk.",
+            "cta_label": "Shop desk mats",
+            "cta_link": "/collections/all",
+            "price_note": "From Rs.1,799"
+          }
+        },
+        "s2": {
+          "type": "slide",
+          "settings": {
+            "image": "dk-slide-leather.jpg",
+            "alt": "PU leather desk mat",
+            "eyebrow": "PU leather",
+            "heading": "Wipe-clean, dual-sided, built to last.",
+            "body": "A smooth leather-look surface with a defined stitched edge \u2014 fast under the mouse, easy to clean.",
+            "cta_label": "Shop PU leather",
+            "cta_link": "/products/pu-leather-desk-mat",
+            "price_note": "Rs.1,799"
+          }
+        },
+        "s3": {
+          "type": "slide",
+          "settings": {
+            "image": "dk-slide-gaming.jpg",
+            "alt": "RGB gaming desk mat",
+            "eyebrow": "Gaming",
+            "heading": "Light up the whole desk.",
+            "body": "Extra-large cloth mats with stitched edges, low-friction surfaces and RGB lighting over USB.",
+            "cta_label": "Shop gaming mats",
+            "cta_link": "/products/rgb-gaming-desk-mat",
+            "price_note": "From Rs.1,849"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "autoplay": true,
+        "interval": 6,
+        "height": 76
+      }
+    },
+    "promos": {
+      "type": "dk-promos",
+      "blocks": {
+        "p1": {
+          "type": "promo",
+          "settings": {
+            "tone": "ink",
+            "image": "dk-promo-2.jpg",
+            "kicker": "Work setups",
+            "title": "Felt, cork and leather",
+            "body": "Three surfaces for desks that get used all day.",
+            "link_label": "Shop work mats",
+            "link": "/collections/all"
+          }
+        },
+        "p2": {
+          "type": "promo",
+          "settings": {
+            "tone": "blue",
+            "image": "dk-promo-1.jpg",
+            "kicker": "Gaming",
+            "title": "XXL and RGB mats",
+            "body": "Full-width surfaces with stitched edges and rubber bases.",
+            "link_label": "Shop gaming",
+            "link": "/products/xxl-gaming-desk-mat"
+          }
+        },
+        "p3": {
+          "type": "promo",
+          "settings": {
+            "tone": "amber",
+            "image": "dk-slide-cork.jpg",
+            "kicker": "Delivery",
+            "title": "Shipped nationwide from Lahore",
+            "body": "Cash on delivery available at checkout.",
+            "link_label": "Delivery details",
+            "link": "/pages/faq"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "settings": {}
+    },
+    "grid2": {
+      "type": "dk-grid",
+      "settings": {
+        "collection": "",
+        "max_products": 5,
+        "eyebrow": "Just landed",
+        "heading": "New in the range."
+      }
     }
   },
   "order": [
-    "hero",
+    "slides",
     "marquee",
     "types",
     "grid",
+    "promos",
     "bar",
     "intro",
     "buy",
     "features",
+    "grid2",
     "lookbook",
     "brand",
     "faq",
