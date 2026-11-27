@@ -2,13 +2,13 @@
   <div class="dk-wrap dk-brand__grid">
     <div class="dk-brand__copy">
       <p class="dk-eyebrow" data-dk-reveal>{{ section.settings.eyebrow }}</p>
-      <h2 class="dk-h2" data-dk-reveal data-dk-delay="60">{{ section.settings.heading }}</h2>
+      <h2 class="dk-h2" data-dk-split data-dk-reveal data-dk-delay="60">{{ section.settings.heading }}</h2>
       <p class="dk-body" data-dk-reveal data-dk-delay="110">{{ section.settings.body }}</p>
       {%- if section.settings.cta_label != blank -%}
         <a class="dk-btn dk-btn--ghost" href="{{ section.settings.cta_link | default: '/pages/about' }}" data-dk-reveal data-dk-delay="160">{{ section.settings.cta_label }}</a>
       {%- endif -%}
     </div>
-    <figure class="dk-brand__media" data-dk-reveal="scale">
+    <figure class="dk-brand__media" data-dk-reveal="clip" data-dk-parallax="16">
       <img src="{{ section.settings.image | default: 'dk-context.jpg' | asset_url }}" alt="{{ section.settings.alt }}" loading="lazy" width="1600" height="1200">
     </figure>
   </div>

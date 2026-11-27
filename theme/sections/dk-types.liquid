@@ -1,55 +1,86 @@
 <section class="dk dk-types">
-  <div class="dk-wrap">
+  <div class="dk-wrap" data-dk-rail>
     <div class="dk-types__head">
-      <p class="dk-eyebrow" data-dk-reveal>{{ section.settings.eyebrow }}</p>
-      <h2 class="dk-h2" data-dk-reveal data-dk-delay="60">{{ section.settings.heading }}</h2>
+      <div>
+        <p class="dk-eyebrow" data-dk-reveal>{{ section.settings.eyebrow }}</p>
+        <h2 class="dk-h2" data-dk-split data-dk-reveal data-dk-delay="60">{{ section.settings.heading }}</h2>
+      </div>
+      <div class="dk-rail__nav">
+        <button type="button" class="dk-rail__btn" data-dk-rail-prev aria-label="Previous types">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" class="dk-rail__btn" data-dk-rail-next aria-label="Next types">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </div>
-    <ul class="dk-types__row">
-      {%- for block in section.blocks -%}
-        <li class="dk-type" data-dk-reveal="fade" data-dk-delay="{{ forloop.index0 | times: 60 }}" {{ block.shopify_attributes }}>
-          <a href="{{ block.settings.link | default: routes.all_products_collection_url }}">
-            <span class="dk-type__media">
-              <img src="{{ block.settings.image | default: 'dk-product.jpg' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy" width="600" height="600">
-            </span>
-            <span class="dk-type__meta">
-              <span class="dk-type__name">{{ block.settings.title }}</span>
-              {%- if block.settings.price != blank -%}<span class="dk-type__price">{{ block.settings.price }}</span>{%- endif -%}
-            </span>
-            <span class="dk-type__go" aria-hidden="true">
-              <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </a>
-        </li>
-      {%- endfor -%}
-    </ul>
+
+    <div class="dk-rail">
+      <ul class="dk-rail__track dk-types__row" data-dk-rail-track>
+        {%- for block in section.blocks -%}
+          <li class="dk-type" data-dk-reveal="fade" data-dk-delay="{{ forloop.index0 | times: 70 }}" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link | default: routes.all_products_collection_url }}">
+              <span class="dk-type__media">
+                <img src="{{ block.settings.image | default: 'dk-product.jpg' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy" width="600" height="700">
+              </span>
+              <span class="dk-type__overlay" aria-hidden="true"></span>
+              <span class="dk-type__meta">
+                <span class="dk-type__name">{{ block.settings.title }}</span>
+                {%- if block.settings.price != blank -%}<span class="dk-type__price">{{ block.settings.price }}</span>{%- endif -%}
+                <span class="dk-type__shop">Shop
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+      <div class="dk-rail__progress"><span class="dk-rail__bar" data-dk-rail-bar></span></div>
+    </div>
   </div>
 </section>
 
 {% stylesheet %}
-  .dk-types { background: var(--dk-sand); padding-block: clamp(44px, 6vw, 80px); }
-  .dk-types__head { display: flex; flex-direction: column; gap: 8px; margin-bottom: clamp(20px, 3vw, 32px); }
-  .dk-types__row { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
+  .dk-types { background: var(--dk-sand); padding-block: clamp(48px, 7vw, 100px); }
+  .dk-types__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: clamp(20px, 3vw, 36px); }
+  .dk-types__head .dk-eyebrow { margin-bottom: 10px; }
+  .dk-types__row { margin: 0; }
+
   .dk-type a {
     position: relative; display: block; background: var(--dk-paper);
-    border: 1px solid var(--dk-stone); border-radius: 10px; overflow: hidden;
-    text-decoration: none; color: var(--dk-ink);
-    transition: transform 0.3s var(--dk-ease), box-shadow 0.3s var(--dk-ease), border-color 0.3s var(--dk-ease);
+    overflow: hidden; text-decoration: none; color: #fff;
+    transition: transform 0.35s var(--dk-ease), box-shadow 0.35s var(--dk-ease);
   }
-  .dk-type a:hover { transform: translateY(-3px); box-shadow: 0 16px 32px rgba(13, 17, 23, 0.1); border-color: transparent; }
-  .dk-type__media { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: var(--dk-sand); }
-  .dk-type__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--dk-ease); }
+  .dk-type a:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(20, 20, 20, 0.14); }
+  .dk-type__media { display: block; aspect-ratio: 4 / 5; overflow: hidden; background: var(--dk-stone); }
+  .dk-type__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--dk-ease); }
   .dk-type a:hover .dk-type__media img { transform: scale(1.06); }
-  .dk-type__meta { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px 14px; }
-  .dk-type__name { font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.01em; }
-  .dk-type__price { font-size: 0.8125rem; color: var(--dk-muted); }
-  .dk-type__go {
-    position: absolute; right: 12px; bottom: 12px; width: 30px; height: 30px; border-radius: 50%;
-    background: var(--dk-ink); color: #fff; display: flex; align-items: center; justify-content: center;
-    opacity: 0; transform: translateY(6px); transition: opacity 0.25s var(--dk-ease), transform 0.25s var(--dk-ease), background 0.25s var(--dk-ease);
+
+  /* a gradient scrim so the label stays legible on any photograph */
+  .dk-type__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.82) 0%, rgba(10, 10, 10, 0.42) 32%, rgba(10, 10, 10, 0) 62%);
   }
-  .dk-type__go svg { width: 14px; height: 14px; }
-  .dk-type a:hover .dk-type__go { opacity: 1; transform: none; background: var(--dk-clay); }
-  @media (min-width: 750px) { .dk-types__row { grid-template-columns: repeat(5, 1fr); gap: 16px; } }
+  .dk-type__meta { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; gap: 3px; padding: 18px; }
+  .dk-type__name { font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.01em; color: #fff; }
+  .dk-type__price { font-size: 0.875rem; color: rgba(255, 255, 255, 0.86); }
+  .dk-type__shop {
+    display: inline-flex; align-items: center; gap: 7px;
+    margin-top: 8px; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #fff;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.3s var(--dk-ease), transform 0.3s var(--dk-ease);
+  }
+  .dk-type__shop svg { width: 14px; height: 14px; transition: transform 0.3s var(--dk-ease); }
+  .dk-type a:hover .dk-type__shop, .dk-type a:focus-visible .dk-type__shop { opacity: 1; transform: none; }
+  .dk-type a:hover .dk-type__shop svg { transform: translateX(4px); }
+
+  /* touch devices get no hover, so the label is always shown */
+  @media (hover: none) {
+    .dk-type__shop { opacity: 1; transform: none; }
+  }
+  @media (max-width: 749px) {
+    .dk-types__head { flex-direction: column; align-items: flex-start; gap: 14px; }
+  }
 {% endstylesheet %}
 
 {% schema %}

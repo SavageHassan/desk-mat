@@ -271,4 +271,5 @@ body { background: var(--dk-paper); }
 .dk-cta__body { color: rgba(255, 255, 255, 0.86) !important; }
 .dk-contact__fact-label, .dk-foot__h, .dk-head__ann-item { font-size: 0.75rem; }
 .dk-pcard__price s { color: var(--dk-muted); }
+.dk-pcard__badge, .dk-pdp__badge { font-size: 0.75rem; }
 .dk-showcase__note, .dk-buy__desc { color: var(--dk-ink-soft); }

@@ -1,6 +1,6 @@
 <section class="dk dk-cta">
   <div class="dk-wrap dk-cta__inner">
-    <h2 class="dk-h2 dk-cta__title">{{ section.settings.heading }}</h2>
+    <h2 class="dk-h2 dk-cta__title" data-dk-split>{{ section.settings.heading }}</h2>
     {%- if section.settings.body != blank -%}<p class="dk-cta__body">{{ section.settings.body }}</p>{%- endif -%}
     {%- if section.settings.cta_label != blank -%}
       <a class="dk-btn dk-cta__btn" href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}">{{ section.settings.cta_label }}</a>

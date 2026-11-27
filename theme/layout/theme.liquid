@@ -20,8 +20,11 @@
     {%- render 'meta-tags' -%}
     {%- render 'stylesheets' -%}
     {{ 'dk-base.css' | asset_url | stylesheet_tag }}
+    {{ 'dk-plus.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'dk-motion.js' | asset_url }}" defer></script>
+    <script src="{{ 'dk-plus.js' | asset_url }}" defer></script>
     <script src="{{ 'dk-cart.js' | asset_url }}" defer></script>
+    {%- if template.name == 'product' -%}<script src="{{ 'dk-product.js' | asset_url }}" defer></script>{%- endif -%}
     {%- render 'card-hover-effect-styles' -%}
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}

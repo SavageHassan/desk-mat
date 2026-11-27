@@ -1,0 +1,95 @@
+{%- comment -%}
+  DeskKart product card.
+  Accepts: product (required), index (for stagger delay).
+  Swatch dots are drawn only from option values the product actually has —
+  nothing is invented. Unrecognised colour names simply render no dot.
+{%- endcomment -%}
+{%- liquid
+  assign p = product
+  assign idx = index | default: 0
+  assign colour_option = null
+  for opt in p.options_with_values
+    assign lower = opt.name | downcase
+    if lower contains 'colour' or lower contains 'color'
+      assign colour_option = opt
+      break
+    endif
+  endfor
+-%}
+<li class="dk-pcard" data-dk-reveal="fade" data-dk-delay="{{ idx | times: 70 }}">
+  <div class="dk-pcard__media">
+    <a class="dk-pcard__link" href="{{ p.url }}" aria-label="{{ p.title | escape }}">
+      {%- if p.featured_image != blank -%}
+        {{ p.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'dk-pcard__img', alt: p.featured_image.alt | default: p.title, width: 800, height: 800 }}
+      {%- else -%}
+        <img class="dk-pcard__img" src="{{ 'dk-product.jpg' | asset_url }}" alt="{{ p.title | escape }}" loading="lazy" width="800" height="800">
+      {%- endif -%}
+      {%- if p.images[1] != blank -%}
+        {{ p.images[1] | image_url: width: 800 | image_tag: loading: 'lazy', class: 'dk-pcard__img dk-pcard__img--alt', alt: '', width: 800, height: 800 }}
+      {%- endif -%}
+    </a>
+
+    {%- if p.compare_at_price > p.price -%}
+      <span class="dk-pcard__badge dk-pcard__badge--sale">Save {{ p.compare_at_price | minus: p.price | times: 100 | divided_by: p.compare_at_price }}%</span>
+    {%- elsif p.available == false -%}
+      <span class="dk-pcard__badge dk-pcard__badge--out">Sold out</span>
+    {%- endif -%}
+
+    <div class="dk-pcard__quick">
+      {%- if p.available -%}
+        {%- if p.variants.size > 1 -%}
+          <a class="dk-btn" href="{{ p.url }}">Choose options</a>
+        {%- else -%}
+          {%- form 'product', p, class: 'dk-pcard__form dk-buy__form' -%}
+            <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="dk-btn dk-buy__add">Add to cart</button>
+          {%- endform -%}
+        {%- endif -%}
+      {%- else -%}
+        <a class="dk-btn dk-btn--ghost" href="{{ p.url }}">View details</a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="dk-pcard__body">
+    <h3 class="dk-pcard__title"><a href="{{ p.url }}">{{ p.title }}</a></h3>
+
+    {%- if colour_option -%}
+      <ul class="dk-swatches" aria-label="{{ colour_option.values.size }} {{ colour_option.name | downcase }} options">
+        {%- for value in colour_option.values limit: 5 -%}
+          {%- assign swatch = value | downcase | strip -%}
+          {%- assign hex = '' -%}
+          {%- case swatch -%}
+            {%- when 'black' -%}{%- assign hex = '#1a1a1a' -%}
+            {%- when 'white' -%}{%- assign hex = '#f2f1ee' -%}
+            {%- when 'grey', 'gray' -%}{%- assign hex = '#8d8d88' -%}
+            {%- when 'charcoal' -%}{%- assign hex = '#3b3b3b' -%}
+            {%- when 'navy' -%}{%- assign hex = '#1f2d4d' -%}
+            {%- when 'blue' -%}{%- assign hex = '#2f5ea8' -%}
+            {%- when 'green' -%}{%- assign hex = '#2f6b3f' -%}
+            {%- when 'brown' -%}{%- assign hex = '#6b4a2f' -%}
+            {%- when 'tan', 'beige', 'cream' -%}{%- assign hex = '#d8c9a3' -%}
+            {%- when 'red' -%}{%- assign hex = '#b4471f' -%}
+            {%- when 'pink' -%}{%- assign hex = '#d9a1ae' -%}
+            {%- when 'purple' -%}{%- assign hex = '#5b4a7a' -%}
+          {%- endcase -%}
+          {%- if hex != '' -%}
+            <li><span class="dk-swatch" style="--dk-sw: {{ hex }}" title="{{ value | escape }}"></span></li>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if colour_option.values.size > 1 -%}
+          <li class="dk-swatches__more">{{ colour_option.values.size }} {{ colour_option.name | downcase }}s</li>
+        {%- endif -%}
+      </ul>
+    {%- elsif p.variants.size > 1 -%}
+      <p class="dk-pcard__meta">{{ p.variants.size }} options</p>
+    {%- endif -%}
+
+    <p class="dk-pcard__price">
+      {%- if p.price_varies -%}From {% endif -%}
+      {{ p.price | money }}
+      {%- if p.compare_at_price > p.price %} <s>{{ p.compare_at_price | money }}</s>{% endif -%}
+    </p>
+  </div>
+</li>

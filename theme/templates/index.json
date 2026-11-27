@@ -48,7 +48,7 @@
       "settings": {
         "eyebrow": "The product",
         "heading": "One surface. The whole desk makes sense.",
-        "body": "A desk mat is the quietest upgrade you can make. It gives the keyboard a softer floor, the mouse an even run, and everything else a boundary to sit inside \u2014 so the desk reads as one considered surface instead of scattered hardware.",
+        "body": "A desk mat is the quietest upgrade you can make. It gives the keyboard a softer floor, the mouse an even run, and everything else a boundary to sit inside — so the desk reads as one considered surface instead of scattered hardware.",
         "cta_label": "Shop the range",
         "cta_link": "/collections/all",
         "image_1": "dk-lifestyle.jpg",
@@ -119,7 +119,7 @@
           "type": "feature",
           "settings": {
             "title": "A quieter desk",
-            "body": "The mat takes the hard edge off key chatter and mouse clicks \u2014 the difference shows up on long calls and late sessions."
+            "body": "The mat takes the hard edge off key chatter and mouse clicks — the difference shows up on long calls and late sessions."
           }
         },
         "f2": {
@@ -154,7 +154,7 @@
           "type": "feature",
           "settings": {
             "title": "Looks considered",
-            "body": "The fastest way to make a desk look finished rather than assembled \u2014 one rectangle pulling the setup together."
+            "body": "The fastest way to make a desk look finished rather than assembled — one rectangle pulling the setup together."
           }
         }
       },
@@ -220,7 +220,7 @@
       "settings": {
         "eyebrow": "In the workspace",
         "heading": "Made to sit under everything you use.",
-        "body": "Shot across real desks \u2014 wood, white, warm light. The mat does the same job in all of them: it draws the working area and lets the rest of the setup settle."
+        "body": "Shot across real desks — wood, white, warm light. The mat does the same job in all of them: it draws the working area and lets the rest of the setup settle."
       }
     },
     "brand": {
@@ -228,7 +228,7 @@
       "settings": {
         "eyebrow": "DeskKart",
         "heading": "We make one thing, and we make it the centre of the desk.",
-        "body": "DeskKart is a workspace brand built around a simple idea: the surface you work on deserves as much thought as the hardware you put on it. We started with the desk mat because it is the piece that touches everything else \u2014 and the one most setups are missing.",
+        "body": "DeskKart is a workspace brand built around a simple idea: the surface you work on deserves as much thought as the hardware you put on it. We started with the desk mat because it is the piece that touches everything else — and the one most setups are missing.",
         "cta_label": "About DeskKart",
         "cta_link": "/pages/about",
         "image": "dk-context.jpg",
@@ -368,9 +368,10 @@
       "type": "dk-grid",
       "settings": {
         "collection": "",
-        "max_products": 5,
+        "max_products": 8,
         "eyebrow": "Shop desk mats",
-        "heading": "Pick your surface."
+        "heading": "Pick your surface.",
+        "layout": "grid"
       }
     },
     "slides": {
@@ -381,7 +382,7 @@
           "settings": {
             "image": "dk-lifestyle.jpg",
             "alt": "Felt desk mat on a wooden desk",
-            "eyebrow": "DeskKart \u2014 workspace essentials",
+            "eyebrow": "DeskKart — workspace essentials",
             "heading": "Where your setup comes together.",
             "body": "One surface for the keyboard, the mouse and everything else the day puts on your desk.",
             "cta_label": "Shop desk mats",
@@ -396,7 +397,7 @@
             "alt": "PU leather desk mat",
             "eyebrow": "PU leather",
             "heading": "Wipe-clean, dual-sided, built to last.",
-            "body": "A smooth leather-look surface with a defined stitched edge \u2014 fast under the mouse, easy to clean.",
+            "body": "A smooth leather-look surface with a defined stitched edge — fast under the mouse, easy to clean.",
             "cta_label": "Shop PU leather",
             "cta_link": "/products/pu-leather-desk-mat",
             "price_note": "Rs.1,799"
@@ -478,9 +479,10 @@
       "type": "dk-grid",
       "settings": {
         "collection": "",
-        "max_products": 5,
+        "max_products": 8,
         "eyebrow": "Just landed",
-        "heading": "New in the range."
+        "heading": "New in the range.",
+        "layout": "rail"
       }
     }
   },

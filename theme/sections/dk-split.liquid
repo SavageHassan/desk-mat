@@ -4,7 +4,7 @@
       {%- if section.settings.image != blank -%}
         {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'dk-split__img', alt: section.settings.heading }}
       {%- else -%}
-        <img class="dk-split__img" src="{{ 'dk-life-1.jpg' | asset_url }}" alt="Felt desk mat on a light wooden desk" width="1800" height="1200" loading="lazy">
+        <img class="dk-split__img" src="{{ 'dk-lifestyle.jpg' | asset_url }}" alt="Felt desk mat on a light wooden desk" width="1800" height="1200" loading="lazy">
       {%- endif -%}
     </div>
     <div class="dk-split__copy">

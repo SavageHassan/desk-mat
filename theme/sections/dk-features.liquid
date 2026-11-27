@@ -2,9 +2,9 @@
   <div class="dk-wrap">
     <div class="dk-features__head">
       <p class="dk-eyebrow">{{ section.settings.eyebrow }}</p>
-      <h2 class="dk-h2">{{ section.settings.heading }}</h2>
+      <h2 class="dk-h2" data-dk-split>{{ section.settings.heading }}</h2>
     </div>
-    <ul class="dk-features__grid">
+    <ul class="dk-features__grid" data-dk-stagger>
       {%- for block in section.blocks -%}
         <li class="dk-features__item" {{ block.shopify_attributes }}>
           <span class="dk-features__num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>

@@ -2,17 +2,17 @@
   <div class="dk-wrap dk-intro__grid">
     <div class="dk-intro__copy">
       <p class="dk-eyebrow" data-dk-reveal>{{ section.settings.eyebrow }}</p>
-      <h2 class="dk-intro__title" data-dk-reveal data-dk-delay="60">{{ section.settings.heading }}</h2>
+      <h2 class="dk-intro__title" data-dk-split data-dk-reveal data-dk-delay="60">{{ section.settings.heading }}</h2>
       <p class="dk-body dk-intro__body" data-dk-reveal data-dk-delay="120">{{ section.settings.body }}</p>
       {%- if section.settings.cta_label != blank -%}
         <a class="dk-btn" href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}" data-dk-reveal data-dk-delay="180">{{ section.settings.cta_label }}</a>
       {%- endif -%}
     </div>
 
-    <figure class="dk-intro__media dk-intro__media--tall" data-dk-reveal="scale">
+    <figure class="dk-intro__media dk-intro__media--tall" data-dk-reveal="clip" data-dk-parallax="14">
       <img src="{{ section.settings.image_1 | default: 'dk-product.jpg' | asset_url }}" alt="{{ section.settings.alt_1 }}" loading="lazy" width="1400" height="1800">
     </figure>
-    <figure class="dk-intro__media dk-intro__media--wide" data-dk-reveal="scale" data-dk-delay="120">
+    <figure class="dk-intro__media dk-intro__media--wide" data-dk-reveal="clip" data-dk-delay="120" data-dk-parallax="10">
       <img src="{{ section.settings.image_2 | default: 'dk-detail.jpg' | asset_url }}" alt="{{ section.settings.alt_2 }}" loading="lazy" width="1400" height="1000">
     </figure>
   </div>

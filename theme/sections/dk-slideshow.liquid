@@ -15,7 +15,7 @@
         <div class="dk-wrap dk-slide__inner">
           <div class="dk-slide__copy">
             {%- if block.settings.eyebrow != blank -%}<p class="dk-slide__eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
-            <h2 class="dk-slide__title">{{ block.settings.heading }}</h2>
+            <h2 class="dk-slide__title" data-dk-split>{{ block.settings.heading }}</h2>
             {%- if block.settings.body != blank -%}<p class="dk-slide__body">{{ block.settings.body }}</p>{%- endif -%}
             <div class="dk-slide__actions">
               {%- if block.settings.cta_label != blank -%}

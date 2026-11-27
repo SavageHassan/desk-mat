@@ -1,6 +1,6 @@
 <section class="dk dk-promos">
   <div class="dk-wrap">
-    <ul class="dk-promos__row">
+    <ul class="dk-promos__row" data-dk-stagger>
       {%- for block in section.blocks -%}
         <li class="dk-promo2 dk-promo2--{{ block.settings.tone }}" data-dk-reveal="fade" data-dk-delay="{{ forloop.index0 | times: 70 }}" {{ block.shopify_attributes }}>
           {%- if block.settings.image != blank -%}

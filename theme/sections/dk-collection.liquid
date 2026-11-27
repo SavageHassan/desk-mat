@@ -27,28 +27,7 @@
 
     <ul class="dk-grid__list dk-coll__grid">
       {%- for item in coll.products -%}
-        <li class="dk-pcard" data-dk-reveal="fade" data-dk-delay="{{ forloop.index0 | times: 50 }}">
-          <a class="dk-pcard__media" href="{{ item.url }}">
-            {%- if item.featured_image != blank -%}
-              {{ item.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'dk-pcard__img', alt: item.title }}
-            {%- endif -%}
-            {%- if item.images[1] != blank -%}
-              {{ item.images[1] | image_url: width: 900 | image_tag: loading: 'lazy', class: 'dk-pcard__img dk-pcard__img--alt', alt: item.title }}
-            {%- endif -%}
-            {%- unless item.available -%}<span class="dk-pcard__badge dk-pcard__badge--out">Sold out</span>{%- endunless -%}
-          </a>
-          <div class="dk-pcard__body">
-            <h2 class="dk-pcard__title"><a href="{{ item.url }}">{{ item.title }}</a></h2>
-            <p class="dk-pcard__price">{{ item.price | money }}</p>
-            {%- form 'product', item, class: 'dk-pcard__form dk-buy__form' -%}
-              <input type="hidden" name="id" value="{{ item.selected_or_first_available_variant.id }}">
-              <input type="hidden" name="quantity" value="1">
-              <button type="submit" class="dk-btn dk-pcard__btn dk-buy__add" {% unless item.available %}disabled{% endunless %}>
-                {% if item.available %}Add to cart{% else %}Sold out{% endif %}
-              </button>
-            {%- endform -%}
-          </div>
-        </li>
+        {% render 'dk-product-card', product: item, index: forloop.index0 %}
       {%- else -%}
         <li class="dk-coll__empty"><p class="dk-body">Nothing here yet.</p></li>
       {%- endfor -%}

@@ -2,9 +2,9 @@
   <div class="dk-wrap dk-faq__grid">
     <div class="dk-faq__head">
       <p class="dk-eyebrow">{{ section.settings.eyebrow }}</p>
-      <h2 class="dk-h2">{{ section.settings.heading }}</h2>
+      <h2 class="dk-h2" data-dk-split>{{ section.settings.heading }}</h2>
     </div>
-    <div class="dk-faq__list">
+    <div class="dk-faq__list" data-dk-stagger>
       {%- for block in section.blocks -%}
         <details class="dk-faq__item" {{ block.shopify_attributes }}>
           <summary>
